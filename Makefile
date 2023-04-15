@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -std=c18
 default: Hello
 
 Hello: Hello.o
-	$(CC) $(CFLAGS) -o Hello Hello.o -lncurses
+	$(CC) $(CFLAGS) -o Hello Hello.o -lncurses -lmenu
 
 Hello.o: Hello.c
 	$(CC) $(CFLAGS) -c Hello.c
