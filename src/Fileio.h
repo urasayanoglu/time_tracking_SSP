@@ -52,7 +52,7 @@ struct Action
 // 4. Array of Action structs found at location pointed to by *actions
 // The intention is to make this a static storage, loaded upon starting the program,
 // and saved to periodically during runtime, as well as at termination
-void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct *users, struct *actions);
+void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions);
 
 // Reads the number of users from the file, then reserves enough memory for
 // the user table and reads it. Finally returns the pointer to the array of
