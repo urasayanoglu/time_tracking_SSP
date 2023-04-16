@@ -54,6 +54,10 @@ struct Action
 // and saved to periodically during runtime, as well as at termination
 void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct *users, struct *actions);
 
+// Reads the number of users from the file, then reserves enough memory for
+// the user table and reads it. Finally returns the pointer to the array of
+// user structs
+struct User *readUserTable(char *filename);
 
 
 #endif //TIME_TRACKING_SSP_FILEIO_H
