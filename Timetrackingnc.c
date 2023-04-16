@@ -1,6 +1,8 @@
-//
-// Created by jkh on 4/15/23.
-//
+/*
+ * File:        Timetrackingnc.c
+ * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
+ * Description: Time tracking project Ncurses interface
+ */
 
 #include <ncurses.h>
 #include <ncursesw/menu.h>
@@ -18,11 +20,11 @@ char *choices[] = {
 };
 
 int main()
-{	ITEM **my_items;
-    int c;
-    MENU *my_menu;
-    int n_choices, i;
-    ITEM *cur_item;
+{	ITEM **my_items = NULL;
+    int c = 0;
+    MENU *my_menu = NULL;
+    int n_choices = 0, i = 0;
+    ITEM *cur_item = NULL;
 
 
     initscr();

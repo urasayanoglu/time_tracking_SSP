@@ -1,13 +1,13 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c18
 
-default: Hello
+default: Timetrackingnc
 
-Hello: Hello.o
-	$(CC) $(CFLAGS) -o Hello Hello.o -lncurses -lmenu
+Timetrackingnc: Timetrackingnc.o
+	$(CC) $(CFLAGS) -o Timetrackingnc Timetrackingnc.o -lncurses -lmenu
 
-Hello.o: Hello.c
-	$(CC) $(CFLAGS) -c Hello.c
+Timetrackingnc.o: Timetrackingnc.c
+	$(CC) $(CFLAGS) -c Timetrackingnc.c
 
 clean:
-	$(RM) Hello *.o *~
+	$(RM) Timetrackingnc *.o *~
