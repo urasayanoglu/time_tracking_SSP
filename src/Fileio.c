@@ -5,3 +5,18 @@
  */
 
 #include "Fileio.h"
+
+void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct *users, struct *actions)
+{
+
+}
+
+struct User *readUserTable(char *filename)
+{
+    return NULL;
+}
+
+struct Action *readActionTable(char *filename)
+{
+    return NULL;
+}

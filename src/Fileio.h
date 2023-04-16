@@ -59,5 +59,10 @@ void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct *use
 // user structs
 struct User *readUserTable(char *filename);
 
+// Reads the number of actions from the file, then reserves enough memory for
+// the action array and reads it. Finally returns the pointer to the array of
+// action structs
+struct Action *readActionTable(char *filename);
+
 
 #endif //TIME_TRACKING_SSP_FILEIO_H
