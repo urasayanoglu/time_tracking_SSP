@@ -6,62 +6,55 @@
 #include <ncursesw/menu.h>
 #include <stdlib.h>
 
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
+#define CTRLD 	4
+
+char *choices[] = {
+        "Choice 1",
+        "Choice 2",
+        "Choice 3",
+        "Choice 4",
+        "Exit",
+};
+
 int main()
-{
-    // ncurses initialization
+{	ITEM **my_items;
+    int c;
+    MENU *my_menu;
+    int n_choices, i;
+    ITEM *cur_item;
+
+
     initscr();
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
 
-    // Define menu items
-    char *menu_items[] = {"Option 1", "Option 2", "Option 3"};
-    int num_items = sizeof(menu_items) / sizeof(menu_items[0]);
+    n_choices = ARRAY_SIZE(choices);
+    my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
 
-    // Create menu
-    MENU *menu = new_menu((ITEM **)menu_items);
+    for(i = 0; i < n_choices; ++i)
+        my_items[i] = new_item(choices[i], choices[i]);
+    my_items[n_choices] = (ITEM *)NULL;
 
-    // Create a window to display menu
-    WINDOW *win = newwin(num_items + 2, 40, (LINES - num_items) / 2, (COLS - 40) / 2);
-    keypad(win, TRUE);
-    box(win, 0, 0);
+    my_menu = new_menu((ITEM **)my_items);
+    mvprintw(LINES - 2, 0, "F1 to Exit");
+    post_menu(my_menu);
     refresh();
-    wrefresh(win);
 
-    // Set menu options
-    set_menu_win(menu, win);
-    set_menu_sub(menu, derwin(win, num_items, 38, 1, 1));
-    set_menu_format(menu, num_items, 1);
-    post_menu(menu);
-
-    // Loop to handle menu selections
-    int ch;
-    while ((ch = getch()) != KEY_F(1)) {
-        switch (ch) {
-            case KEY_DOWN:
-                menu_driver(menu, REQ_DOWN_ITEM);
+    while((c = getch()) != KEY_F(1))
+    {   switch(c)
+        {	case KEY_DOWN:
+                menu_driver(my_menu, REQ_DOWN_ITEM);
                 break;
             case KEY_UP:
-                menu_driver(menu, REQ_UP_ITEM);
-                break;
-            case 10: // Enter key
-            {
-                ITEM *cur_item = current_item(menu);
-                int iten_index = item_index(cur_item);
-                mvprintw(num_items + 3, 0, "Selected: %s", menu_items[iten_index]);
-                refresh();
-            }
+                menu_driver(my_menu, REQ_UP_ITEM);
                 break;
         }
     }
 
-    // Clean up
-    unpost_menu(menu);
-    free_menu(menu);
-    for (int i = 0; i < num_items; ++i) {
-        free(menu_items[i]);
-    }
+    free_item(my_items[0]);
+    free_item(my_items[1]);
+    free_menu(my_menu);
     endwin();
-
-    return 0;
 }
