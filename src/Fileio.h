@@ -47,7 +47,11 @@ struct Action
 
 // Writes binary data to "filename" in the following order:
 // 1. Number of users (int numberOfUsers)
-// 2. Number of actions in the array
+// 2. Number of actions in the array (int numberOfActions)
+// 3. Array of User structs found at location pointed to by *users
+// 4. Array of Action structs found at location pointed to by *actions
+// The intention is to make this a static storage, loaded upon starting the program,
+// and saved to periodically during runtime, as well as at termination
 void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct *users, struct *actions);
 
 
