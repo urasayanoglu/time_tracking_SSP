@@ -4,6 +4,8 @@
  * Description: Time tracking project Ncurses interface
  */
 
+// You may need to install a package like libncurse-dev to use these
+// e.g. sudo apt install libncurses-dev
 #include <ncurses.h>
 #include <ncursesw/menu.h>
 #include <stdlib.h>
@@ -28,10 +30,16 @@ int main()
     int n_choices = 0, i = 0;
     ITEM *cur_item = NULL;
 
-
+    // Initialize the terminal for ncurses
     initscr();
+
+    // Cbreak mode  makes button presses immediately available to the program
     cbreak();
+
+    // noecho() disables automatic printing of typed characters
     noecho();
+
+    // sets the stdscr screen up to receive special keys
     keypad(stdscr, TRUE);
 
     n_choices = ARRAY_SIZE(choices);
@@ -57,8 +65,11 @@ int main()
         }
     }
 
+    // ncurses function to free up memory reserved by items and menus
     free_item(my_items[0]);
     free_item(my_items[1]);
     free_menu(my_menu);
+
+    // Restores the terminal to its original state
     endwin();
 }
