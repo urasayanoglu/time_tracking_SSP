@@ -58,5 +58,11 @@ int main()
         printf("sortArray failed the test\n")
     }
 
+    // Test 3:
+    struct Action *newerArray = NULL;
+    newerArray = addAction(0, 2, &addAction[0]);
+    printf("You added an action in year %d, month %d, day %d, hour %d, minute %d", newerArray[3].year,
+           newerArray[3].month, newerArray[3].day, newerArray[3].hour, newerArray[3].second);
+
     return 0;
 }

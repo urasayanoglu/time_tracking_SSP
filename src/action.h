@@ -38,6 +38,7 @@ int isEarlier(struct Action *x, struct Action *y);
 void sortActions(struct Action *actions);
 
 // Adds an Action struct to an array of such structs, using current time
+// return NULL for failure.
 struct Action *addAction(int userID, int actionType, struct Action *actions);
 
 #endif //TIME_TRACKING_SSP_ACTION_H
