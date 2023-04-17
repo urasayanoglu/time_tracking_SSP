@@ -13,13 +13,11 @@
 #include "src/Fileio.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define CTRLD 	4
 
 char *choices[] = {
-        "Choice 1",
-        "Choice 2",
-        "Choice 3",
-        "Choice 4",
+        "View time tracking data",
+        "Edit user info",
+        "Edit action entries",
         "Exit",
 };
 
