@@ -22,28 +22,6 @@ struct User
     char lastName[NAME_LENGTH];
 };
 
-struct Action
-{
-    unsigned int usedID;
-
-    // 0 = Start working, 1 = Stop working
-    // With room to add multiple types of breaks
-    int actionType;
-
-    // Dates follow meatspace conventions, here clarified where not immediately apparent
-    int year;
-    int month;
-    int day;
-
-    // Hours since midnight (0-23)
-    int hour;
-
-    // Minutes past the hour (0-59)
-    int minute;
-
-    // Seconds past the minute (0-59)
-    int second;
-};
 
 // Writes binary data to "filename" in the following order:
 // 1. Number of users (int numberOfUsers)
