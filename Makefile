@@ -9,11 +9,11 @@ Timetrackingnc: Timetrackingnc.o
 Testaction: Testaction.o
 	$(CC) $(CFLAGS) -o Testaction Testaction.o
 
-Testaction.o: src/Testaction.c src/Action.h
-	$(CC) $(CFLAGS) -c src/Testaction.c
-
 Timetrackingnc.o: Timetrackingnc.c src/Fileio.h
 	$(CC) $(CFLAGS) -c Timetrackingnc.c
+
+Testaction.o: src/Testaction.c src/Action.h
+	$(CC) $(CFLAGS) -c src/Testaction.c
 
 fileio.o: src/Fileio.c src/Fileio.h
 	$(CC) $(CFLAGS) -c src/Fileio.c
