@@ -46,5 +46,17 @@ int main()
         printf("isEarlier failed.\n")
     }
 
+    // Test 2:
+    struct Action *newArray = NULL;
+    newArray = sortActions(&testActions[0]);
+    if (newArray[0].month == 5 && newArray[1].month == 8 && newArray[2].month)
+    {
+        printf("sortActions passed the test\n")
+    }
+    else
+    {
+        printf("sortArray failed the test\n")
+    }
+
     return 0;
 }
