@@ -62,6 +62,8 @@ int isEarlier(struct Action *x, struct Action *y)
     }
 }
 
+// The intention here is to use the qsort function in stdlib.h (try Google or ChatGPT...)
+// Qsort requires a comparison function, which you need to implement too. (isEarlier might be handy)
 void sortActions(struct Action *actions)
 {
 
