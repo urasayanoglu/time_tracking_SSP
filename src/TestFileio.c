@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include "Fileio.h"
 #include "Fileio.h"
+#include "action.h"
 
 #define FILENAME "testfile"
 
@@ -69,6 +70,9 @@ int main()
     struct Action *loadedActions = NULL;
 
     // save structs
+    // *** IDE is warning about &testActions[0] below, but not &users[0].
+    // Will have to investigate at some point, or resolve when ready to run
+    // (wouldn't be the first time Clion is wrong about this)
     if (writeDB(numberOfUsers, numberOfActions, FILENAME, &users[0], &testActions[0]))
     {
         printf("Saving reported success.\n");
@@ -107,6 +111,28 @@ int main()
         }
     }
     printf("Loading User file passed %d out of %d tests.\n", counter, 5*numberOfUsers);
+
+    // load actions
+    loadedActions = readActionTable(FILENAME);
+
+    // Verify actions
+    counter = 0;
+    for (int i = 0; i < numberOfActions; i++)
+    {
+        counter = (loadedActions[i].minute == testActions[i].minute) ? counter+1 : counter;
+        counter = (loadedActions[i].hour == testActions[i].hour) ? counter+1 : counter;
+        counter = (loadedActions[i].second == testActions[i].second) ? counter+1 : counter;
+        counter = (loadedActions[i].day == testActions[i].day) ? counter+1 : counter;
+        counter = (loadedActions[i].month == testActions[i].month) ? counter+1 : counter;
+        counter = (loadedActions[i].year == testActions[i].year) ? counter+1 : counter;
+        counter = (loadedActions[i].actionType == testActions[i].actionType) ? counter+1 : counter;
+        counter = (loadedActions[i].usedID == testActions[i].usedID) ? counter+1 : counter;
+    }
+    printf("Loading Action file passed %d out of %d tests.\n", counter, 5*numberOfActions);
+
+    // Deallocate memory
+    free(loadedUsers);
+    free(loadedActions);
 
     return 0;
 }
