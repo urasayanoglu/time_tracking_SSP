@@ -39,6 +39,6 @@ void sortActions(struct Action *actions);
 
 // Adds an Action struct to an array of such structs, using current time
 // return NULL for failure.
-struct Action *addAction(int userID, int actionType, struct Action *actions);
+struct Action *addAction(int userID, int actionType, struct Action *actions, int length);
 
 #endif //TIME_TRACKING_SSP_ACTION_H
