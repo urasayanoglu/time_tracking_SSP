@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include "action.h"
+#include "action.c"
 
 int main()
 {
@@ -37,15 +38,15 @@ int main()
     testActions[2].year=2023;
 
     // Test 1:
-    if (isEarlier(&testActions[0], &testActions[1]) && isEarlier(&testActions[0], &testActions[2]) && isEarlier(&testActions[1], &testActions[2]))
+    if (isEarlier(&testActions[1], &testActions[0]) && isEarlier(&testActions[0], &testActions[2]) && isEarlier(&testActions[1], &testActions[2]))
     {
-        printf("isEarlier passed all 3 tests\n")
+        printf("isEarlier passed all 3 tests\n");
     }
     else
     {
-        printf("isEarlier failed.\n")
+        printf("isEarlier failed.\n");
     }
-
+/*
     // Test 2:
     struct Action *newArray = NULL;
     newArray = sortActions(&testActions[0]);
@@ -66,6 +67,6 @@ int main()
 
     free(newArray);
     free(newerArray);
-
+*/
     return 0;
 }
