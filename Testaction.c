@@ -60,7 +60,7 @@ int main()
         printf("sortArray failed the test\n");
     }
 
-/*
+
 
     // Test 3:
     struct Action *newerArray = NULL;
@@ -70,6 +70,6 @@ int main()
 
 
     free(newerArray);
-*/
+
     return 0;
 }
