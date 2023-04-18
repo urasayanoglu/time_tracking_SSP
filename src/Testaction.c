@@ -64,5 +64,8 @@ int main()
     printf("You added an action in year %d, month %d, day %d, hour %d, minute %d", newerArray[3].year,
            newerArray[3].month, newerArray[3].day, newerArray[3].hour, newerArray[3].second);
 
+    free(newArray);
+    free(newerArray);
+
     return 0;
 }
