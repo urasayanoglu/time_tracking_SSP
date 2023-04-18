@@ -14,6 +14,8 @@
 
 int main()
 {
+    int counter = 0;
+
     // Create user struct
     struct User users[3];
     users[0].ID = 1111;
@@ -80,6 +82,31 @@ int main()
     // Load users
     loadedUsers = readUserTable(FILENAME);
 
+    // Verify users:
+    for (int i = 0; i<numberOfUsers; i++)
+    {
+        if (strcmp(users[i].lastName, loadedUsers[i].lastName) == 0)
+        {
+            counter++;
+        }
+        if (strcmp(users[i].firstName, loadedUsers[i].firstName) == 0)
+        {
+            counter++;
+        }
+        if (users[i].status == loadedUsers[i].status)
+        {
+            counter++;
+        }
+        if (users[i].ID == loadedUsers[i].ID)
+        {
+            counter++;
+        }
+        if (users[i].type == loadedUsers[i].type)
+        {
+            counter++;
+        }
+    }
+    printf("Loading User file passed %d out of %d tests.\n", counter, 5*numberOfUsers);
 
     return 0;
 }
