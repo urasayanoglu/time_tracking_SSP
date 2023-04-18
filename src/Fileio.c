@@ -6,7 +6,7 @@
 
 #include "Fileio.h"
 
-void writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions)
+int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions)
 {
 
 }

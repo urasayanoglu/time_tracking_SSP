@@ -8,6 +8,10 @@
 #include "Fileio.h"
 #include "Fileio.h"
 
+#define FILENAME "testfile"
+
+// All three function pretty much need to be implemented to use this
+
 int main()
 {
     // Create user struct
@@ -54,6 +58,27 @@ int main()
     testActions[2].month=7;
     testActions[2].second=54;
     testActions[2].year=2023;
+
+    int numberOfUsers = sizeof(users) / sizeof(users[0]);
+    int numberOfActions = sizeof(testActions) / sizeof(testActions[0]);
+
+    // Pointers for loading
+    struct User *loadedUsers = NULL;
+    struct Action *loadedActions = NULL;
+
+    // save structs
+    if (writeDB(numberOfUsers, numberOfActions, FILENAME, &users[0], &testActions[0]))
+    {
+        printf("Saving reported success.\n");
+    }
+    else
+    {
+        printf("Saving reported failure!\n");
+        return 0;
+    }
+
+    // Load users
+    loadedUsers = readUserTable(FILENAME);
 
 
     return 0;
