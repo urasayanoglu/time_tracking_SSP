@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "action.h"
 
-int isEarlier(struct Action *x, struct Action *y)
+int isEarlier(struct Action *x, struct Action *y) 
 {
     if (x->year < y->year)
     {
@@ -64,11 +64,65 @@ int isEarlier(struct Action *x, struct Action *y)
     }
 }
 
-// The intention here is to use the qsort function in stdlib.h (try Google or ChatGPT...)
-// Qsort requires a comparison function, which you need to implement too. (isEarlier might be handy)
-void sortActions(struct Action *actions)
+// The intention here is to use the qsort function in stdlib.h to sort Action structs to order
+void sortActions(struct Action *actions, int lengthOfArray)
 {
+	qsort(actions, lengthOfArray, sizeof(struct Action), comparisonFunction);
+}
 
+int comparisonFunction(const void *a, const void *b) {
+    const struct Action *x = (const struct Action*)a;
+    const struct Action *y = (const struct Action*)b;
+
+    if (x->year < y->year) {
+        return -1;
+    }
+    else if (x->year > y->year) {
+        return 1;
+    }
+    else {
+        if (x->month < y->month) {
+            return -1;
+        }
+        else if (x->month > y->month) {
+            return 1;
+        }
+        else {
+            if (x->day < y->day) {
+                return -1;
+            }
+            else if (x->day > y->day) {
+                return 1;
+            }
+            else {
+                if (x->hour < y->hour) {
+                    return -1;
+                }
+                else if (x->hour > y->hour) {
+                    return 1;
+                }
+                else {
+                    if (x->minute < y->minute) {
+                        return -1;
+                    }
+                    else if (x->minute > y->minute) {
+                        return 1;
+                    }
+                    else {
+                        if (x->second < y->second) {
+                            return -1;
+                        }
+                        else if (x->second > y->second) {
+                            return 1;
+                        }
+                        else {
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct Action *addAction(int userID, int actionType, struct Action *actions, int length)

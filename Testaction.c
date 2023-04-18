@@ -48,20 +48,19 @@ int main()
     {
         printf("isEarlier failed.\n");
     }
-/*
+
     // Test 2:
-    struct Action *newArray = NULL;
-    newArray = sortActions(&testActions[0]);
-    if (newArray[0].month == 5 && newArray[1].month == 8 && newArray[2].month)
+    sortActions(&testActions[0], lengthOfArray);
+    if (testActions[0].month == 5 && testActions[1].month == 8 && testActions[2].month)
     {
-        printf("sortActions passed the test\n")
+        printf("sortActions passed the test\n");
     }
     else
     {
-        printf("sortArray failed the test\n")
+        printf("sortArray failed the test\n");
     }
 
- */
+/*
 
     // Test 3:
     struct Action *newerArray = NULL;
@@ -69,8 +68,8 @@ int main()
     printf("You added an action in year %d, month %d, day %d, hour %d, minute %d\n", newerArray[3].year,
            newerArray[3].month, newerArray[3].day, newerArray[3].hour, newerArray[3].minute);
 
-//    free(newArray);
-    free(newerArray);
 
+    free(newerArray);
+*/
     return 0;
 }
