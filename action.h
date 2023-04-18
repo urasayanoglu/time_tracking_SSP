@@ -34,8 +34,14 @@ struct Action
 // returns true if the time/date of x is earlier than y
 int isEarlier(struct Action *x, struct Action *y);
 
-// sorts an array of Action structs so that earlier occurrences have smaller index
-void sortActions(struct Action *actions);
+// The intention here is to use the qsort function in stdlib.h to sort Action structs to order
+void sortActions(struct Action *actions, int lengthOfArray);
+
+// The intention here is compare current and previous Action structs attribute by attribute
+// 1. return positive integer in case current is greater than previous 
+// 2. return negative in case current is less than previous
+// 3. return 0 in case curent and previous are equal
+int comparisonFunction(const void *a, const void *b);
 
 // Adds an Action struct to an array of such structs, using current time
 // return NULL for failure.
