@@ -22,4 +22,4 @@ fileio.o: Fileio.c Fileio.h
 	$(CC) $(CFLAGS) -c Fileio.c
 
 clean:
-	$(RM) Timetrackingnc *.o *~
+	$(RM) Timetrackingnc Testaction *.o *~

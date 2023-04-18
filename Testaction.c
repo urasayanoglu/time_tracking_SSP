@@ -37,6 +37,8 @@ int main()
     testActions[2].second=54;
     testActions[2].year=2023;
 
+    int lengthOfArray = sizeof(testActions) / sizeof(testActions[0]);
+
     // Test 1:
     if (isEarlier(&testActions[1], &testActions[0]) && isEarlier(&testActions[0], &testActions[2]) && isEarlier(&testActions[1], &testActions[2]))
     {
@@ -59,14 +61,16 @@ int main()
         printf("sortArray failed the test\n")
     }
 
+ */
+
     // Test 3:
     struct Action *newerArray = NULL;
-    newerArray = addAction(0, 2, &addAction[0]);
-    printf("You added an action in year %d, month %d, day %d, hour %d, minute %d", newerArray[3].year,
-           newerArray[3].month, newerArray[3].day, newerArray[3].hour, newerArray[3].second);
+    newerArray = addAction(0, 2, &testActions[0], lengthOfArray);
+    printf("You added an action in year %d, month %d, day %d, hour %d, minute %d\n", newerArray[3].year,
+           newerArray[3].month, newerArray[3].day, newerArray[3].hour, newerArray[3].minute);
 
-    free(newArray);
+//    free(newArray);
     free(newerArray);
-*/
+
     return 0;
 }

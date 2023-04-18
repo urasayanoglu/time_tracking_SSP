@@ -5,6 +5,8 @@
  */
 
 #include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 #include "action.h"
 
 int isEarlier(struct Action *x, struct Action *y)
@@ -69,7 +71,29 @@ void sortActions(struct Action *actions)
 
 }
 
-struct Action *addAction(int userID, int actionType, struct Action *actions)
+struct Action *addAction(int userID, int actionType, struct Action *actions, int length)
 {
-    return NULL;
+    // Get current time
+    time_t currentTime = time(NULL);
+
+    // Convert time to local time
+    struct tm* local_time = localtime(&currentTime);
+
+    struct Action *newActions = NULL;
+    newActions = (struct Action *) malloc((length + 1) * sizeof(struct Action));
+    for (int i = 0; i < length; i++)
+    {
+        newActions[i] = actions[i];
+    }
+
+    newActions[length].usedID = userID;
+    newActions[length].actionType = actionType;
+    newActions[length].year = local_time->tm_year + 1900;
+    newActions[length].month = local_time->tm_mon + 1;
+    newActions[length].day = local_time->tm_mday;
+    newActions[length].hour = local_time->tm_hour;
+    newActions[length].minute = local_time->tm_min;
+    newActions[length].second = local_time->tm_sec;
+
+    return newActions;
 }
