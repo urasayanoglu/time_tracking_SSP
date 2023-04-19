@@ -51,7 +51,7 @@ int main()
 
     // Test 2:
     sortActions(&testActions[0], lengthOfArray);
-    if (testActions[0].month == 5 && testActions[1].month == 8 && testActions[2].month)
+    if (isEarlier(&testActions[0], &testActions[1]) && isEarlier(&testActions[1], &testActions[2]) && isEarlier(&testActions[0], &testActions[2]))
     {
         printf("sortActions passed the test\n");
     }
@@ -60,7 +60,7 @@ int main()
         printf("sortArray failed the test\n");
     }
 
-/*
+
 
     // Test 3:
     struct Action *newerArray = NULL;
@@ -70,6 +70,6 @@ int main()
 
 
     free(newerArray);
-*/
+
     return 0;
 }

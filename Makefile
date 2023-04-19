@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c18
 
-default: Testaction
+default: Timetrackingnc
 
 Timetrackingnc: Timetrackingnc.o
 	$(CC) $(CFLAGS) -o Timetrackingnc Timetrackingnc.o -lncurses -lmenu
@@ -9,17 +9,23 @@ Timetrackingnc: Timetrackingnc.o
 Testaction: Testaction.o
 	$(CC) $(CFLAGS) -o Testaction Testaction.o
 
-Timetrackingnc.o: Timetrackingnc.c Fileio.h
-	$(CC) $(CFLAGS) -c Timetrackingnc.c
+TestFileio: TestFileio.o
+	$(CC) $(CFLAGS) -o TestFileio TestFileio.o
 
-Testaction.o: Testaction.c action.h
-	$(CC) $(CFLAGS) -c Testaction.c
+Timetrackingnc.o: src/Timetrackingnc.c src/Fileio.h
+	$(CC) $(CFLAGS) -c src/Timetrackingnc.c
 
-action.o: action.c action.h
-	$(CC) $(CFLAGS) -c action.c
+Testaction.o: src/Testaction.c src/action.h
+	$(CC) $(CFLAGS) -c src/Testaction.c
 
-fileio.o: Fileio.c Fileio.h
-	$(CC) $(CFLAGS) -c Fileio.c
+TestFileIo.o: src/TestFileio.c src/Fileio.h src/action.h
+	$(CC) $(CFLAGS) -c src/Testilwio.c
+
+action.o: src/action.c src/action.h
+	$(CC) $(CFLAGS) -c src/action.c
+
+fileio.o: src/Fileio.c src/Fileio.h
+	$(CC) $(CFLAGS) -c src/Fileio.c
 
 clean:
-	$(RM) Timetrackingnc Testaction *.o *~
+	$(RM) Timetrackingnc Testaction TestFileio *.o *~
