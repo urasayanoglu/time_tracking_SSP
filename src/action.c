@@ -71,57 +71,20 @@ void sortActions(struct Action *actions, int lengthOfArray)
 }
 
 int comparisonFunction(const void *a, const void *b) {
-    const struct Action *x = (const struct Action*)a;
-    const struct Action *y = (const struct Action*)b;
-
-    if (x->year < y->year) {
-        return -1;
+    struct Action *x = (struct Action*)a;
+    struct Action *y = (struct Action*)b;
+    
+    if (isEarlier(x,y))
+    {
+    	return -1;
     }
-    else if (x->year > y->year) {
-        return 1;
+    else if (isEarlier(y,x))
+    {
+    	return 1;
     }
-    else {
-        if (x->month < y->month) {
-            return -1;
-        }
-        else if (x->month > y->month) {
-            return 1;
-        }
-        else {
-            if (x->day < y->day) {
-                return -1;
-            }
-            else if (x->day > y->day) {
-                return 1;
-            }
-            else {
-                if (x->hour < y->hour) {
-                    return -1;
-                }
-                else if (x->hour > y->hour) {
-                    return 1;
-                }
-                else {
-                    if (x->minute < y->minute) {
-                        return -1;
-                    }
-                    else if (x->minute > y->minute) {
-                        return 1;
-                    }
-                    else {
-                        if (x->second < y->second) {
-                            return -1;
-                        }
-                        else if (x->second > y->second) {
-                            return 1;
-                        }
-                        else {
-                            return 0;
-                        }
-                    }
-                }
-            }
-        }
+    else 
+    {
+    	return 0;	
     }
 }
 
