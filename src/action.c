@@ -9,53 +9,54 @@
 #include <stdio.h>
 #include "action.h"
 
-int isEarlier(struct Action *x, struct Action *y) 
+// compare each attribute of previous and current struct to determine which of the two is greater
+int isEarlier(struct Action *previousStruct, struct Action *currentStruct) 
 {
-    if (x->year < y->year)
+    if (previousStruct->year < currentStruct->year)
     {
         return 1;
     }
-    else if (x->year > y->year)
+    else if (previousStruct->year > currentStruct->year)
     {
         return 0;
     }
-    else if (x->month < y->month)
+    else if (previousStruct->month < currentStruct->month)
     {
         return 1;
     }
-    else if (x->month > y->month)
+    else if (previousStruct->month > currentStruct->month)
     {
         return 0;
     }
-    else if (x->day < y->day)
+    else if (previousStruct->day < currentStruct->day)
     {
         return 1;
     }
-    else if (x->day > y->day)
+    else if (previousStruct->day > currentStruct->day)
     {
         return 0;
     }
-    else if (x->hour < y->hour)
+    else if (previousStruct->hour < currentStruct->hour)
     {
         return 1;
     }
-    else if (x->hour > y->hour)
+    else if (previousStruct->hour > currentStruct->hour)
     {
         return 0;
     }
-    else if (x->minute < y->minute)
+    else if (previousStruct->minute < currentStruct->minute)
     {
         return 1;
     }
-    else if (x->minute > y->minute)
+    else if (previousStruct->minute > currentStruct->minute)
     {
         return 0;
     }
-    else if (x->second < y->second)
+    else if (previousStruct->second < currentStruct->second)
     {
         return 1;
     }
-    else if (x->second > y->second)
+    else if (previousStruct->second > currentStruct->second)
     {
         return 0;
     }
@@ -64,53 +65,69 @@ int isEarlier(struct Action *x, struct Action *y)
     }
 }
 
-// The intention here is to use the qsort function in stdlib.h to sort Action structs to order
+// sort structs with qsort() algoritm from stdlib library
 void sortActions(struct Action *actions, int lengthOfArray)
 {
+	// qsort(pointer, total structs, size of single struct, function to compare all structs)
 	qsort(actions, lengthOfArray, sizeof(struct Action), comparisonFunction);
 }
 
-int comparisonFunction(const void *a, const void *b) {
-    struct Action *x = (struct Action*)a;
-    struct Action *y = (struct Action*)b;
+// compare previous and current struct which result is passed to qsort() function
+int comparisonFunction(const void *previous, const void *current) {
+
+    // make type conversion for using another function to compare structs. This is VERY IMPORTANT.
+    struct Action *previousStruct = (struct Action*)previous;
+    struct Action *currentStruct = (struct Action*)current;
     
-    if (isEarlier(x,y))
+    // in case previous is greater than current
+    if (isEarlier(previousStruct,currentStruct))
     {
     	return -1;
     }
-    else if (isEarlier(y,x))
+    
+    // in case current is greater than previous
+    else if (isEarlier(currentStruct,previousStruct))
     {
     	return 1;
     }
+    
+    // in case previous and current are equal
     else 
     {
     	return 0;	
     }
 }
 
-struct Action *addAction(int userID, int actionType, struct Action *actions, int length)
+// create a struct for current time
+struct Action *addAction(int userID, int actionType, struct Action *actions, int lengthOfArray)
 {
     // Get current time
     time_t currentTime = time(NULL);
 
     // Convert time to local time
-    struct tm* local_time = localtime(&currentTime);
+    struct tm* localTime = localtime(&currentTime);
 
+    // allocate memory for struct
     struct Action *newActions = NULL;
-    newActions = (struct Action *) malloc((length + 1) * sizeof(struct Action));
-    for (int i = 0; i < length; i++)
+    newActions = (struct Action *) malloc((lengthOfArray + 1) * sizeof(struct Action));
+  
+    // loop is copying the elements from the input array actions to the newly created array newActions
+    for (int index = 0; index < lengthOfArray; index++)
     {
-        newActions[i] = actions[i];
+        newActions[index] = actions[index];
     }
 
-    newActions[length].usedID = userID;
-    newActions[length].actionType = actionType;
-    newActions[length].year = local_time->tm_year + 1900;
-    newActions[length].month = local_time->tm_mon + 1;
-    newActions[length].day = local_time->tm_mday;
-    newActions[length].hour = local_time->tm_hour;
-    newActions[length].minute = local_time->tm_min;
-    newActions[length].second = local_time->tm_sec;
+    // sets the values of the new struct Action element at the end of the new array newActions
+    newActions[lengthOfArray].usedID = userID;
+    newActions[lengthOfArray].actionType = actionType;
+    newActions[lengthOfArray].year = localTime->tm_year + 1900;
+    newActions[lengthOfArray].month = localTime->tm_mon + 1;
+    newActions[lengthOfArray].day = localTime->tm_mday;
+    newActions[lengthOfArray].hour = localTime->tm_hour;
+    newActions[lengthOfArray].minute = localTime->tm_min;
+    newActions[lengthOfArray].second = localTime->tm_sec;
 
+    // Finally, returns the pointer to the new array newActions which contains all the old elements from the input array actions 
+    // and the new struct Action element at the end.
     return newActions;
 }
