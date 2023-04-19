@@ -60,16 +60,16 @@ int main()
         printf("sortArray failed the test\n");
     }
 
-
-
     // Test 3:
-    struct Action *newerArray = NULL;
-    newerArray = addAction(0, 2, &testActions[0], lengthOfArray);
-    printf("You added an action in year %d, month %d, day %d, hour %d, minute %d\n", newerArray[3].year,
-           newerArray[3].month, newerArray[3].day, newerArray[3].hour, newerArray[3].minute);
+    struct Action *newArray = NULL;
+    newArray = addAction(0, 2, &testActions[0], lengthOfArray);
+    printf("You added an action in year %d, month %d, day %d, hour %d, minute %d\n", newArray[3].year,
+           newArray[3].month, newArray[3].day, newArray[3].hour, newArray[3].minute);
 
 
-    free(newerArray);
+
+    free(newArray);
+
 
     return 0;
 }
