@@ -87,25 +87,25 @@ int main()
     loadedUsers = readUserTable(FILENAME);
 
     // Verify users:
-    for (int i = 0; i<numberOfUsers; i++)
+    for (int index = 0; index<numberOfUsers; index++)
     {
-        if (strcmp(users[i].lastName, loadedUsers[i].lastName) == 0)
+        if (strcmp(users[index].lastName, loadedUsers[index].lastName) == 0)
         {
             counter++;
         }
-        if (strcmp(users[i].firstName, loadedUsers[i].firstName) == 0)
+        if (strcmp(users[index].firstName, loadedUsers[index].firstName) == 0)
         {
             counter++;
         }
-        if (users[i].status == loadedUsers[i].status)
+        if (users[index].status == loadedUsers[index].status)
         {
             counter++;
         }
-        if (users[i].ID == loadedUsers[i].ID)
+        if (users[index].ID == loadedUsers[index].ID)
         {
             counter++;
         }
-        if (users[i].type == loadedUsers[i].type)
+        if (users[index].type == loadedUsers[index].type)
         {
             counter++;
         }
@@ -117,16 +117,16 @@ int main()
 
     // Verify actions
     counter = 0;
-    for (int i = 0; i < numberOfActions; i++)
+    for (int index = 0; index < numberOfActions; index++)
     {
-        counter = (loadedActions[i].minute == testActions[i].minute) ? counter+1 : counter;
-        counter = (loadedActions[i].hour == testActions[i].hour) ? counter+1 : counter;
-        counter = (loadedActions[i].second == testActions[i].second) ? counter+1 : counter;
-        counter = (loadedActions[i].day == testActions[i].day) ? counter+1 : counter;
-        counter = (loadedActions[i].month == testActions[i].month) ? counter+1 : counter;
-        counter = (loadedActions[i].year == testActions[i].year) ? counter+1 : counter;
-        counter = (loadedActions[i].actionType == testActions[i].actionType) ? counter+1 : counter;
-        counter = (loadedActions[i].usedID == testActions[i].usedID) ? counter+1 : counter;
+        counter = (loadedActions[index].minute == testActions[index].minute) ? counter+1 : counter;
+        counter = (loadedActions[index].hour == testActions[index].hour) ? counter+1 : counter;
+        counter = (loadedActions[index].second == testActions[index].second) ? counter+1 : counter;
+        counter = (loadedActions[index].day == testActions[index].day) ? counter+1 : counter;
+        counter = (loadedActions[index].month == testActions[index].month) ? counter+1 : counter;
+        counter = (loadedActions[index].year == testActions[index].year) ? counter+1 : counter;
+        counter = (loadedActions[index].actionType == testActions[index].actionType) ? counter+1 : counter;
+        counter = (loadedActions[index].usedID == testActions[index].usedID) ? counter+1 : counter;
     }
     printf("Loading Action file passed %d out of %d tests.\n", counter, 5*numberOfActions);
 
