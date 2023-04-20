@@ -6,7 +6,9 @@
 #ifndef TIME_TRACKING_SSP_FILEIO_H
 #define TIME_TRACKING_SSP_FILEIO_H
 
-#define NAME_LENGTH 30
+#define NAMELENGTH 30
+
+#include "action.h"
 
 struct User
 {
@@ -18,8 +20,8 @@ struct User
 
     // status = last action
     int status;
-    char firstName[NAME_LENGTH];
-    char lastName[NAME_LENGTH];
+    char firstName[NAMELENGTH];
+    char lastName[NAMELENGTH];
 };
 
 
