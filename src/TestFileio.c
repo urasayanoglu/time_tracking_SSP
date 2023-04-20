@@ -5,11 +5,14 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include "Fileio.h"
 #include "Fileio.h"
 #include "action.h"
+#include "Fileio.c"
 
-#define FILENAME "testfile"
+
+#define FILENAME "data.txt"
 
 // All three function pretty much need to be implemented to use this
 
@@ -28,12 +31,12 @@ int main()
     users[0].status = 0;
     users[1].status = 1;
     users[2].status = 0;
-    users[0].firstName = "Uras";
-    users[1].firstName = "Carl Magnus";
-    users[2].firstName = "Sebastian"
-    users[0].lastName = "Ayanoglu";
-    users[1].lastName = "von Anckarswert";
-    users[2].lastName = "Sopola";
+    strcpy(users[0].firstName,"Uras");
+    strcpy(users[1].firstName,"Carl Magnus");
+    strcpy(users[2].firstName,"Sebastian");
+    strcpy(users[0].lastName,"Ayanoglu");
+    strcpy(users[1].lastName,"von Anckarswert");
+    strcpy(users[2].lastName,"Sopola");
 
     // action struct, copypaste from Testaction
     struct Action testActions[3];
@@ -82,7 +85,7 @@ int main()
         printf("Saving reported failure!\n");
         return 0;
     }
-
+/*
     // Load users
     loadedUsers = readUserTable(FILENAME);
 
@@ -133,6 +136,6 @@ int main()
     // Deallocate memory
     free(loadedUsers);
     free(loadedActions);
-
+*/
     return 0;
 }
