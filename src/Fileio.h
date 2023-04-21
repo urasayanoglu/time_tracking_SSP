@@ -8,6 +8,8 @@
 
 #define NAMELENGTH 30
 
+#define MAXLINELENGTH 2000
+
 #include "action.h"
 
 struct User
@@ -38,8 +40,8 @@ int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User 
 // Reads the number of users from the file, then reserves enough memory for
 // the user table and reads it. Finally returns the pointer to the array of
 // user structs
-// Returns NULL upon failure
-struct User *readUserTable(char *filename);
+// Returns 0 upon failure
+struct User *readUserTable(int numberOfUsers, char *filename);
 
 // Reads the number of actions from the file, then reserves enough memory for
 // the action array and reads it. Finally returns the pointer to the array of

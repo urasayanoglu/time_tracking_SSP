@@ -4,6 +4,12 @@
  * Description: Unit tests for fileio.c
  */
 
+/*
+	Constraints: Name must be format 'CarMagnus','Carl'
+	Not allowed names: 'Carl Magnus', 'Carl-Magnus' 
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 #include "Fileio.h"
@@ -32,10 +38,10 @@ int main()
     users[1].status = 1;
     users[2].status = 0;
     strcpy(users[0].firstName,"Uras");
-    strcpy(users[1].firstName,"Carl Magnus");
+    strcpy(users[1].firstName,"Carl");
     strcpy(users[2].firstName,"Sebastian");
     strcpy(users[0].lastName,"Ayanoglu");
-    strcpy(users[1].lastName,"von Anckarswert");
+    strcpy(users[1].lastName,"vonAnckarswert");
     strcpy(users[2].lastName,"Sopola");
 
     // action struct, copypaste from Testaction
@@ -85,36 +91,51 @@ int main()
         printf("Saving reported failure!\n");
         return 0;
     }
-/*
-    // Load users
-    loadedUsers = readUserTable(FILENAME);
 
-    // Verify users:
-    for (int index = 0; index<numberOfUsers; index++)
+    // load users
+    
+    // in case reading users from database was not succesfull
+    if(readUserTable(numberOfUsers,FILENAME) == NULL)
     {
-        if (strcmp(users[index].lastName, loadedUsers[index].lastName) == 0)
-        {
-            counter++;
-        }
-        if (strcmp(users[index].firstName, loadedUsers[index].firstName) == 0)
-        {
-            counter++;
-        }
-        if (users[index].status == loadedUsers[index].status)
-        {
-            counter++;
-        }
-        if (users[index].ID == loadedUsers[index].ID)
-        {
-            counter++;
-        }
-        if (users[index].type == loadedUsers[index].type)
-        {
-            counter++;
-        }
+    	printf("loadedUsers did not pass the test\n\n");
     }
-    printf("Loading User file passed %d out of %d tests.\n", counter, 5*numberOfUsers);
-
+    
+    // in case reading users from database was successfull
+	else
+	{
+		loadedUsers = readUserTable(numberOfUsers,FILENAME);
+		// Verify users:
+		for (int index = 0; index<numberOfUsers; index++)
+		{
+			printf("users.lastname[%s], loadedUsers.lastname[%s]\n",users[index].lastName, loadedUsers[index].lastName);
+		    if (strcmp(users[index].lastName, loadedUsers[index].lastName) == 0)
+		    {
+		        counter++;
+		    }
+		    printf("users.firstName[%s], loadedUsers.firstName[%s]\n",users[index].firstName, loadedUsers[index].firstName);
+		    if (strcmp(users[index].firstName, loadedUsers[index].firstName) == 0)
+		    {
+		        counter++;
+		    }
+		    printf("users.status[%d] == loadedUsers.status[%d]\n",users[index].status, loadedUsers[index].status);
+		    if (users[index].status == loadedUsers[index].status)
+		    {
+		        counter++;
+		    }
+		    printf("users.ID[%d] == loadedUsers.ID[%d]\n",users[index].ID,loadedUsers[index].ID);
+		    if (users[index].ID == loadedUsers[index].ID)
+		    {
+		        counter++;
+		    }
+		    printf("users.type[%d] == loadedUsers.type[%d]\n",users[index].type,loadedUsers[index].type);
+		    if (users[index].type == loadedUsers[index].type)
+		    {
+		        counter++;
+		    }
+		}
+		printf("Loading User file passed %d out of %d tests.\n", counter, 5*numberOfUsers);
+    }
+/*
     // load actions
     loadedActions = readActionTable(FILENAME);
 
