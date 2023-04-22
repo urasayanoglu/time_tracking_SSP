@@ -80,82 +80,66 @@ int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User 
 // Returns NULL upon failure
 struct User *readUserTable(int numberOfUsers, char *filename)
 {
-
-	bool status = false;
-	
-	// create struct memory pointer so we can add read user information to allocated memory
-	struct User *memoryPointer = NULL;
-	
-	
-	if (!status)
-	{
-		// allocate memory for array of structs of fixed size of numberOfUsers
-		memoryPointer = ( struct User *) malloc(numberOfUsers * sizeof(struct User) );
-
-		// then continue to read the user data from file
-		FILE *readFilePointer = NULL;
-		
-		readFilePointer = fopen(filename, "r");
-		
-		// check was file opened correctly
-		if ( readFilePointer == NULL ) {
-			printf("There was issue opening the file...\n");
-			return NULL;
-		}
-
-		// Read the first three lines of the file (which contain only user information)
-	    	char line[MAXLINELENGTH];
-	    	
-	    	// loop for the number of users times
-	    	for (int index = 0; index < numberOfUsers; index++)
-	    	{
-	    		// read from file until we hit empty line
-	    		if (fgets(line, MAXLINELENGTH, readFilePointer) != NULL)
-	    		{
-	    			//printf("Input line: %s\n", line); // print the input line for debugging
-	    			
-	    			//sscanf(line, "Last name: %s", memoryPointer[index].lastName);
-	    			//printf("Last name: %s\n", memoryPointer[index].lastName);
-	    			
-					// assign the user information to the corresponding fields in the User struct
-					// index determins that user information is added to correct struct User instance in allocated memory
-					sscanf(line, "ID: %u, Type: %u, Status: %d, First name: %s, Last name: %[^\n]", 
-							&memoryPointer[index].ID, 
-							&memoryPointer[index].type, 
-							&memoryPointer[index].status, 
-							memoryPointer[index].firstName, 
-							memoryPointer[index].lastName
-							);
-
-
-					//printf("lastName: %s\n", memoryPointer[index].lastName); // print the lastName for debugging
-	    		}
-	    		
-	    		// in case there were fewer than the supposed amount of users in the file
-	    		else
-	    		{
-	    			break;
-	    		}
-	    	}
-	    	status = true;
-    }	
-    	
+    bool status = false;
+    struct User *memoryPointer = NULL;
+    if (!status)
+    {
+        memoryPointer = (struct User*) malloc(numberOfUsers * sizeof(struct User));
+        
+        // check successfulity of memory allocation
+        if ( memoryPointer == NULL ) {
+            printf("There was an issue opening the file...\n");
+            return NULL;
+        }
+        
+        FILE *readFilePointer = NULL;
+        
+        readFilePointer = fopen(filename, "r");
+        
+        // check was file opened correctly
+        if (readFilePointer == NULL) {
+            printf("There was an issue opening the file...\n");
+            return NULL;
+        }
+        
+        char line[MAXLINELENGTH];
+        int lineNumber = 0;
+        
+        // read from file until we hit empty line
+        while (fgets(line, MAXLINELENGTH, readFilePointer) != NULL)
+        {
+            lineNumber++;
+            
+            // check if we are reading the first three lines of the file
+            if (lineNumber >= 1 && lineNumber <= 3)
+            {
+                // assign the user information to the corresponding fields in the User struct
+                sscanf(line, "ID: %u, Type: %d, Status: %d, First name: %s Last name: %s",
+                        &memoryPointer[lineNumber-1].ID,
+                        &memoryPointer[lineNumber-1].type,
+                        &memoryPointer[lineNumber-1].status,
+                        memoryPointer[lineNumber-1].firstName,
+                        memoryPointer[lineNumber-1].lastName
+                        );
+            }
+        }
+        fclose(readFilePointer);
+        status = true;
+    }
     
     // in case program couldn't run reading from file all the way through, status remains NULL
     if (!status)
     {
-    	return NULL;
+        return NULL;
     }
     
     // in case program could run reading from file all the way through, status remains true 
-    // and we return pointer to allocated memory of user structs
+    // and we return pointer to allocated memory of User structs
     else
     {
-    	return memoryPointer;
+        return memoryPointer;
     }
 }
-
-
 
 // MODIFY READ USER TABLE TO WORK WITH WHILE FGETS SO IT READ THE WHOLE FILE ALWAYS !!!!!!!!!!!!!!!
 
@@ -167,6 +151,14 @@ struct Action *readActionTable(int numberOfUsers, int numberOfActions, char *fil
     if (!status)
     {
         memoryPointer = (struct Action*) malloc(numberOfActions * sizeof(struct Action));
+        
+        
+        // check successfulity of memory allocation
+		if ( memoryPointer == NULL ) {
+			printf("There was an issue opening the file...\n");
+            return NULL;
+		}
+        
         
         FILE *readFilePointer = NULL;
         
