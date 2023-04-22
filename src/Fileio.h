@@ -52,5 +52,7 @@ struct User *readUserTable(char *filename);
 // Returns NULL upon failure
 struct Action *readActionTable(char *filename);
 
+void stringInput(char *prompt, char *target);
+
 
 #endif //TIME_TRACKING_SSP_FILEIO_H

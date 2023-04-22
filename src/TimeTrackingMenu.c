@@ -9,9 +9,11 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
-#include <menu.h>
+#include "action.h"
+#include "Fileio.h"
 
-
+#define USERFILENAME "userdata.tt"
+#define ACTIONFILENAME "actiondata.tt"
 #define CTR_POS(x) ((COLS - strlen(x)) / 2)
 
 char *choices[] = {
@@ -199,8 +201,26 @@ void runProgram ()
 	}
 }
 
-int main()
-{
+int main() {
+    // Pointers to arrays
+    struct User *users = NULL;
+    struct Action *actions = NULL;
+
+    // Read the tables from file
+    users = readUserTable(USERFILENAME);
+    actions = readActionTable(ACTIONFILENAME);
+
+
+    if (users == NULL)
+    // Data for our first user
+    {
+        users = (struct User *) malloc(numberOfUsers * sizeof(struct User));
+        *users->type = 0;
+        *users->ID = 0;
+        *users->status = 0;
+        stringInput("Enter First name: ", *users->firstName);
+        stringInput("Enter last name: ", *users->lastName);
+    }
 
 	// function to run menu 
 	runProgram();
