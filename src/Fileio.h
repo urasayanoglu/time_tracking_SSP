@@ -6,9 +6,11 @@
 #ifndef TIME_TRACKING_SSP_FILEIO_H
 #define TIME_TRACKING_SSP_FILEIO_H
 
-#define NAMELENGTH 30
+#define NAMELENGTH 50
 
 #define MAXLINELENGTH 2000
+
+#define INDEXCORRECTOR 4
 
 #include "action.h"
 
@@ -47,7 +49,7 @@ struct User *readUserTable(int numberOfUsers, char *filename);
 // the action array and reads it. Finally returns the pointer to the array of
 // action structs
 // Returns NULL upon failure
-struct Action *readActionTable(char *filename);
+struct Action *readActionTable(int numberOfUsers, int numberOfActions, char *filename);
 
 
 #endif //TIME_TRACKING_SSP_FILEIO_H
