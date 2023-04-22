@@ -134,11 +134,11 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
 
 int findNext(int currentIndex, struct Action *actions, int length)
 {
-    int userID = actions[currentIndex].usedID;
+    unsigned int userID = actions[currentIndex].usedID;
     do
     {
         currentIndex++;
-    } while (userID != actions[currentIndex],userID && currentIndex < length);
+    } while (userID != actions[currentIndex].usedID && currentIndex < length);
     if (currentIndex < length)
     {
         return currentIndex;
