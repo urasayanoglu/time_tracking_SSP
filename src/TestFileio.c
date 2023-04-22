@@ -70,7 +70,8 @@ int main()
     testActions[2].month=7;
     testActions[2].second=54;
     testActions[2].year=2023;
-
+	
+    
     int numberOfUsers = sizeof(users) / sizeof(users[0]);
     int numberOfActions = sizeof(testActions) / sizeof(testActions[0]);
 
@@ -133,30 +134,65 @@ int main()
 		        counter++;
 		    }
 		}
-		printf("Loading User file passed %d out of %d tests.\n", counter, 5*numberOfUsers);
+		printf("Loading User file passed %d out of %d tests.\n\n\n", counter, 5*numberOfUsers);
     }
-/*
+
     // load actions
-    loadedActions = readActionTable(FILENAME);
-
-    // Verify actions
-    counter = 0;
-    for (int index = 0; index < numberOfActions; index++)
+    
+    // in case reading actions from database was not succesfull
+    if(readUserTable(numberOfUsers,FILENAME) == NULL)
     {
-        counter = (loadedActions[index].minute == testActions[index].minute) ? counter+1 : counter;
-        counter = (loadedActions[index].hour == testActions[index].hour) ? counter+1 : counter;
-        counter = (loadedActions[index].second == testActions[index].second) ? counter+1 : counter;
-        counter = (loadedActions[index].day == testActions[index].day) ? counter+1 : counter;
-        counter = (loadedActions[index].month == testActions[index].month) ? counter+1 : counter;
-        counter = (loadedActions[index].year == testActions[index].year) ? counter+1 : counter;
-        counter = (loadedActions[index].actionType == testActions[index].actionType) ? counter+1 : counter;
-        counter = (loadedActions[index].usedID == testActions[index].usedID) ? counter+1 : counter;
+    	printf("loadedActions did not pass the test\n\n");
     }
-    printf("Loading Action file passed %d out of %d tests.\n", counter, 5*numberOfActions);
-
+    
+    // in case reading actions from database was successfull
+    else 
+    {
+    	    loadedActions = readActionTable(numberOfUsers,numberOfActions,FILENAME);
+	    // Verify actions
+	    counter = 0;
+	    for (int index = 0; index < numberOfActions; index++)
+	    {
+		counter = (loadedActions[index].minute == testActions[index].minute) ? counter+1 : counter;
+		
+		printf("loadedActions[index].minute[%d] == testActions[index].minute[%d]\n", loadedActions[index].minute,testActions[index].minute);
+		
+		counter = (loadedActions[index].hour == testActions[index].hour) ? counter+1 : counter;
+		
+		printf("loadedActions[index].hour[%d] == testActions[index].hour[%d])\n", loadedActions[index].hour,testActions[index].hour);
+		
+		counter = (loadedActions[index].second == testActions[index].second) ? counter+1 : counter;
+		
+		printf("loadedActions[index].second[%d] == testActions[index].second[%d]\n", loadedActions[index].second,testActions[index].second);
+		
+		counter = (loadedActions[index].day == testActions[index].day) ? counter+1 : counter;
+		
+		printf("loadedActions[index].day[%d] == testActions[index].day[%d]\n", loadedActions[index].day,testActions[index].day);
+		
+		counter = (loadedActions[index].month == testActions[index].month) ? counter+1 : counter;
+		
+		printf("loadedActions[index].month[%d] == testActions[index].month[%d]\n", loadedActions[index].month,testActions[index].month);
+		
+		counter = (loadedActions[index].year == testActions[index].year) ? counter+1 : counter;
+		
+		printf("loadedActions[index].year[%d] == testActions[index].year[%d]\n", loadedActions[index].year,testActions[index].year);
+		
+		counter = (loadedActions[index].actionType == testActions[index].actionType) ? counter+1 : counter;
+		
+		printf("loadedActions[index].actionType[%d] == testActions[index].actionType[%d]\n", loadedActions[index].actionType,testActions[index].actionType);
+		
+		counter = (loadedActions[index].usedID == testActions[index].usedID) ? counter+1 : counter;
+		
+		printf("loadedActions[index].usedID[%d] == testActions[index].usedID[%d]\n", loadedActions[index].usedID,testActions[index].usedID);
+	    }
+	    printf("Loading Action file passed %d out of %d tests.\n\n\n", counter, 5*numberOfActions);
+    }
+    
+    printf("Number of users [%d] and number of actions [%d]\n",numberOfUsers,numberOfActions);
+    
     // Deallocate memory
     free(loadedUsers);
     free(loadedActions);
-*/
+
     return 0;
 }

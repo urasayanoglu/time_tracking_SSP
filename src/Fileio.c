@@ -42,15 +42,15 @@ int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User 
 		
 		// loop through all actions to add them to file
 		for (int index = 0; index < numberOfActions; index++) {
-			fprintf(filePointer, "usedID: %d, actionType: %d, Day: %d, Hour: %d, Minutes: %d, Month: %d, Second: %d. Year: %d\n", 
+			fprintf(filePointer, "usedID: %d, actionType: %d, Day: %d, Hour: %d, Minutes: %d, Month: %d, Second: %d, Year: %d,\n", 
 			(actions + index)->usedID, 
 			(actions + index)->actionType, 
-			(actions + index)->year,
-			(actions + index)->month,
 			(actions + index)->day,
 			(actions + index)->hour,
 			(actions + index)->minute,
-			(actions + index)->second
+			(actions + index)->month,
+			(actions + index)->second,
+			(actions + index)->year
 			);
 				
 		}
@@ -89,9 +89,6 @@ struct User *readUserTable(int numberOfUsers, char *filename)
 	
 	if (!status)
 	{
-		// create struct memory pointer so we can add read user information to allocated memory
-		//struct User *memoryPointer = NULL;
-		
 		// allocate memory for array of structs of fixed size of numberOfUsers
 		memoryPointer = ( struct User *) malloc(numberOfUsers * sizeof(struct User) );
 
@@ -115,17 +112,23 @@ struct User *readUserTable(int numberOfUsers, char *filename)
 	    		// read from file until we hit empty line
 	    		if (fgets(line, MAXLINELENGTH, readFilePointer) != NULL)
 	    		{
-	    			printf("Input line: %s\n", line); // print the input line for debugging
+	    			//printf("Input line: %s\n", line); // print the input line for debugging
 	    			
-				// assign the user information to the corresponding fields in the User struct
-				// index determins that user information is added to correct struct User instance in allocated memory
-				sscanf(line, "ID: %u, Type: %u, Status: %d, First name: %s, Last name: %s,", 
-					    &memoryPointer[index].ID, 
-					    &memoryPointer[index].type, 
-					    &memoryPointer[index].status, 
-					    memoryPointer[index].firstName, 
-					    memoryPointer[index].lastName);
-				printf("lastName: %s\n", memoryPointer[index].lastName); // print the lastName for debugging
+	    			//sscanf(line, "Last name: %s", memoryPointer[index].lastName);
+	    			//printf("Last name: %s\n", memoryPointer[index].lastName);
+	    			
+					// assign the user information to the corresponding fields in the User struct
+					// index determins that user information is added to correct struct User instance in allocated memory
+					sscanf(line, "ID: %u, Type: %u, Status: %d, First name: %s, Last name: %[^\n]", 
+							&memoryPointer[index].ID, 
+							&memoryPointer[index].type, 
+							&memoryPointer[index].status, 
+							memoryPointer[index].firstName, 
+							memoryPointer[index].lastName
+							);
+
+
+					//printf("lastName: %s\n", memoryPointer[index].lastName); // print the lastName for debugging
 	    		}
 	    		
 	    		// in case there were fewer than the supposed amount of users in the file
@@ -152,7 +155,70 @@ struct User *readUserTable(int numberOfUsers, char *filename)
     }
 }
 
-struct Action *readActionTable(char *filename)
+
+
+// MODIFY READ USER TABLE TO WORK WITH WHILE FGETS SO IT READ THE WHOLE FILE ALWAYS !!!!!!!!!!!!!!!
+
+
+struct Action *readActionTable(int numberOfUsers, int numberOfActions, char *filename)
 {
-    return NULL;
+    bool status = false;
+    struct Action *memoryPointer = NULL;
+    if (!status)
+    {
+        memoryPointer = (struct Action*) malloc(numberOfActions * sizeof(struct Action));
+        
+        FILE *readFilePointer = NULL;
+        
+        readFilePointer = fopen(filename, "r");
+        
+        // check was file opened correctly
+        if (readFilePointer == NULL) {
+            printf("There was an issue opening the file...\n");
+            return NULL;
+        }
+        
+        char line[MAXLINELENGTH];
+        int lineNumber = 0;
+        
+        // read from file until we hit empty line
+        while (fgets(line, MAXLINELENGTH, readFilePointer) != NULL)
+        {
+            lineNumber++;
+            
+            // check are we pass user information so we start reading action information
+            if ( lineNumber >= numberOfUsers && lineNumber <= (numberOfUsers+numberOfActions))
+            {
+            
+            	// assign the action information to the corresponding fields in the Action struct
+				// index determins that action information is added to correct struct Action instance in allocated memory
+                sscanf(line, "usedID: %d, actionType: %d, Day: %d, Hour: %d, Minutes: %d, Month: %d, Second: %d, Year: %d,", 
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].usedID,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].actionType,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].day,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].hour,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].minute,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].month,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].second,
+                        &memoryPointer[lineNumber-INDEXCORRECTOR].year
+                        );
+            }
+        }
+        fclose(readFilePointer);
+        status = true;
+    }
+    
+    // in case program couldn't run reading from file all the way through, status remains NULL
+    if (!status)
+    {
+        return NULL;
+    }
+    
+    // in case program could run reading from file all the way through, status remains true 
+    // and we return pointer to allocated memory of actions structs
+    else
+    {
+        return memoryPointer;
+    }
 }
+
