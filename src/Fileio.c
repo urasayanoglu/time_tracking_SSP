@@ -10,6 +10,8 @@
 #include "action.h"
 #include "action.c"
 
+#define NAME_LENGTH 40
+
 
 // Save both databases to a file
 int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users,

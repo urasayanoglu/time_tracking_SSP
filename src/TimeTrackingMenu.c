@@ -11,6 +11,7 @@
 #include <string.h>
 #include "action.h"
 #include "Fileio.h"
+#include "Fileio.c"
 
 #define USERFILENAME "userdata.tt"
 #define ACTIONFILENAME "actiondata.tt"
@@ -214,12 +215,12 @@ int main() {
     if (users == NULL)
     // Data for our first user
     {
-        users = (struct User *) malloc(numberOfUsers * sizeof(struct User));
-        *users->type = 0;
-        *users->ID = 0;
-        *users->status = 0;
-        stringInput("Enter First name: ", *users->firstName);
-        stringInput("Enter last name: ", *users->lastName);
+        users = (struct User *) malloc(sizeof(struct User));
+        users[0].type = 0;
+        users[0].ID = 0;
+        users[0].status = 0;
+        stringInput("Enter First name: ", users[0].firstName);
+        stringInput("Enter last name: ", users[0].lastName);
     }
 
 	// function to run menu 
