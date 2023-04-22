@@ -80,9 +80,7 @@ int main()
     struct Action *loadedActions = NULL;
 
     // save structs
-    // *** IDE is warning about &testActions[0] below, but not &users[0].
-    // Will have to investigate at some point, or resolve when ready to run
-    // (wouldn't be the first time Clion is wrong about this)
+
     if (writeDB(numberOfUsers, numberOfActions, FILENAME, &users[0], &testActions[0]))
     {
         printf("Saving reported success.\n");
@@ -157,7 +155,7 @@ int main()
 		counter = (loadedActions[index].actionType == testActions[index].actionType) ? counter+1 : counter;
 		counter = (loadedActions[index].usedID == testActions[index].usedID) ? counter+1 : counter;
 	    }
-	    printf("Loading Action file passed %d out of %d tests.\n\n\n", counter, 5*numberOfActions);
+	    printf("Loading Action file passed %d out of %d tests.\n\n\n", counter, 8*numberOfActions);
     }
     
     // Deallocate memory

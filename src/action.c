@@ -131,3 +131,20 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
     // and the new struct Action element at the end.
     return newActions;
 }
+
+int findNext(int currentIndex, struct Action *actions, int length)
+{
+    unsigned int userID = actions[currentIndex].usedID;
+    do
+    {
+        currentIndex++;
+    } while (userID != actions[currentIndex].usedID && currentIndex < length);
+    if (currentIndex < length)
+    {
+        return currentIndex;
+    }
+    else
+    {
+        return -1;
+    }
+}
