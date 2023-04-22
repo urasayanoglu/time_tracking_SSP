@@ -34,18 +34,6 @@ void clearMenu()
 	// Clear the screen
     clear();
 
-	// Print the title of the menu: (row,built-int print-function(string),string format, the string)
-	char *title = "Time Tracking Menu";
-    mvprintw(0, CTR_POS(title), "%s", title);
-    
-    // Print the selection prompt
-    mvprintw(2, CTR_POS("Select an option"), "Select an option");
-
-	// Print the menu items: (row,built-int print-function(string),string format, the string)
-    for (int index = 0; index < 6; index++) {
-        mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
-    }
-    
     // Reset the highlight to the first option
     highlightCurrentOption = 0;
     
@@ -125,7 +113,7 @@ void navigateMenu(int highlightCurrentOption)
 // function to close the program
 void terminateProgram()
 {
-    // End ncurses mode
+    // End ncurses mode, IMPORTANT; WITHOUT THIS WINDOW CRASHES AND/OR WORKS WEIRDLY
     endwin();
     
     // Close program
@@ -182,7 +170,7 @@ void keyPresses()
     navigateMenu(highlightCurrentOption);
 }
 
-// function to run menu 
+// function to run time tracking menu 
 void runProgram () 
 {
 	// initialize ncurses, initialize terminal environment, initialize menu
@@ -199,6 +187,17 @@ void runProgram ()
 	}
 }
 
+void setWindowStyle () 
+{
+	// enable colors
+    start_color();
+
+    // set the background and foreground colors
+    init_pair(1, COLOR_WHITE, COLOR_BLUE);
+    wbkgd(stdscr, COLOR_PAIR(1));
+}
+
+/*
 int main()
 {
 
@@ -207,6 +206,6 @@ int main()
 
     return 0;
 }
-
+*/
 
 
