@@ -18,13 +18,13 @@ Timetrackingnc.o: src/Timetrackingnc.c src/Fileio.h
 Testaction.o: src/Testaction.c src/action.h
 	$(CC) $(CFLAGS) -c src/Testaction.c
 
-TestFileIo.o: src/TestFileio.c src/Fileio.h src/action.h
-	$(CC) $(CFLAGS) -c src/Testilwio.c
+TestFileio.o: src/TestFileio.c src/Fileio.h src/action.h
+	$(CC) $(CFLAGS) -c src/TestFileio.c
 
 action.o: src/action.c src/action.h
 	$(CC) $(CFLAGS) -c src/action.c
 
-fileio.o: src/Fileio.c src/Fileio.h
+Fileio.o: src/Fileio.c src/Fileio.h
 	$(CC) $(CFLAGS) -c src/Fileio.c
 
 clean:
