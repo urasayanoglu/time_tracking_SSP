@@ -10,25 +10,26 @@
 
 
 // add user information and actions to database, to 'data.txt' file
-int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, , char *actionFilename struct User *users,
+int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users,
         struct Action *actions) {
     FILE *fileptr;
     fileptr = fopen(userdataFilename, "w");
     if (fileptr != NULL)
     {
         fwrite(&numberOfUsers, sizeof(int), 1, fileptr);     // First write the length of the array
-        fwrite(numberOfUsers, sizeof(struct Student), numberOfUsers, fileptr);
+        fwrite(users, sizeof(struct User), numberOfUsers, fileptr);
         fclose(fileptr);
     }
     else
     {
         return 0;
     }
+
     fileptr = fopen(actionFilename, "w");
     if (fileptr != NULL)
     {
         fwrite(&numberOfActions, sizeof(int), 1, fileptr);     // First write the length of the array
-        fwrite(numberOfActions, sizeof(struct Action), numberOfActions, fileptr);
+        fwrite(actions, sizeof(struct Action), numberOfActions, fileptr);
         fclose(fileptr);
         return 1;
     }

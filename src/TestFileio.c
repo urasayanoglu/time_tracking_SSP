@@ -82,7 +82,7 @@ int main()
 
     // save structs
 
-    if (writeDB(numberOfUsers, numberOfActions,USERFILENAME, DATAFILENAME, &users[0], &testActions[0]))
+    if (writeDB(numberOfUsers, numberOfActions,USERFILENAME, ACTIONFILENAME, &users[0], &testActions[0]))
     {
         printf("Saving reported success.\n");
     }
