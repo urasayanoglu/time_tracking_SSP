@@ -81,7 +81,7 @@ void printMenu()
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
         if (index == highlightCurrentOption) {
 
-        	// Reset the text attributes for the rest of the items
+        	// Reset the bold and underline attributes for the highlighted item
     		attrset(A_NORMAL);
  
             attroff(A_REVERSE); // Turn off reverse video attribute
