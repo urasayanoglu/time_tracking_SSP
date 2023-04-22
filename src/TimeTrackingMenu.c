@@ -71,10 +71,19 @@ void printMenu()
     for (int index = 0; index < 5; index++) {
         // Check if the current index is the same as the highlightCurrentOption
         if (index == highlightCurrentOption) {
+
+        	// Set the bold and underline attributes for the highlighted item
+    		attrset(A_BOLD | A_UNDERLINE);
+ 
             attron(A_REVERSE); // Turn on reverse video attribute
+         
         }
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
         if (index == highlightCurrentOption) {
+
+        	// Reset the text attributes for the rest of the items
+    		attrset(A_NORMAL);
+ 
             attroff(A_REVERSE); // Turn off reverse video attribute
         }
     }
