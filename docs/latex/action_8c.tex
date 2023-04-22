@@ -1,0 +1,68 @@
+\hypertarget{action_8c}{}\doxysection{src/action.c File Reference}
+\label{action_8c}\index{src/action.c@{src/action.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}action.\+h\char`\"{}}\newline
+Include dependency graph for action.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{action_8c__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{action_8c__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{action_8c_aa69b05b7473ca303c514cb73c8ffaa2c}{is\+Earlier}} (struct \mbox{\hyperlink{structAction}{Action}} $\ast$previous\+Struct, struct \mbox{\hyperlink{structAction}{Action}} $\ast$current\+Struct)
+\item 
+void \mbox{\hyperlink{action_8c_af3e40c6c5ac5bb3604a4b7c439c3c0b8}{sort\+Actions}} (struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int length\+Of\+Array)
+\item 
+int \mbox{\hyperlink{action_8c_ab1608272dec2ef3331ef6317a1249523}{comparison\+Function}} (const void $\ast$previous, const void $\ast$current)
+\item 
+struct \mbox{\hyperlink{structAction}{Action}} $\ast$ \mbox{\hyperlink{action_8c_ac216a26f14c5aebb10cc9552cb6f5dbe}{add\+Action}} (int user\+ID, int action\+Type, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int length\+Of\+Array)
+\item 
+int \mbox{\hyperlink{action_8c_ab29c0baf871af9de2792e4debccd4231}{find\+Next}} (int current\+Index, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int length)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{action_8c_ac216a26f14c5aebb10cc9552cb6f5dbe}\label{action_8c_ac216a26f14c5aebb10cc9552cb6f5dbe}} 
+\index{action.c@{action.c}!addAction@{addAction}}
+\index{addAction@{addAction}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{addAction()}{addAction()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structAction}{Action}} $\ast$ add\+Action (\begin{DoxyParamCaption}\item[{int}]{user\+ID,  }\item[{int}]{action\+Type,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length\+Of\+Array }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{action_8c_ab1608272dec2ef3331ef6317a1249523}\label{action_8c_ab1608272dec2ef3331ef6317a1249523}} 
+\index{action.c@{action.c}!comparisonFunction@{comparisonFunction}}
+\index{comparisonFunction@{comparisonFunction}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{comparisonFunction()}{comparisonFunction()}}
+{\footnotesize\ttfamily int comparison\+Function (\begin{DoxyParamCaption}\item[{const void $\ast$}]{previous,  }\item[{const void $\ast$}]{current }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{action_8c_ab29c0baf871af9de2792e4debccd4231}\label{action_8c_ab29c0baf871af9de2792e4debccd4231}} 
+\index{action.c@{action.c}!findNext@{findNext}}
+\index{findNext@{findNext}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{findNext()}{findNext()}}
+{\footnotesize\ttfamily int find\+Next (\begin{DoxyParamCaption}\item[{int}]{current\+Index,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{action_8c_aa69b05b7473ca303c514cb73c8ffaa2c}\label{action_8c_aa69b05b7473ca303c514cb73c8ffaa2c}} 
+\index{action.c@{action.c}!isEarlier@{isEarlier}}
+\index{isEarlier@{isEarlier}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{isEarlier()}{isEarlier()}}
+{\footnotesize\ttfamily int is\+Earlier (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{previous\+Struct,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{current\+Struct }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{action_8c_af3e40c6c5ac5bb3604a4b7c439c3c0b8}\label{action_8c_af3e40c6c5ac5bb3604a4b7c439c3c0b8}} 
+\index{action.c@{action.c}!sortActions@{sortActions}}
+\index{sortActions@{sortActions}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{sortActions()}{sortActions()}}
+{\footnotesize\ttfamily void sort\+Actions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length\+Of\+Array }\end{DoxyParamCaption})}
+

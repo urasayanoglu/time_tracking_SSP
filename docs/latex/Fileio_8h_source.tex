@@ -1,0 +1,61 @@
+\hypertarget{Fileio_8h_source}{}\doxysection{Fileio.\+h}
+\label{Fileio_8h_source}\index{src/Fileio.h@{src/Fileio.h}}
+\mbox{\hyperlink{Fileio_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:        fileio.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Authors:     Uras Ayanoglu, Jan-\/Krister Helenius, Sebastian Sopola}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Description: Header file for fileio.c}}
+\DoxyCodeLine{5 \textcolor{comment}{ */}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef TIME\_TRACKING\_SSP\_FILEIO\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define TIME\_TRACKING\_SSP\_FILEIO\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define NAMELENGTH 50}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define MAXLINELENGTH 2000}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define INDEXCORRECTOR 4}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{action_8h}{action.h}}"{}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{structUser}{User}}}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structUser_af5a20de1b7090dfb3a3c066761252ede}{ID}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{comment}{// Using type=0 for the main user, other types may be added if there's time}}
+\DoxyCodeLine{22     \textcolor{comment}{// for subordinate and remote users}}
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} \mbox{\hyperlink{structUser_a93e36c04026715bd4b824dd4ddc47d78}{type}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{comment}{// status = last action}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} \mbox{\hyperlink{structUser_a1a3835f1625346b21f33f153edc375ff}{status}};}
+\DoxyCodeLine{27     \textcolor{keywordtype}{char} \mbox{\hyperlink{structUser_a47c475cb3a66bd949df4f19ff64c97a2}{firstName}}[\mbox{\hyperlink{Fileio_8h_a705aaddab1ccc73f063282e9bacd3ff8}{NAMELENGTH}}];}
+\DoxyCodeLine{28     \textcolor{keywordtype}{char} \mbox{\hyperlink{structUser_acfb23ec36516973aeb8d4d01a691c297}{lastName}}[\mbox{\hyperlink{Fileio_8h_a705aaddab1ccc73f063282e9bacd3ff8}{NAMELENGTH}}];}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{// Writes binary data to "{}filename"{} in the following order:}}
+\DoxyCodeLine{33 \textcolor{comment}{// 1. Number of users (int numberOfUsers)}}
+\DoxyCodeLine{34 \textcolor{comment}{// 2. Number of actions in the array (int numberOfActions)}}
+\DoxyCodeLine{35 \textcolor{comment}{// 3. Array of User structs found at location pointed to by *users}}
+\DoxyCodeLine{36 \textcolor{comment}{// 4. Array of Action structs found at location pointed to by *actions}}
+\DoxyCodeLine{37 \textcolor{comment}{// The intention is to make this a static storage, loaded upon starting the program,}}
+\DoxyCodeLine{38 \textcolor{comment}{// and saved to periodically during runtime, as well as at termination}}
+\DoxyCodeLine{39 \textcolor{comment}{// return 0 for failure, 1 for success}}
+\DoxyCodeLine{40 \textcolor{keywordtype}{int} \mbox{\hyperlink{Fileio_8h_a1fb499a080fca63584e8348d9353d668}{writeDB}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{int} numberOfActions, \textcolor{keywordtype}{char} *filename, \textcolor{keyword}{struct} \mbox{\hyperlink{structUser}{User}} *users, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{// Reads the number of users from the file, then reserves enough memory for}}
+\DoxyCodeLine{43 \textcolor{comment}{// the user table and reads it. Finally returns the pointer to the array of}}
+\DoxyCodeLine{44 \textcolor{comment}{// user structs}}
+\DoxyCodeLine{45 \textcolor{comment}{// Returns 0 upon failure}}
+\DoxyCodeLine{46 \textcolor{keyword}{struct }\mbox{\hyperlink{structUser}{User}} *\mbox{\hyperlink{Fileio_8h_a3fdfebd15c813af22d08098985be7b33}{readUserTable}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{// Reads the number of actions from the file, then reserves enough memory for}}
+\DoxyCodeLine{49 \textcolor{comment}{// the action array and reads it. Finally returns the pointer to the array of}}
+\DoxyCodeLine{50 \textcolor{comment}{// action structs}}
+\DoxyCodeLine{51 \textcolor{comment}{// Returns NULL upon failure}}
+\DoxyCodeLine{52 \textcolor{keyword}{struct }\mbox{\hyperlink{structAction}{Action}} *\mbox{\hyperlink{Fileio_8h_ae2ed9b31dff4ce6ac0c704f9e649285d}{readActionTable}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{int} numberOfActions, \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TIME\_TRACKING\_SSP\_FILEIO\_H}}
+
+\end{DoxyCode}

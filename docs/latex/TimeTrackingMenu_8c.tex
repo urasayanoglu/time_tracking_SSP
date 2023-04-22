@@ -1,0 +1,132 @@
+\hypertarget{TimeTrackingMenu_8c}{}\doxysection{src/\+Time\+Tracking\+Menu.c File Reference}
+\label{TimeTrackingMenu_8c}\index{src/TimeTrackingMenu.c@{src/TimeTrackingMenu.c}}
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$menu.\+h$>$}\newline
+Include dependency graph for Time\+Tracking\+Menu.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TimeTrackingMenu_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{TimeTrackingMenu_8c_a0ee2b89275ccf24c7410615c666849e8}{CTR\+\_\+\+POS}}(x)~((COLS -\/ strlen(x)) / 2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_abf4bec7dec14fa7ff2f80a9f13ac8871}{clear\+Menu}} ()
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_ab13e858612c64eeef73aff1d8a03945e}{print\+Menu}} ()
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_aa231506a434d6c26dcb3959eb4630652}{initial\+Ncurses}} ()
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_a146fb8fa27c17f223c9331edfbd580b0}{navigate\+Menu}} (int \mbox{\hyperlink{TimeTrackingMenu_8c_a44e5b6ba224a1d687fef9197d49bc6bc}{highlight\+Current\+Option}})
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_a0e04049aeb0da8dfc68c3dee2ee24098}{terminate\+Program}} ()
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_ac2801c99728363778aef36867654cd29}{key\+Presses}} ()
+\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_aace6b288e5cbf8113bb8b224b95fc08f}{run\+Program}} ()
+\item 
+int \mbox{\hyperlink{TimeTrackingMenu_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{TimeTrackingMenu_8c_a186d0241c62502fb176689d6e6d56a46}{choices}} \mbox{[}$\,$\mbox{]}
+\item 
+int \mbox{\hyperlink{TimeTrackingMenu_8c_a44e5b6ba224a1d687fef9197d49bc6bc}{highlight\+Current\+Option}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a0ee2b89275ccf24c7410615c666849e8}\label{TimeTrackingMenu_8c_a0ee2b89275ccf24c7410615c666849e8}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!CTR\_POS@{CTR\_POS}}
+\index{CTR\_POS@{CTR\_POS}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{CTR\_POS}{CTR\_POS}}
+{\footnotesize\ttfamily \#define CTR\+\_\+\+POS(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((COLS -\/ strlen(x)) / 2)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_abf4bec7dec14fa7ff2f80a9f13ac8871}\label{TimeTrackingMenu_8c_abf4bec7dec14fa7ff2f80a9f13ac8871}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!clearMenu@{clearMenu}}
+\index{clearMenu@{clearMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{clearMenu()}{clearMenu()}}
+{\footnotesize\ttfamily void clear\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_aa231506a434d6c26dcb3959eb4630652}\label{TimeTrackingMenu_8c_aa231506a434d6c26dcb3959eb4630652}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!initialNcurses@{initialNcurses}}
+\index{initialNcurses@{initialNcurses}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{initialNcurses()}{initialNcurses()}}
+{\footnotesize\ttfamily void initial\+Ncurses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_ac2801c99728363778aef36867654cd29}\label{TimeTrackingMenu_8c_ac2801c99728363778aef36867654cd29}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!keyPresses@{keyPresses}}
+\index{keyPresses@{keyPresses}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{keyPresses()}{keyPresses()}}
+{\footnotesize\ttfamily void key\+Presses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{TimeTrackingMenu_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!main@{main}}
+\index{main@{main}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a146fb8fa27c17f223c9331edfbd580b0}\label{TimeTrackingMenu_8c_a146fb8fa27c17f223c9331edfbd580b0}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!navigateMenu@{navigateMenu}}
+\index{navigateMenu@{navigateMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{navigateMenu()}{navigateMenu()}}
+{\footnotesize\ttfamily void navigate\+Menu (\begin{DoxyParamCaption}\item[{int}]{highlight\+Current\+Option }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_ab13e858612c64eeef73aff1d8a03945e}\label{TimeTrackingMenu_8c_ab13e858612c64eeef73aff1d8a03945e}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!printMenu@{printMenu}}
+\index{printMenu@{printMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{printMenu()}{printMenu()}}
+{\footnotesize\ttfamily void print\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_aace6b288e5cbf8113bb8b224b95fc08f}\label{TimeTrackingMenu_8c_aace6b288e5cbf8113bb8b224b95fc08f}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!runProgram@{runProgram}}
+\index{runProgram@{runProgram}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{runProgram()}{runProgram()}}
+{\footnotesize\ttfamily void run\+Program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a0e04049aeb0da8dfc68c3dee2ee24098}\label{TimeTrackingMenu_8c_a0e04049aeb0da8dfc68c3dee2ee24098}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!terminateProgram@{terminateProgram}}
+\index{terminateProgram@{terminateProgram}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{terminateProgram()}{terminateProgram()}}
+{\footnotesize\ttfamily void terminate\+Program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a186d0241c62502fb176689d6e6d56a46}\label{TimeTrackingMenu_8c_a186d0241c62502fb176689d6e6d56a46}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!choices@{choices}}
+\index{choices@{choices}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{choices}{choices}}
+{\footnotesize\ttfamily char$\ast$ choices\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Start day"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Break"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}End break"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}End day"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Report day"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Exit"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a44e5b6ba224a1d687fef9197d49bc6bc}\label{TimeTrackingMenu_8c_a44e5b6ba224a1d687fef9197d49bc6bc}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!highlightCurrentOption@{highlightCurrentOption}}
+\index{highlightCurrentOption@{highlightCurrentOption}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{highlightCurrentOption}{highlightCurrentOption}}
+{\footnotesize\ttfamily int highlight\+Current\+Option = 0}
+

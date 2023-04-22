@@ -1,0 +1,59 @@
+\hypertarget{action_8h_source}{}\doxysection{action.\+h}
+\label{action_8h_source}\index{src/action.h@{src/action.h}}
+\mbox{\hyperlink{action_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:        action.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Authors:     Uras Ayanoglu, Jan-\/Krister Helenius, Sebastian Sopola}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Description: Functions for manipulating the Action struct arrays}}
+\DoxyCodeLine{5 \textcolor{comment}{ */}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef TIME\_TRACKING\_SSP\_ACTION\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define TIME\_TRACKING\_SSP\_ACTION\_H}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structAction}{Action}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a576c90d86dd17e93a19552d4de1cf73d}{usedID}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{comment}{// 0 = Start working, 1 = Stop working}}
+\DoxyCodeLine{16     \textcolor{comment}{// With room to add multiple types of breaks}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a35a56899108042759421b8ddd02d7e41}{actionType}};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{comment}{// Dates follow meatspace conventions, here clarified where not immediately apparent}}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a6cdf23a9a2331bd13baeadbcb2194624}{year}};}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_ac324916c7ec0988b75bb6a9797de4ffe}{month}};}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a94f804f1d3e99f88daa082c81e69a6b3}{day}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{comment}{// Hours since midnight (0-\/23)}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a92980b81fa05bd584a4fe3a0c64ea0f7}{hour}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{comment}{// Minutes past the hour (0-\/59)}}
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a8efb9c2abd13b7d13063321060c999a3}{minute}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{comment}{// Seconds past the minute (0-\/59)}}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a74cce602c3785ccc6d34fa125f13c331}{second}};}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{// returns true if the time/date of x is earlier than y}}
+\DoxyCodeLine{35 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_aa69b05b7473ca303c514cb73c8ffaa2c}{isEarlier}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *previousStruct, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *currentStruct);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// The intention here is to use the qsort function in stdlib.h to sort Action structs to order}}
+\DoxyCodeLine{38 \textcolor{keywordtype}{void} \mbox{\hyperlink{action_8h_af3e40c6c5ac5bb3604a4b7c439c3c0b8}{sortActions}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions, \textcolor{keywordtype}{int} lengthOfArray);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{// The intention here is compare current and previous Action structs attribute by attribute}}
+\DoxyCodeLine{41 \textcolor{comment}{// 1. return positive integer in case current is greater than previous }}
+\DoxyCodeLine{42 \textcolor{comment}{// 2. return negative in case current is less than previous}}
+\DoxyCodeLine{43 \textcolor{comment}{// 3. return 0 in case curent and previous are equal}}
+\DoxyCodeLine{44 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_ab1608272dec2ef3331ef6317a1249523}{comparisonFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void} *previous, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *current);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{// Adds an Action struct to an array of such structs, using current time}}
+\DoxyCodeLine{47 \textcolor{comment}{// return NULL for failure.}}
+\DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{structAction}{Action}} *\mbox{\hyperlink{action_8h_a28392397839447507b316e027a0750b0}{addAction}}(\textcolor{keywordtype}{int} userID, \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a35a56899108042759421b8ddd02d7e41}{actionType}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions, \textcolor{keywordtype}{int} length);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{comment}{// Returns the index of the next action from the same user}}
+\DoxyCodeLine{51 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_ab29c0baf871af9de2792e4debccd4231}{findNext}}(\textcolor{keywordtype}{int} currentIndex, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions, \textcolor{keywordtype}{int} length);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TIME\_TRACKING\_SSP\_ACTION\_H}}
+
+\end{DoxyCode}

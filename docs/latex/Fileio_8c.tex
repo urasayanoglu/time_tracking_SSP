@@ -1,0 +1,51 @@
+\hypertarget{Fileio_8c}{}\doxysection{src/\+Fileio.c File Reference}
+\label{Fileio_8c}\index{src/Fileio.c@{src/Fileio.c}}
+{\ttfamily \#include \char`\"{}Fileio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}action.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}action.\+c\char`\"{}}\newline
+Include dependency graph for Fileio.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Fileio_8c__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{Fileio_8c__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{Fileio_8c_a1fb499a080fca63584e8348d9353d668}{write\+DB}} (int number\+Of\+Users, int number\+Of\+Actions, char $\ast$filename, struct \mbox{\hyperlink{structUser}{User}} $\ast$users, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions)
+\item 
+struct \mbox{\hyperlink{structUser}{User}} $\ast$ \mbox{\hyperlink{Fileio_8c_a3fdfebd15c813af22d08098985be7b33}{read\+User\+Table}} (int number\+Of\+Users, char $\ast$filename)
+\item 
+struct \mbox{\hyperlink{structAction}{Action}} $\ast$ \mbox{\hyperlink{Fileio_8c_ae2ed9b31dff4ce6ac0c704f9e649285d}{read\+Action\+Table}} (int number\+Of\+Users, int number\+Of\+Actions, char $\ast$filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Fileio_8c_ae2ed9b31dff4ce6ac0c704f9e649285d}\label{Fileio_8c_ae2ed9b31dff4ce6ac0c704f9e649285d}} 
+\index{Fileio.c@{Fileio.c}!readActionTable@{readActionTable}}
+\index{readActionTable@{readActionTable}!Fileio.c@{Fileio.c}}
+\doxysubsubsection{\texorpdfstring{readActionTable()}{readActionTable()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structAction}{Action}} $\ast$ read\+Action\+Table (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Users,  }\item[{int}]{number\+Of\+Actions,  }\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Fileio_8c_a3fdfebd15c813af22d08098985be7b33}\label{Fileio_8c_a3fdfebd15c813af22d08098985be7b33}} 
+\index{Fileio.c@{Fileio.c}!readUserTable@{readUserTable}}
+\index{readUserTable@{readUserTable}!Fileio.c@{Fileio.c}}
+\doxysubsubsection{\texorpdfstring{readUserTable()}{readUserTable()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structUser}{User}} $\ast$ read\+User\+Table (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Users,  }\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Fileio_8c_a1fb499a080fca63584e8348d9353d668}\label{Fileio_8c_a1fb499a080fca63584e8348d9353d668}} 
+\index{Fileio.c@{Fileio.c}!writeDB@{writeDB}}
+\index{writeDB@{writeDB}!Fileio.c@{Fileio.c}}
+\doxysubsubsection{\texorpdfstring{writeDB()}{writeDB()}}
+{\footnotesize\ttfamily int write\+DB (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Users,  }\item[{int}]{number\+Of\+Actions,  }\item[{char $\ast$}]{filename,  }\item[{struct \mbox{\hyperlink{structUser}{User}} $\ast$}]{users,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions }\end{DoxyParamCaption})}
+
