@@ -94,7 +94,7 @@ int main()
     // load users
     
     // in case reading users from database was not succesfull
-    if(readUserTable(numberOfUsers,FILENAME) == NULL)
+    if(readUserTable(FILENAME) == NULL)
     {
     	printf("loadedUsers did not pass the test\n\n");
     }
@@ -102,7 +102,7 @@ int main()
     // in case reading users from database was successfull
 	else
 	{
-		loadedUsers = readUserTable(numberOfUsers,FILENAME);
+		loadedUsers = readUserTable(FILENAME);
 		// Verify users:
 		for (int index = 0; index<numberOfUsers; index++)
 		{
@@ -133,7 +133,7 @@ int main()
     // load actions
     
     // in case reading actions from database was not succesfull
-    if(readUserTable(numberOfUsers,FILENAME) == NULL)
+    if(readUserTable(FILENAME) == NULL)
     {
     	printf("loadedActions did not pass the test\n\n");
     }
@@ -141,7 +141,7 @@ int main()
     // in case reading actions from database was successfull
     else 
     {
-    	    loadedActions = readActionTable(numberOfUsers,numberOfActions,FILENAME);
+    	    loadedActions = readActionTable(FILENAME);
 	    // Verify actions
 	    counter = 0;
 	    for (int index = 0; index < numberOfActions; index++)
