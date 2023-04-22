@@ -1,10 +1,10 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c18
 
-default: Timetrackingnc
+default: TimeTrackingMenu
 
-Timetrackingnc: Timetrackingnc.o
-	$(CC) $(CFLAGS) -o Timetrackingnc Timetrackingnc.o -lncurses -lmenu
+TimeTrackingMenu: TimeTrackingMenu.o
+	$(CC) $(CFLAGS) -o TimeTrackingMenu TimeTrackingMenu.o -lncurses -lmenu
 
 Testaction: Testaction.o
 	$(CC) $(CFLAGS) -o Testaction Testaction.o
@@ -12,8 +12,8 @@ Testaction: Testaction.o
 TestFileio: TestFileio.o
 	$(CC) $(CFLAGS) -o TestFileio TestFileio.o
 
-Timetrackingnc.o: src/Timetrackingnc.c src/Fileio.h
-	$(CC) $(CFLAGS) -c src/Timetrackingnc.c
+TimeTrackingMenu.o: src/TimeTrackingMenu.c src/Fileio.h src/action.h
+	$(CC) $(CFLAGS) -c src/TimeTrackingMenu.c
 
 Testaction.o: src/Testaction.c src/action.h
 	$(CC) $(CFLAGS) -c src/Testaction.c

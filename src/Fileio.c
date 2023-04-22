@@ -4,9 +4,13 @@
  * Description: Disk operations for Time Tracking project
  */
 
+#include <stdio.h>
+#include <string.h>
 #include "Fileio.h"
 #include "action.h"
 #include "action.c"
+
+#define NAME_LENGTH 40
 
 
 // Save both databases to a file
@@ -89,4 +93,19 @@ struct Action *readActionTable(char *filename) {
         fclose(fileptr);
     }
     return actionArray;
+}
+
+void stringInput(char *prompt, char *target)
+{
+    char buf[NAME_LENGTH];
+    char *newlinePointer = NULL;
+    printf("%s", prompt);
+    fgets(buf, NAME_LENGTH, stdin);
+    strcpy(target, buf);
+
+    newlinePointer = strchr(target, '\n');  // Remove possible newline at the end.
+    if (newlinePointer != NULL)
+    {
+        *newlinePointer = '\0';
+    }
 }
