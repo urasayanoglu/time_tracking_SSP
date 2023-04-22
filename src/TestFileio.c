@@ -134,7 +134,7 @@ int main()
     // load actions
     
     // in case reading actions from database was not succesfull
-    if(readUserTable(USERFILENAME) == NULL)
+    if(readUserTable(ACTIONFILENAME) == NULL)
     {
     	printf("loadedActions did not pass the test\n\n");
     }
