@@ -108,27 +108,22 @@ int main()
 		// Verify users:
 		for (int index = 0; index<numberOfUsers; index++)
 		{
-			printf("users.lastname[%s], loadedUsers.lastname[%s]\n",users[index].lastName, loadedUsers[index].lastName);
 		    if (strcmp(users[index].lastName, loadedUsers[index].lastName) == 0)
 		    {
 		        counter++;
 		    }
-		    printf("users.firstName[%s], loadedUsers.firstName[%s]\n",users[index].firstName, loadedUsers[index].firstName);
 		    if (strcmp(users[index].firstName, loadedUsers[index].firstName) == 0)
 		    {
 		        counter++;
 		    }
-		    printf("users.status[%d] == loadedUsers.status[%d]\n",users[index].status, loadedUsers[index].status);
 		    if (users[index].status == loadedUsers[index].status)
 		    {
 		        counter++;
 		    }
-		    printf("users.ID[%d] == loadedUsers.ID[%d]\n",users[index].ID,loadedUsers[index].ID);
 		    if (users[index].ID == loadedUsers[index].ID)
 		    {
 		        counter++;
 		    }
-		    printf("users.type[%d] == loadedUsers.type[%d]\n",users[index].type,loadedUsers[index].type);
 		    if (users[index].type == loadedUsers[index].type)
 		    {
 		        counter++;
@@ -154,41 +149,16 @@ int main()
 	    for (int index = 0; index < numberOfActions; index++)
 	    {
 		counter = (loadedActions[index].minute == testActions[index].minute) ? counter+1 : counter;
-		
-		printf("loadedActions[index].minute[%d] == testActions[index].minute[%d]\n", loadedActions[index].minute,testActions[index].minute);
-		
 		counter = (loadedActions[index].hour == testActions[index].hour) ? counter+1 : counter;
-		
-		printf("loadedActions[index].hour[%d] == testActions[index].hour[%d])\n", loadedActions[index].hour,testActions[index].hour);
-		
 		counter = (loadedActions[index].second == testActions[index].second) ? counter+1 : counter;
-		
-		printf("loadedActions[index].second[%d] == testActions[index].second[%d]\n", loadedActions[index].second,testActions[index].second);
-		
 		counter = (loadedActions[index].day == testActions[index].day) ? counter+1 : counter;
-		
-		printf("loadedActions[index].day[%d] == testActions[index].day[%d]\n", loadedActions[index].day,testActions[index].day);
-		
 		counter = (loadedActions[index].month == testActions[index].month) ? counter+1 : counter;
-		
-		printf("loadedActions[index].month[%d] == testActions[index].month[%d]\n", loadedActions[index].month,testActions[index].month);
-		
 		counter = (loadedActions[index].year == testActions[index].year) ? counter+1 : counter;
-		
-		printf("loadedActions[index].year[%d] == testActions[index].year[%d]\n", loadedActions[index].year,testActions[index].year);
-		
 		counter = (loadedActions[index].actionType == testActions[index].actionType) ? counter+1 : counter;
-		
-		printf("loadedActions[index].actionType[%d] == testActions[index].actionType[%d]\n", loadedActions[index].actionType,testActions[index].actionType);
-		
 		counter = (loadedActions[index].usedID == testActions[index].usedID) ? counter+1 : counter;
-		
-		printf("loadedActions[index].usedID[%d] == testActions[index].usedID[%d]\n", loadedActions[index].usedID,testActions[index].usedID);
 	    }
 	    printf("Loading Action file passed %d out of %d tests.\n\n\n", counter, 5*numberOfActions);
     }
-    
-    printf("Number of users [%d] and number of actions [%d]\n",numberOfUsers,numberOfActions);
     
     // Deallocate memory
     free(loadedUsers);
