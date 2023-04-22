@@ -11,6 +11,23 @@
 
 // add user information and actions to database, to 'data.txt' file
 int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions) {
+    FILE *fileptr;
+    fileptr = fopen(filename, "w");
+    if (fileptr != NULL)
+    {
+        fwrite(&numberOfUsers, sizeof(int), 1, fileptr);     // First write the length of the arrays
+        fwrite(&numberOfActions, sizeof(int), 1, fileptr);
+        fwrite(numberOfUsers, sizeof(struct Student), numberOfUsers, fileptr);
+        fwrite(numberOfActions, sizeof(struct Action), numberOfActions, fileptr);
+        fclose(fileptr);
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+
+    /*
 
     FILE *filePointer = NULL;
 
@@ -54,14 +71,41 @@ int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User 
     fclose(filePointer);
 
     return 1;
-
+    */
 }
 
 // Reads the number of users from the file, then reserves enough memory for
 // the user table and reads it. Finally returns the pointer to the array of
 // user structs
 // Returns NULL upon failure
-struct User *readUserTable(int numberOfUsers, char *filename) {
+struct User *readUserTable(char *filename) {
+    FILE *fileptr;
+    struct Student *studentArray = NULL;
+    int numberOfUsers = 0;
+    fileptr = fopen(filename, "r");     // Open in read mode
+    if (fileptr == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        fseek(fileptr, 0, SEEK_SET);
+        fread(&numberOfUsers, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
+        studentArray = (struct Student *) malloc(numberOfStudents * sizeof(struct Student));
+        if (studentArray == NULL)
+        {
+            return NULL;
+        }
+        else
+        {
+            fread(studentArray, sizeof(struct Student), numberOfStudents, fileptr);     // Read the struct array
+        }
+        fclose(fileptr);
+        *message = numberOfStudents;
+    }
+    return studentArray;
+}
+    /*
     struct User *memoryPointer = NULL;
 
     memoryPointer = (struct User *) malloc(numberOfUsers * sizeof(struct User));
@@ -101,7 +145,7 @@ struct User *readUserTable(int numberOfUsers, char *filename) {
     }
     fclose(readFilePointer);
     return memoryPointer;
-
+*/
 }
 
 // MODIFY READ USER TABLE TO WORK WITH WHILE FGETS SO IT READ THE WHOLE FILE ALWAYS !!!!!!!!!!!!!!!
