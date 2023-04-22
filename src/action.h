@@ -47,4 +47,7 @@ int comparisonFunction(const void *previous, const void *current);
 // return NULL for failure.
 struct Action *addAction(int userID, int actionType, struct Action *actions, int length);
 
+// Returns the index of the next action from the same user
+int findNext(int currentIndex, struct Action *actions, int length);
+
 #endif //TIME_TRACKING_SSP_ACTION_H
