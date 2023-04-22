@@ -112,8 +112,35 @@ struct User *readUserTable(char *filename) {
         }
         fclose(fileptr);
         }
-    return studentArray;
+    return userArray;
 }
+
+struct Action *readActionTable(char *filename) {
+    FILE *fileptr;
+    struct Action *actionArray = NULL;
+    int numberOfActions = 0;
+    fileptr = fopen(filename, "r");     // Open in read mode
+    if (fileptr == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        fseek(fileptr, 0, SEEK_SET);
+        fread(&numberOfActions, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
+        actionArray = (struct Action *) malloc(numberOfActions * sizeof(struct Action));
+        if (actionArray == NULL)
+        {
+            return NULL;
+        }
+        else
+        {
+            fread(actionArray, sizeof(struct Action), numberOfActions, fileptr);     // Read the struct array
+        }
+        fclose(fileptr);
+    }
+    return actionArray;
+
     /*
     struct User *memoryPointer = NULL;
 
@@ -160,6 +187,7 @@ struct User *readUserTable(char *filename) {
 // MODIFY READ USER TABLE TO WORK WITH WHILE FGETS SO IT READ THE WHOLE FILE ALWAYS !!!!!!!!!!!!!!!
 
 
+/*
 struct Action *readActionTable(int numberOfUsers, int numberOfActions, char *filename) {
     struct Action *memoryPointer = NULL;
 
@@ -210,4 +238,5 @@ struct Action *readActionTable(int numberOfUsers, int numberOfActions, char *fil
     return memoryPointer;
 
 }
+ */
 
