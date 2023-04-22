@@ -1,16 +1,22 @@
-/*
- * File:        Testaction.c
- * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
- * Description: Unit testing for action.c
+/**
+ * @file Testaction.c
+ * @author Uras Ayanoglu
+ * @author Jan-Krister Helenius
+ * @author Sebastian Sopola
+ * @brief Unit testing for action.c
  */
 
 #include <stdio.h>
 #include "action.h"
 #include "action.c"
 
+/**
+ * @brief The main function for the program.
+ * @return 0 on success, non-zero on failure.
+ */
 int main()
 {
-    // Creating struct arrays for testing
+    /// Creating struct arrays for testing
     struct Action testActions[3];
     testActions[0].usedID=1;
     testActions[0].actionType = 0;
@@ -39,7 +45,7 @@ int main()
 
     int lengthOfArray = sizeof(testActions) / sizeof(testActions[0]);
 
-    // Test 1:
+    /// Test 1:
     if (isEarlier(&testActions[1], &testActions[0]) && isEarlier(&testActions[0], &testActions[2]) && isEarlier(&testActions[1], &testActions[2]))
     {
         printf("isEarlier passed all 3 tests\n");
@@ -49,7 +55,7 @@ int main()
         printf("isEarlier failed.\n");
     }
 
-    // Test 2:
+    /// Test 2:
     sortActions(&testActions[0], lengthOfArray);
     if (isEarlier(&testActions[0], &testActions[1]) && isEarlier(&testActions[1], &testActions[2]) && isEarlier(&testActions[0], &testActions[2]))
     {
@@ -60,7 +66,7 @@ int main()
         printf("sortArray failed the test\n");
     }
 
-    // Test 3:
+    /// Test 3:
     struct Action *newArray = NULL;
     newArray = addAction(0, 2, &testActions[0], lengthOfArray);
     printf("You added an action in year %d, month %d, day %d, hour %d, minute %d\n", newArray[3].year,
