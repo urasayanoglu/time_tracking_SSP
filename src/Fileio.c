@@ -10,14 +10,24 @@
 
 
 // add user information and actions to database, to 'data.txt' file
-int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions) {
+int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, , char *actionFilename struct User *users,
+        struct Action *actions) {
     FILE *fileptr;
-    fileptr = fopen(filename, "w");
+    fileptr = fopen(userdataFilename, "w");
     if (fileptr != NULL)
     {
-        fwrite(&numberOfUsers, sizeof(int), 1, fileptr);     // First write the length of the arrays
-        fwrite(&numberOfActions, sizeof(int), 1, fileptr);
+        fwrite(&numberOfUsers, sizeof(int), 1, fileptr);     // First write the length of the array
         fwrite(numberOfUsers, sizeof(struct Student), numberOfUsers, fileptr);
+        fclose(fileptr);
+    }
+    else
+    {
+        return 0;
+    }
+    fileptr = fopen(actionFilename, "w");
+    if (fileptr != NULL)
+    {
+        fwrite(&numberOfActions, sizeof(int), 1, fileptr);     // First write the length of the array
         fwrite(numberOfActions, sizeof(struct Action), numberOfActions, fileptr);
         fclose(fileptr);
         return 1;
@@ -80,7 +90,7 @@ int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User 
 // Returns NULL upon failure
 struct User *readUserTable(char *filename) {
     FILE *fileptr;
-    struct Student *studentArray = NULL;
+    struct User *userArray = NULL;
     int numberOfUsers = 0;
     fileptr = fopen(filename, "r");     // Open in read mode
     if (fileptr == NULL)
@@ -91,18 +101,17 @@ struct User *readUserTable(char *filename) {
     {
         fseek(fileptr, 0, SEEK_SET);
         fread(&numberOfUsers, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
-        studentArray = (struct Student *) malloc(numberOfStudents * sizeof(struct Student));
-        if (studentArray == NULL)
+        userArray = (struct User *) malloc(numberOfUsers * sizeof(struct User));
+        if (userArray == NULL)
         {
             return NULL;
         }
         else
         {
-            fread(studentArray, sizeof(struct Student), numberOfStudents, fileptr);     // Read the struct array
+            fread(userArray, sizeof(struct User), numberOfUsers, fileptr);     // Read the struct array
         }
         fclose(fileptr);
-        *message = numberOfStudents;
-    }
+        }
     return studentArray;
 }
     /*
