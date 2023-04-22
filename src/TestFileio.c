@@ -18,7 +18,8 @@
 #include "Fileio.c"
 
 
-#define FILENAME "data.txt"
+#define USERFILENAME "userdata.tt"
+#define ACTIONFILENAME "actiondata.tt"
 
 // All three function pretty much need to be implemented to use this
 
@@ -81,7 +82,7 @@ int main()
 
     // save structs
 
-    if (writeDB(numberOfUsers, numberOfActions, FILENAME, &users[0], &testActions[0]))
+    if (writeDB(numberOfUsers, numberOfActions,USERFILENAME, ACTIONFILENAME, &users[0], &testActions[0]))
     {
         printf("Saving reported success.\n");
     }
@@ -94,7 +95,7 @@ int main()
     // load users
     
     // in case reading users from database was not succesfull
-    if(readUserTable(numberOfUsers,FILENAME) == NULL)
+    if(readUserTable(USERFILENAME) == NULL)
     {
     	printf("loadedUsers did not pass the test\n\n");
     }
@@ -102,7 +103,7 @@ int main()
     // in case reading users from database was successfull
 	else
 	{
-		loadedUsers = readUserTable(numberOfUsers,FILENAME);
+		loadedUsers = readUserTable(USERFILENAME);
 		// Verify users:
 		for (int index = 0; index<numberOfUsers; index++)
 		{
@@ -133,7 +134,7 @@ int main()
     // load actions
     
     // in case reading actions from database was not succesfull
-    if(readUserTable(numberOfUsers,FILENAME) == NULL)
+    if(readUserTable(ACTIONFILENAME) == NULL)
     {
     	printf("loadedActions did not pass the test\n\n");
     }
@@ -141,7 +142,7 @@ int main()
     // in case reading actions from database was successfull
     else 
     {
-    	    loadedActions = readActionTable(numberOfUsers,numberOfActions,FILENAME);
+    	    loadedActions = readActionTable(ACTIONFILENAME);
 	    // Verify actions
 	    counter = 0;
 	    for (int index = 0; index < numberOfActions; index++)

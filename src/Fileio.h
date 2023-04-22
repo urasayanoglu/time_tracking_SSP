@@ -37,19 +37,20 @@ struct User
 // The intention is to make this a static storage, loaded upon starting the program,
 // and saved to periodically during runtime, as well as at termination
 // return 0 for failure, 1 for success
-int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions);
+
+int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users, struct Action *actions);
 
 // Reads the number of users from the file, then reserves enough memory for
 // the user table and reads it. Finally returns the pointer to the array of
 // user structs
 // Returns 0 upon failure
-struct User *readUserTable(int numberOfUsers, char *filename);
+struct User *readUserTable(char *filename);
 
 // Reads the number of actions from the file, then reserves enough memory for
 // the action array and reads it. Finally returns the pointer to the array of
 // action structs
 // Returns NULL upon failure
-struct Action *readActionTable(int numberOfUsers, int numberOfActions, char *filename);
+struct Action *readActionTable(char *filename);
 
 
 #endif //TIME_TRACKING_SSP_FILEIO_H
