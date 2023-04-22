@@ -19,6 +19,7 @@ char *choices[] = {
     "Break",
     "End break",
     "End day",
+    "Report day",
     "Exit",
 };
 
@@ -41,7 +42,7 @@ void clearMenu()
     mvprintw(2, CTR_POS("Select an option"), "Select an option");
 
 	// Print the menu items: (row,built-int print-function(string),string format, the string)
-    for (int index = 0; index < 5; index++) {
+    for (int index = 0; index < 6; index++) {
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
     }
     
@@ -63,19 +64,19 @@ void printMenu()
     mvprintw(2, CTR_POS("Select an option"), "Select an option");
 
 	// Print the menu items: (row,built-int print-function(string),string format, the string)
-    for (int index = 0; index < 5; index++) {
+    for (int index = 0; index < 6; index++) {
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
     }
     
     // Print the menu with highlighted item based on user position in menu
-    for (int index = 0; index < 5; index++) {
+    for (int index = 0; index < 6; index++) {
         // Check if the current index is the same as the highlightCurrentOption
         if (index == highlightCurrentOption) {
 
         	// Set the bold and underline attributes for the highlighted item
     		attrset(A_BOLD | A_UNDERLINE);
  
-            attron(A_REVERSE); // Turn on reverse video attribute
+            attron(A_REVERSE); 
          
         }
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
@@ -84,11 +85,10 @@ void printMenu()
         	// Reset the bold and underline attributes for the highlighted item
     		attrset(A_NORMAL);
  
-            attroff(A_REVERSE); // Turn off reverse video attribute
+            attroff(A_REVERSE); 
         }
     }
-    
-    
+
     // Refresh the screen to show the menu items
     refresh();
 }
@@ -156,9 +156,6 @@ void keyPresses()
         if (highlightCurrentOption >= numChoices) {
             highlightCurrentOption = numChoices - 1;
         }
-    } else if (keyPressed == '5') {
-        // Exit the program when the user selects "Exit"
-        terminateProgram();
     } else if (keyPressed == '\n' && highlightCurrentOption >= 0 && highlightCurrentOption < numChoices) {
         // Execute code when user presses enter on the currently highlighted item
         if (highlightCurrentOption == 0) {
@@ -174,8 +171,10 @@ void keyPresses()
             // Execute code for "End day" option
             // ...
         } else if (highlightCurrentOption == 4) {
-            // Execute code for "Exit" option
-            terminateProgram();
+            // Execute code for "Report Day" option
+        } else if (highlightCurrentOption == 5) {
+        	// Execute code for "Exit" option
+        	terminateProgram();
         }
     }
 
