@@ -37,7 +37,8 @@ struct User
 // The intention is to make this a static storage, loaded upon starting the program,
 // and saved to periodically during runtime, as well as at termination
 // return 0 for failure, 1 for success
-int writeDB(int numberOfUsers, int numberOfActions, char *filename, struct User *users, struct Action *actions);
+
+int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, , char *actionFilename struct User *users, struct Action *actions);
 
 // Reads the number of users from the file, then reserves enough memory for
 // the user table and reads it. Finally returns the pointer to the array of
