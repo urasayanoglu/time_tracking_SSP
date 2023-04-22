@@ -1,7 +1,9 @@
-/*
- * File:        action.c
- * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
- * Description: Functions for manipulating the Action struct arrays
+/**
+ * @file action.c
+ * @author Uras Ayanoglu 
+ * @author Jan-Krister Helenius
+ * @author Sebastian Sopola
+ * @brief Functions for manipulating the Action struct arrays
  */
 
 #include <stdlib.h>
@@ -9,7 +11,13 @@
 #include <stdio.h>
 #include "action.h"
 
-// compare each attribute of previous and current struct to determine which of the two is greater
+/**
+
+* @brief Compare each attribute of previous and current struct to determine which of the two is greater
+* @param[in] previousStruct pointer to the previous struct Action
+* @param[in] currentStruct pointer to the current struct Action
+* @return 1 if previousStruct is earlier than currentStruct, 0 otherwise
+*/
 int isEarlier(struct Action *previousStruct, struct Action *currentStruct) 
 {
     if (previousStruct->year < currentStruct->year)
@@ -65,17 +73,28 @@ int isEarlier(struct Action *previousStruct, struct Action *currentStruct)
     }
 }
 
-// sort structs with qsort() algoritm from stdlib library
+/**
+
+* @brief Sort structs with qsort() algorithm from stdlib library
+* @param[in,out] actions pointer to the array of struct Actions to be sorted
+* @param[in] lengthOfArray the number of elements in the array
+*/
 void sortActions(struct Action *actions, int lengthOfArray)
 {
 	// qsort(pointer, total structs, size of single struct, function to compare all structs)
 	qsort(actions, lengthOfArray, sizeof(struct Action), comparisonFunction);
 }
 
-// compare previous and current struct which result is passed to qsort() function
+/**
+
+* @brief Compare previous and current struct which result is passed to qsort() function
+* @param[in] previous pointer to the previous struct Action
+* @param[in] current pointer to the current struct Action
+* @return -1 if previous is greater than current, 1 if current is greater than previous, 0 if previous and current are equal
+*/
 int comparisonFunction(const void *previous, const void *current) {
 
-    // make type conversion for using another function to compare structs. This is VERY IMPORTANT.
+    /// make type conversion for using another function to compare structs. This is VERY IMPORTANT.
     struct Action *previousStruct = (struct Action*)previous;
     struct Action *currentStruct = (struct Action*)current;
     
@@ -98,7 +117,15 @@ int comparisonFunction(const void *previous, const void *current) {
     }
 }
 
-// create a struct for current time
+/**
+
+* @brief Creates a new struct Action element and adds it to the end of an existing array of struct Action.
+* @param userID The ID of the user performing the action.
+* @param actionType The type of action being performed.
+* @param actions The existing array of struct Action to which the new element will be added.
+* @param lengthOfArray The number of elements in the existing array.
+* @return A pointer to the new array of struct Action, which contains all the old elements from the input array and the new struct Action element at the end.
+*/
 struct Action *addAction(int userID, int actionType, struct Action *actions, int lengthOfArray)
 {
     // Get current time
@@ -132,6 +159,14 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
     return newActions;
 }
 
+/**
+
+* @brief Finds the index of the next struct Action element with a different user ID than the current element.
+* @param currentIndex The index of the current struct Action element in the array.
+* @param actions The array of struct Action elements.
+* @param length The number of elements in the array.
+* @return The index of the next struct Action element with a different user ID than the current element, or -1 if no such element exists.
+*/
 int findNext(int currentIndex, struct Action *actions, int length)
 {
     unsigned int userID = actions[currentIndex].usedID;
