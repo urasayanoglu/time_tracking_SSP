@@ -1,7 +1,9 @@
-/*
- * File:        action.c
- * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
- * Description: Functions for manipulating the Action struct arrays
+/**
+ * @file action.c
+ * @author Uras Ayanoglu 
+ * @author Jan-Krister Helenius
+ * @author Sebastian Sopola
+ * @brief Functions for manipulating the Action struct arrays
  */
 
 #include <stdlib.h>
@@ -9,7 +11,13 @@
 #include <stdio.h>
 #include "action.h"
 
-// compare each attribute of previous and current struct to determine which of the two is greater
+/**
+
+* @brief Compare each attribute of previous and current struct to determine which of the two is greater
+* @param[in] previousStruct pointer to the previous struct Action
+* @param[in] currentStruct pointer to the current struct Action
+* @return 1 if previousStruct is earlier than currentStruct, 0 otherwise
+*/
 int isEarlier(struct Action *previousStruct, struct Action *currentStruct) {
     if (previousStruct->year < currentStruct->year) {
         return 1;
@@ -40,13 +48,24 @@ int isEarlier(struct Action *previousStruct, struct Action *currentStruct) {
     }
 }
 
-// sort structs with qsort() algoritm from stdlib library
+/**
+
+* @brief Sort structs with qsort() algorithm from stdlib library
+* @param[in,out] actions pointer to the array of struct Actions to be sorted
+* @param[in] lengthOfArray the number of elements in the array
+*/
 void sortActions(struct Action *actions, int lengthOfArray) {
     // qsort(pointer, total structs, size of single struct, function to compare all structs)
     qsort(actions, lengthOfArray, sizeof(struct Action), comparisonFunction);
 }
 
-// compare previous and current struct which result is passed to qsort() function
+/**
+
+* @brief Compare previous and current struct which result is passed to qsort() function
+* @param[in] previous pointer to the previous struct Action
+* @param[in] current pointer to the current struct Action
+* @return -1 if previous is greater than current, 1 if current is greater than previous, 0 if previous and current are equal
+*/
 int comparisonFunction(const void *previous, const void *current) {
 
     // make type conversion for using another function to compare structs. This is VERY IMPORTANT.
@@ -69,7 +88,15 @@ int comparisonFunction(const void *previous, const void *current) {
     }
 }
 
-// create a struct for current time
+/**
+
+* @brief Creates a new struct Action element and adds it to the end of an existing array of struct Action.
+* @param userID The ID of the user performing the action.
+* @param actionType The type of action being performed.
+* @param actions The existing array of struct Action to which the new element will be added.
+* @param lengthOfArray The number of elements in the existing array.
+* @return A pointer to the new array of struct Action, which contains all the old elements from the input array and the new struct Action element at the end.
+*/
 struct Action *addAction(int userID, int actionType, struct Action *actions, int lengthOfArray) {
     // Get current time
     time_t currentTime = time(NULL);
@@ -100,7 +127,14 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
     // and the new struct Action element at the end.
     return newActions;
 }
+/**
 
+* @brief Finds the index of the next struct Action element with a different user ID than the current element.
+* @param currentIndex The index of the current struct Action element in the array.
+* @param actions The array of struct Action elements.
+* @param length The number of elements in the array.
+* @return The index of the next struct Action element with a different user ID than the current element, or -1 if no such element exists.
+*/
 int findNext(int currentIndex, struct Action *actions, int length) {
     unsigned int userID = actions[currentIndex].usedID;
     do {
@@ -113,11 +147,35 @@ int findNext(int currentIndex, struct Action *actions, int length) {
     }
 }
 
+/**
+
+* @brief Checks whether two struct Action elements occurred on the same day.
+* @param x A pointer to the first struct Action element.
+* @param y A pointer to the second struct Action element.
+* @return 1 if both elements occurred on the same day, and 0 otherwise.
+*/
 int sameDay(struct Action *x, struct Action *y) {
     return (x->day == y->day && x->month == y->month && x->year == y->year);
 }
 
+/**
 
+* @brief Calculates the time spent in a given state by a given user on a given day.
+
+* @param state An integer representing the state.
+
+* @param userID An unsigned integer representing the user ID.
+
+* @param year An integer representing the year.
+
+* @param month An integer representing the month.
+
+* @param day An integer representing the day.
+
+* @param actions A pointer to an array of struct Action elements.
+
+* @return An integer representing the time spent in seconds.
+*/
 int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions) {
     int counter = 0;
     int numberOFActions = 0;
@@ -172,7 +230,16 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
 
     return counter;
 }
+/**
 
+* @brief Finds the index of the last action with the same status as the input status and with the same user ID as the input user ID.
+* @param index The index of the first action with the same status and user ID.
+* @param userID The ID of the user.
+* @param status The status of the action.
+* @param actions The array of actions.
+* @param numberOfActions The number of actions in the array.
+* @return int The index of the last action with the same status and user ID as the input,or -1 if such an action is not found.
+*/
 int findEndPoint(int index, unsigned int userID, int status, struct Action *actions, int numberOfActions) {
     if (actions[findNext(index, actions, numberOfActions)].actionType != status)
     {
