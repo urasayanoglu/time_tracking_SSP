@@ -40,7 +40,7 @@ void sortActions(struct Action *actions, int lengthOfArray);
 // The intention here is compare current and previous Action structs attribute by attribute
 // 1. return positive integer in case current is greater than previous 
 // 2. return negative in case current is less than previous
-// 3. return 0 in case curent and previous are equal
+// 3. return 0 in case current and previous are equal
 int comparisonFunction(const void *previous, const void *current);
 
 // Adds an Action struct to an array of such structs, using current time
@@ -49,5 +49,9 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
 
 // Returns the index of the next action from the same user
 int findNext(int currentIndex, struct Action *actions, int length);
+
+// Returns the time spent on the specified state on the specified date (0, 0, 0 for today)
+// in seconds
+int timeSpent(int state, int userID, int year, int month, int week, struct Action *actions);
 
 #endif //TIME_TRACKING_SSP_ACTION_H

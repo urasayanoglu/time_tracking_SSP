@@ -148,3 +148,8 @@ int findNext(int currentIndex, struct Action *actions, int length)
         return -1;
     }
 }
+
+int timeSpent(int state, int userID, int year, int month, int week, struct Action *actions)
+{
+    return 0;
+}
