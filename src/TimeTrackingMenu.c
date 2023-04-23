@@ -9,6 +9,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "action.h"
 #include "Fileio.h"
 #include "Fileio.c"
@@ -28,7 +29,7 @@ char *choices[] = {
 
 // Initialize the highlight to the first choice
 int highlightCurrentOption = 0;
-    
+char infotext[120] ="\n";
     
 
 // function to be called when user want to clear menu to original state
@@ -91,6 +92,7 @@ void printMenu()
             attroff(A_REVERSE); 
         }
     }
+    mvprintw(12 , CTR_POS(infotext), "%s", infotext);
 
     // Refresh the screen to show the menu items
     refresh();
@@ -165,17 +167,36 @@ void keyPresses(struct User *users, struct Action *actions)
         if (highlightCurrentOption == 0) {
             // Execute code for "Start day" option
             addAction(users[0].ID, 0, actions, numActions);
+            strcpy(infotext, "Working\n");
         } else if (highlightCurrentOption == 1) {
             // Execute code for "Break" option
             addAction(users[0].ID, 1, actions, numActions);
+            strcpy(infotext, "On break\n");
         } else if (highlightCurrentOption == 2) {
             // Execute code for "End break" option
             addAction(users[0].ID, 0, actions, numActions);
+            strcpy(infotext, "Working\n");
         } else if (highlightCurrentOption == 3) {
             // Execute code for "End day" option
             addAction(users[0].ID, 2, actions, numActions);
+            strcpy(infotext, "Day ended\n");
         } else if (highlightCurrentOption == 4) {
             // Execute code for "Report Day" option
+
+            /* THE LINES BELOW ARE COMMENTED OUT BECAUSE OF A BUG SOMEWHERE IN THE BACKEND
+             * CAUSING A SEGFAULT. AS IT IS 4 AM I HAVE MADE THE DECISION TO POSTPONE
+             * DEBUGGING UNTIL LATER TODAY (EDIT 5AM)
+             * */
+
+            // int hoursWorked = timeSpent(0, 0, 0, 0, 0, actions) / 3600;
+            // int minutesWorked = (timeSpent(0, 0, 0, 0, 0, actions) % 3600) * 60;
+            // int hoursBreak = timeSpent(1, 0, 0, 0, 0, actions) / 3600;
+            // int minutesBreak = (timeSpent(1, 0, 0, 0, 0, actions) % 3600) * 60;
+            sprintf(infotext, "Today ");
+            strcat(infotext, users[0].firstName);
+            strcat(infotext, " ");
+            strcat(infotext, users[0].lastName);
+
         } else if (highlightCurrentOption == 5) {
         	// Execute code for "Exit" option
             int numUsers = sizeof(*users) / sizeof(users[0]);
