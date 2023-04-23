@@ -9,16 +9,14 @@ Functions for manipulating the \mbox{\hyperlink{structAction}{Action}} struct ar
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}action.\+h\char`\"{}}\newline
-Include dependency graph for action.\+c\+:
-\nopagebreak
+Include dependency graph for action.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=342pt]{action_8c__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -69,6 +67,8 @@ Sebastian Sopola
 
 Creates a new struct \mbox{\hyperlink{structAction}{Action}} element and adds it to the end of an existing array of struct \mbox{\hyperlink{structAction}{Action}}. 
 
+Adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using current time This function adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using the current time, and returns a pointer to the newly added \mbox{\hyperlink{structAction}{Action}} structure.
+
 
 \begin{DoxyParams}{Parameters}
 {\em user\+ID} & The ID of the user performing the action. \\
@@ -93,6 +93,8 @@ A pointer to the new array of struct \mbox{\hyperlink{structAction}{Action}}, wh
 
 Compare previous and current struct which result is passed to qsort() function. 
 
+Compares current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute This function compares the current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute and returns\+: a positive integer in case current is greater than previous a negative integer in case current is less than previous 0 in case current and previous are equal.
+
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em previous} & pointer to the previous struct \mbox{\hyperlink{structAction}{Action}} \\
@@ -112,6 +114,8 @@ Compare previous and current struct which result is passed to qsort() function.
 
 
 Finds the index of the last action with the same status as the input status and with the same user ID as the input user ID. 
+
+Finds the index of the next action from the same user that does NOT have the same status. Returns -\/1 if no such index exists.
 
 
 \begin{DoxyParams}{Parameters}
@@ -139,6 +143,8 @@ int The index of the last action with the same status and user ID as the input,o
 
 Finds the index of the next struct \mbox{\hyperlink{structAction}{Action}} element with a different user ID than the current element. 
 
+Returns the index of the next action from the same user. Returns -\/1 if no such actions exist.
+
 
 \begin{DoxyParams}{Parameters}
 {\em current\+Index} & The index of the current struct \mbox{\hyperlink{structAction}{Action}} element in the array. \\
@@ -161,6 +167,8 @@ The index of the next struct \mbox{\hyperlink{structAction}{Action}} element wit
 
 Compare each attribute of previous and current struct to determine which of the two is greater. 
 
+Determines whether the time/date of x is earlier than y.
+
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em previous\+Struct} & pointer to the previous struct \mbox{\hyperlink{structAction}{Action}} \\
@@ -180,6 +188,8 @@ Compare each attribute of previous and current struct to determine which of the 
 
 
 Checks whether two struct \mbox{\hyperlink{structAction}{Action}} elements occurred on the same day. 
+
+Returns true if the two given \mbox{\hyperlink{structAction}{Action}} structs are dated to the same day.
 
 
 \begin{DoxyParams}{Parameters}
@@ -201,6 +211,8 @@ Checks whether two struct \mbox{\hyperlink{structAction}{Action}} elements occur
 
 Sort structs with qsort() algorithm from stdlib library. 
 
+Sorts \mbox{\hyperlink{structAction}{Action}} structs to order.
+
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in,out}}  & {\em actions} & pointer to the array of struct Actions to be sorted \\
@@ -217,6 +229,8 @@ Sort structs with qsort() algorithm from stdlib library.
 
 
 Calculates the time spent in a given state by a given user on a given day. 
+
+Returns the time spent on the specified state on the specified date (0, 0, 0 for today) in seconds.
 
 
 \begin{DoxyParams}{Parameters}

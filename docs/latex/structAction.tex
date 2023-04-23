@@ -2,6 +2,11 @@
 \label{structAction}\index{Action@{Action}}
 
 
+Structure representing an action performed by a user This structure represents an action performed by a user, including the user ID, action type, date, and time.  
+
+
+
+
 {\ttfamily \#include $<$action.\+h$>$}
 
 \doxysubsection*{Data Fields}
@@ -12,18 +17,21 @@ unsigned int \mbox{\hyperlink{structAction_a576c90d86dd17e93a19552d4de1cf73d}{us
 int \mbox{\hyperlink{structAction_a35a56899108042759421b8ddd02d7e41}{action\+Type}}
 \item 
 int \mbox{\hyperlink{structAction_a6cdf23a9a2331bd13baeadbcb2194624}{year}}
-\item 
+\begin{DoxyCompactList}\small\item\em Dates follow meatspace conventions, here clarified where not immediately apparent. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{structAction_ac324916c7ec0988b75bb6a9797de4ffe}{month}}
 \item 
 int \mbox{\hyperlink{structAction_a94f804f1d3e99f88daa082c81e69a6b3}{day}}
 \item 
 int \mbox{\hyperlink{structAction_a92980b81fa05bd584a4fe3a0c64ea0f7}{hour}}
-\item 
+\begin{DoxyCompactList}\small\item\em Hours since midnight (0-\/23) \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{structAction_a8efb9c2abd13b7d13063321060c999a3}{minute}}
-\item 
+\begin{DoxyCompactList}\small\item\em Minutes past the hour (0-\/59) \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{structAction_a74cce602c3785ccc6d34fa125f13c331}{second}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Seconds past the minute (0-\/59) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Structure representing an action performed by a user This structure represents an action performed by a user, including the user ID, action type, date, and time. 
 
 \doxysubsection{Field Documentation}
 \mbox{\Hypertarget{structAction_a35a56899108042759421b8ddd02d7e41}\label{structAction_a35a56899108042759421b8ddd02d7e41}} 
@@ -32,17 +40,21 @@ int \mbox{\hyperlink{structAction_a74cce602c3785ccc6d34fa125f13c331}{second}}
 \doxysubsubsection{\texorpdfstring{actionType}{actionType}}
 {\footnotesize\ttfamily int Action\+::action\+Type}
 
-\mbox{\Hypertarget{structAction_a94f804f1d3e99f88daa082c81e69a6b3}\label{structAction_a94f804f1d3e99f88daa082c81e69a6b3}} 
+0 = Start working, 1 = Stop working With room to add multiple types of breaks The type of action (0 = Start working, 1 = Stop working) \mbox{\Hypertarget{structAction_a94f804f1d3e99f88daa082c81e69a6b3}\label{structAction_a94f804f1d3e99f88daa082c81e69a6b3}} 
 \index{Action@{Action}!day@{day}}
 \index{day@{day}!Action@{Action}}
 \doxysubsubsection{\texorpdfstring{day}{day}}
 {\footnotesize\ttfamily int Action\+::day}
 
-\mbox{\Hypertarget{structAction_a92980b81fa05bd584a4fe3a0c64ea0f7}\label{structAction_a92980b81fa05bd584a4fe3a0c64ea0f7}} 
+The day of the action \mbox{\Hypertarget{structAction_a92980b81fa05bd584a4fe3a0c64ea0f7}\label{structAction_a92980b81fa05bd584a4fe3a0c64ea0f7}} 
 \index{Action@{Action}!hour@{hour}}
 \index{hour@{hour}!Action@{Action}}
 \doxysubsubsection{\texorpdfstring{hour}{hour}}
 {\footnotesize\ttfamily int Action\+::hour}
+
+
+
+Hours since midnight (0-\/23) 
 
 \mbox{\Hypertarget{structAction_a8efb9c2abd13b7d13063321060c999a3}\label{structAction_a8efb9c2abd13b7d13063321060c999a3}} 
 \index{Action@{Action}!minute@{minute}}
@@ -50,17 +62,25 @@ int \mbox{\hyperlink{structAction_a74cce602c3785ccc6d34fa125f13c331}{second}}
 \doxysubsubsection{\texorpdfstring{minute}{minute}}
 {\footnotesize\ttfamily int Action\+::minute}
 
+
+
+Minutes past the hour (0-\/59) 
+
 \mbox{\Hypertarget{structAction_ac324916c7ec0988b75bb6a9797de4ffe}\label{structAction_ac324916c7ec0988b75bb6a9797de4ffe}} 
 \index{Action@{Action}!month@{month}}
 \index{month@{month}!Action@{Action}}
 \doxysubsubsection{\texorpdfstring{month}{month}}
 {\footnotesize\ttfamily int Action\+::month}
 
-\mbox{\Hypertarget{structAction_a74cce602c3785ccc6d34fa125f13c331}\label{structAction_a74cce602c3785ccc6d34fa125f13c331}} 
+The month of the action \mbox{\Hypertarget{structAction_a74cce602c3785ccc6d34fa125f13c331}\label{structAction_a74cce602c3785ccc6d34fa125f13c331}} 
 \index{Action@{Action}!second@{second}}
 \index{second@{second}!Action@{Action}}
 \doxysubsubsection{\texorpdfstring{second}{second}}
 {\footnotesize\ttfamily int Action\+::second}
+
+
+
+Seconds past the minute (0-\/59) 
 
 \mbox{\Hypertarget{structAction_a576c90d86dd17e93a19552d4de1cf73d}\label{structAction_a576c90d86dd17e93a19552d4de1cf73d}} 
 \index{Action@{Action}!usedID@{usedID}}
@@ -68,13 +88,17 @@ int \mbox{\hyperlink{structAction_a74cce602c3785ccc6d34fa125f13c331}{second}}
 \doxysubsubsection{\texorpdfstring{usedID}{usedID}}
 {\footnotesize\ttfamily unsigned int Action\+::used\+ID}
 
-\mbox{\Hypertarget{structAction_a6cdf23a9a2331bd13baeadbcb2194624}\label{structAction_a6cdf23a9a2331bd13baeadbcb2194624}} 
+The ID of the user who performed the action \mbox{\Hypertarget{structAction_a6cdf23a9a2331bd13baeadbcb2194624}\label{structAction_a6cdf23a9a2331bd13baeadbcb2194624}} 
 \index{Action@{Action}!year@{year}}
 \index{year@{year}!Action@{Action}}
 \doxysubsubsection{\texorpdfstring{year}{year}}
 {\footnotesize\ttfamily int Action\+::year}
 
 
+
+Dates follow meatspace conventions, here clarified where not immediately apparent. 
+
+The year of the action 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
