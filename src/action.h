@@ -47,11 +47,18 @@ int comparisonFunction(const void *previous, const void *current);
 // return NULL for failure.
 struct Action *addAction(int userID, int actionType, struct Action *actions, int length);
 
-// Returns the index of the next action from the same user
+// Returns the index of the next action from the same user. Returns -1 if no such actions exists
 int findNext(int currentIndex, struct Action *actions, int length);
 
 // Returns the time spent on the specified state on the specified date (0, 0, 0 for today)
 // in seconds
-int timeSpent(int state, int userID, int year, int month, int week, struct Action *actions);
+int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions);
+
+// Returns true if the actions are dated to the same day
+int sameDay(struct Action *x, struct Action *y);
+
+// Finds the index of the next action from the same user that does
+// NOT have the same status. Returns -1 if no such index exists
+int findEndPoint(int index, unsigned int userID, int status, struct Action *actions, int numberOfActions);
 
 #endif //TIME_TRACKING_SSP_ACTION_H
