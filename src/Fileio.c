@@ -10,8 +10,6 @@
 #include "action.h"
 #include "action.c"
 
-#define NAME_LENGTH 40
-
 
 // Save both databases to a file
 int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users,
@@ -95,17 +93,18 @@ struct Action *readActionTable(char *filename) {
     return actionArray;
 }
 
+
 void stringInput(char *prompt, char *target)
 {
-    char buf[NAME_LENGTH];
-    char *newlinePointer = NULL;
-    printf("%s", prompt);
-    fgets(buf, NAME_LENGTH, stdin);
-    strcpy(target, buf);
-
-    newlinePointer = strchr(target, '\n');  // Remove possible newline at the end.
-    if (newlinePointer != NULL)
-    {
-        *newlinePointer = '\0';
-    }
+    echo();  				// Enable echoing of typed characters
+    curs_set(1);  			// Show cursor on the screen
+    mvprintw(8, 32, prompt);  		// Position prompt (line to write input on) at row 12, column 32
+    getnstr(target, NAMELENGTH);  	// Read input and store in target buffer
+    noecho();  				// Disable echoing of typed characters
+    curs_set(0);  			// Hide cursor
 }
+
+
+
+
+
