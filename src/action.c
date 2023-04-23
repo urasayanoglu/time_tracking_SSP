@@ -230,25 +230,4 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
 
     return counter;
 }
-/**
-
-* @brief Finds the index of the last action with the same status as the input status and with the same user ID as the input user ID.
-* @param index The index of the first action with the same status and user ID.
-* @param userID The ID of the user.
-* @param status The status of the action.
-* @param actions The array of actions.
-* @param numberOfActions The number of actions in the array.
-* @return int The index of the last action with the same status and user ID as the input,or -1 if such an action is not found.
-*/
-int findEndPoint(int index, unsigned int userID, int status, struct Action *actions, int numberOfActions) {
-    if (actions[findNext(index, actions, numberOfActions)].actionType != status)
-    {
-        return findNext(index, actions, numberOfActions);
-    }
-    else
-    {
-        return findEndPoint(findNext(index, actions, numberOfActions), userID, status,
-                            actions, numberOfActions);
-    }
-}
 
