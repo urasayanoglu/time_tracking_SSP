@@ -117,7 +117,29 @@ int sameDay(struct Action *x, struct Action *y) {
     return (x->day == y->day && x->month == y->month && x->year == y->year);
 }
 
+// States: 0 - working, 1 - on break, 2 - off work
+int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions)
+{
+    // We store the time spent doing action 'state' in variable counter
+    int counter = 0;
 
+    // Get current time
+    time_t currentTime = time(NULL);
+
+    // Convert time to local time
+    struct tm *localTime = localtime(&currentTime);
+
+    // If date = (0, 0, 0), store current date to those variables.
+    if (year == 0 && month == 0 && day == 0)
+    {
+        year = localTime->tm_year + 1900;
+        month = localTime->tm_mon + 1;
+        day = localTime->tm_mday;
+    }
+
+    return 0;
+}
+/*
 int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions) {
     int counter = 0;
     int numberOFActions = 0;
@@ -172,6 +194,7 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
 
     return counter;
 }
+*/
 
 int findEndPoint(int index, unsigned int userID, int status, struct Action *actions, int numberOfActions) {
     if (actions[findNext(index, actions, numberOfActions)].actionType != status)
