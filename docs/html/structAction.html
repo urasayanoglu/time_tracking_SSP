@@ -69,6 +69,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Structure representing an action performed by a user This structure represents an action performed by a user, including the user ID, action type, date, and time.  
+ <a href="structAction.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="action_8h_source.html">action.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -78,19 +81,25 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a35a56899108042759421b8ddd02d7e41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#a35a56899108042759421b8ddd02d7e41">actionType</a></td></tr>
 <tr class="separator:a35a56899108042759421b8ddd02d7e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cdf23a9a2331bd13baeadbcb2194624"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#a6cdf23a9a2331bd13baeadbcb2194624">year</a></td></tr>
+<tr class="memdesc:a6cdf23a9a2331bd13baeadbcb2194624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dates follow meatspace conventions, here clarified where not immediately apparent.  <a href="structAction.html#a6cdf23a9a2331bd13baeadbcb2194624">More...</a><br /></td></tr>
 <tr class="separator:a6cdf23a9a2331bd13baeadbcb2194624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac324916c7ec0988b75bb6a9797de4ffe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#ac324916c7ec0988b75bb6a9797de4ffe">month</a></td></tr>
 <tr class="separator:ac324916c7ec0988b75bb6a9797de4ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94f804f1d3e99f88daa082c81e69a6b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#a94f804f1d3e99f88daa082c81e69a6b3">day</a></td></tr>
 <tr class="separator:a94f804f1d3e99f88daa082c81e69a6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92980b81fa05bd584a4fe3a0c64ea0f7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#a92980b81fa05bd584a4fe3a0c64ea0f7">hour</a></td></tr>
+<tr class="memdesc:a92980b81fa05bd584a4fe3a0c64ea0f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hours since midnight (0-23)  <a href="structAction.html#a92980b81fa05bd584a4fe3a0c64ea0f7">More...</a><br /></td></tr>
 <tr class="separator:a92980b81fa05bd584a4fe3a0c64ea0f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8efb9c2abd13b7d13063321060c999a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#a8efb9c2abd13b7d13063321060c999a3">minute</a></td></tr>
+<tr class="memdesc:a8efb9c2abd13b7d13063321060c999a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minutes past the hour (0-59)  <a href="structAction.html#a8efb9c2abd13b7d13063321060c999a3">More...</a><br /></td></tr>
 <tr class="separator:a8efb9c2abd13b7d13063321060c999a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74cce602c3785ccc6d34fa125f13c331"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAction.html#a74cce602c3785ccc6d34fa125f13c331">second</a></td></tr>
+<tr class="memdesc:a74cce602c3785ccc6d34fa125f13c331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seconds past the minute (0-59)  <a href="structAction.html#a74cce602c3785ccc6d34fa125f13c331">More...</a><br /></td></tr>
 <tr class="separator:a74cce602c3785ccc6d34fa125f13c331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Structure representing an action performed by a user This structure represents an action performed by a user, including the user ID, action type, date, and time. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a id="a35a56899108042759421b8ddd02d7e41" name="a35a56899108042759421b8ddd02d7e41"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35a56899108042759421b8ddd02d7e41">&#9670;&nbsp;</a></span>actionType</h2>
 
@@ -102,6 +111,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >0 = Start working, 1 = Stop working With room to add multiple types of breaks The type of action (0 = Start working, 1 = Stop working) </p>
 
 </div>
 </div>
@@ -116,6 +126,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The day of the action </p>
 
 </div>
 </div>
@@ -131,6 +142,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Hours since midnight (0-23) </p>
+
 </div>
 </div>
 <a id="a8efb9c2abd13b7d13063321060c999a3" name="a8efb9c2abd13b7d13063321060c999a3"></a>
@@ -145,6 +158,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Minutes past the hour (0-59) </p>
+
 </div>
 </div>
 <a id="ac324916c7ec0988b75bb6a9797de4ffe" name="ac324916c7ec0988b75bb6a9797de4ffe"></a>
@@ -158,6 +173,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The month of the action </p>
 
 </div>
 </div>
@@ -173,6 +189,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Seconds past the minute (0-59) </p>
+
 </div>
 </div>
 <a id="a576c90d86dd17e93a19552d4de1cf73d" name="a576c90d86dd17e93a19552d4de1cf73d"></a>
@@ -186,6 +204,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The ID of the user who performed the action </p>
 
 </div>
 </div>
@@ -200,6 +219,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Dates follow meatspace conventions, here clarified where not immediately apparent. </p>
+<p >The year of the action </p>
 
 </div>
 </div>

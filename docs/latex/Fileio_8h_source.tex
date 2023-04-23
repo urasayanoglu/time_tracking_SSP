@@ -41,21 +41,24 @@
 \DoxyCodeLine{37 \textcolor{comment}{// The intention is to make this a static storage, loaded upon starting the program,}}
 \DoxyCodeLine{38 \textcolor{comment}{// and saved to periodically during runtime, as well as at termination}}
 \DoxyCodeLine{39 \textcolor{comment}{// return 0 for failure, 1 for success}}
-\DoxyCodeLine{40 \textcolor{keywordtype}{int} \mbox{\hyperlink{Fileio_8h_a1fb499a080fca63584e8348d9353d668}{writeDB}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{int} numberOfActions, \textcolor{keywordtype}{char} *filename, \textcolor{keyword}{struct} \mbox{\hyperlink{structUser}{User}} *users, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions);}
-\DoxyCodeLine{41 }
-\DoxyCodeLine{42 \textcolor{comment}{// Reads the number of users from the file, then reserves enough memory for}}
-\DoxyCodeLine{43 \textcolor{comment}{// the user table and reads it. Finally returns the pointer to the array of}}
-\DoxyCodeLine{44 \textcolor{comment}{// user structs}}
-\DoxyCodeLine{45 \textcolor{comment}{// Returns 0 upon failure}}
-\DoxyCodeLine{46 \textcolor{keyword}{struct }\mbox{\hyperlink{structUser}{User}} *\mbox{\hyperlink{Fileio_8h_a3fdfebd15c813af22d08098985be7b33}{readUserTable}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{char} *filename);}
-\DoxyCodeLine{47 }
-\DoxyCodeLine{48 \textcolor{comment}{// Reads the number of actions from the file, then reserves enough memory for}}
-\DoxyCodeLine{49 \textcolor{comment}{// the action array and reads it. Finally returns the pointer to the array of}}
-\DoxyCodeLine{50 \textcolor{comment}{// action structs}}
-\DoxyCodeLine{51 \textcolor{comment}{// Returns NULL upon failure}}
-\DoxyCodeLine{52 \textcolor{keyword}{struct }\mbox{\hyperlink{structAction}{Action}} *\mbox{\hyperlink{Fileio_8h_ae2ed9b31dff4ce6ac0c704f9e649285d}{readActionTable}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{int} numberOfActions, \textcolor{keywordtype}{char} *filename);}
-\DoxyCodeLine{53 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keywordtype}{int} \mbox{\hyperlink{Fileio_8h_a33b1fa83811c96a24116817018668772}{writeDB}}(\textcolor{keywordtype}{int} numberOfUsers, \textcolor{keywordtype}{int} numberOfActions, \textcolor{keywordtype}{char} *userdataFilename, \textcolor{keywordtype}{char} *actionFilename, \textcolor{keyword}{struct} \mbox{\hyperlink{structUser}{User}} *users, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{comment}{// Reads the number of users from the file, then reserves enough memory for}}
+\DoxyCodeLine{44 \textcolor{comment}{// the user table and reads it. Finally returns the pointer to the array of}}
+\DoxyCodeLine{45 \textcolor{comment}{// user structs}}
+\DoxyCodeLine{46 \textcolor{comment}{// Returns 0 upon failure}}
+\DoxyCodeLine{47 \textcolor{keyword}{struct }\mbox{\hyperlink{structUser}{User}} *\mbox{\hyperlink{Fileio_8h_ae52a30bace562693eebbbd6164f68b8e}{readUserTable}}(\textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{// Reads the number of actions from the file, then reserves enough memory for}}
+\DoxyCodeLine{50 \textcolor{comment}{// the action array and reads it. Finally returns the pointer to the array of}}
+\DoxyCodeLine{51 \textcolor{comment}{// action structs}}
+\DoxyCodeLine{52 \textcolor{comment}{// Returns NULL upon failure}}
+\DoxyCodeLine{53 \textcolor{keyword}{struct }\mbox{\hyperlink{structAction}{Action}} *\mbox{\hyperlink{Fileio_8h_aeeb17b606d884c21a802c35398b8c4fb}{readActionTable}}(\textcolor{keywordtype}{char} *filename);}
 \DoxyCodeLine{54 }
-\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TIME\_TRACKING\_SSP\_FILEIO\_H}}
+\DoxyCodeLine{55 \textcolor{keywordtype}{void} \mbox{\hyperlink{Fileio_8h_ae3a51c33ba5e66115ad77305beddb5d3}{stringInput}}(\textcolor{keywordtype}{char} *prompt, \textcolor{keywordtype}{char} *target);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TIME\_TRACKING\_SSP\_FILEIO\_H}}
 
 \end{DoxyCode}

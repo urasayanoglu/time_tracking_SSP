@@ -1,14 +1,15 @@
-/*
- * File:        TestFileio.c
- * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
- * Description: Unit tests for fileio.c
- */
+/**
 
-/*
-	Constraints: Name must be format 'CarMagnus','Carl'
-	Not allowed names: 'Carl Magnus', 'Carl-Magnus' 
+* @file TestFileio.c
+* @brief Unit tests for fileio.c
+* @author Uras Ayanoglu
+* @author Jan-Krister Helenius
+* @author Sebastian Sopola
+* @details This file contains unit tests for fileio.c functions. The constraints
+* on the name format are: the first name and last name must be separated by a
+* space, and the name format must be 'CarMagnus' or 'Carl', which means names
+* like 'Carl Magnus' or 'Carl-Magnus' are not allowed.
 */
-
 
 #include <stdio.h>
 #include <string.h>
@@ -22,12 +23,18 @@
 #define ACTIONFILENAME "actiondata.tt"
 
 // All three function pretty much need to be implemented to use this
-
+/**
+* @brief Main function for unit testing the fileio.c functions.
+* @return int Return 0 on success
+* @details This function creates user and action structs, writes them to files using the writeDB function,
+* then reads the files using the readUserTable and readActionTable functions to verify the
+* correctness of the reading and writing process. The function returns 0 on success.
+*/
 int main()
 {
     int counter = 0;
 
-    // Create user struct
+    /// Create user struct
     struct User users[3];
     users[0].ID = 1111;
     users[1].ID = 1221;
@@ -45,7 +52,7 @@ int main()
     strcpy(users[1].lastName,"vonAnckarswert");
     strcpy(users[2].lastName,"Sopola");
 
-    // action struct, copypaste from Testaction
+    /// action struct, copypaste from Testaction
     struct Action testActions[3];
     testActions[0].usedID=1;
     testActions[0].actionType = 0;
@@ -76,12 +83,11 @@ int main()
     int numberOfUsers = sizeof(users) / sizeof(users[0]);
     int numberOfActions = sizeof(testActions) / sizeof(testActions[0]);
 
-    // Pointers for loading
+    /// Pointers for loading
     struct User *loadedUsers = NULL;
     struct Action *loadedActions = NULL;
 
-    // save structs
-
+    /// save structs
     if (writeDB(numberOfUsers, numberOfActions,USERFILENAME, ACTIONFILENAME, &users[0], &testActions[0]))
     {
         printf("Saving reported success.\n");
@@ -92,19 +98,18 @@ int main()
         return 0;
     }
 
-    // load users
-    
-    // in case reading users from database was not succesfull
+    /// load users 
+    ///  in case reading users from database was not succesfull
     if(readUserTable(USERFILENAME) == NULL)
     {
     	printf("loadedUsers did not pass the test\n\n");
     }
     
-    // in case reading users from database was successfull
+    /// in case reading users from database was successfull
 	else
 	{
 		loadedUsers = readUserTable(USERFILENAME);
-		// Verify users:
+		/// Verify users:
 		for (int index = 0; index<numberOfUsers; index++)
 		{
 		    if (strcmp(users[index].lastName, loadedUsers[index].lastName) == 0)
@@ -131,19 +136,18 @@ int main()
 		printf("Loading User file passed %d out of %d tests.\n\n\n", counter, 5*numberOfUsers);
     }
 
-    // load actions
-    
-    // in case reading actions from database was not succesfull
+    /// load actions   
+    /// in case reading actions from database was not succesfull
     if(readUserTable(ACTIONFILENAME) == NULL)
     {
     	printf("loadedActions did not pass the test\n\n");
     }
     
-    // in case reading actions from database was successfull
+    /// in case reading actions from database was successfull
     else 
     {
     	    loadedActions = readActionTable(ACTIONFILENAME);
-	    // Verify actions
+	    /// Verify actions
 	    counter = 0;
 	    for (int index = 0; index < numberOfActions; index++)
 	    {
@@ -159,7 +163,7 @@ int main()
 	    printf("Loading Action file passed %d out of %d tests.\n\n\n", counter, 8*numberOfActions);
     }
     
-    // Deallocate memory
+    /// Deallocate memory
     free(loadedUsers);
     free(loadedActions);
 

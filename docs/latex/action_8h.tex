@@ -1,31 +1,53 @@
 \hypertarget{action_8h}{}\doxysection{src/action.h File Reference}
 \label{action_8h}\index{src/action.h@{src/action.h}}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+
+
+Functions for manipulating the \mbox{\hyperlink{structAction}{Action}} struct arrays.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=337pt]{action_8h__dep__incl}
+\includegraphics[width=350pt]{action_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structAction}{Action}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Structure representing an action performed by a user This structure represents an action performed by a user, including the user ID, action type, date, and time. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{action_8h_aa69b05b7473ca303c514cb73c8ffaa2c}{is\+Earlier}} (struct \mbox{\hyperlink{structAction}{Action}} $\ast$previous\+Struct, struct \mbox{\hyperlink{structAction}{Action}} $\ast$current\+Struct)
-\item 
+\begin{DoxyCompactList}\small\item\em Determines whether the time/date of x is earlier than y. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{action_8h_af3e40c6c5ac5bb3604a4b7c439c3c0b8}{sort\+Actions}} (struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int length\+Of\+Array)
-\item 
+\begin{DoxyCompactList}\small\item\em Sorts \mbox{\hyperlink{structAction}{Action}} structs to order. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{action_8h_ab1608272dec2ef3331ef6317a1249523}{comparison\+Function}} (const void $\ast$previous, const void $\ast$current)
-\item 
+\begin{DoxyCompactList}\small\item\em Compares current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute This function compares the current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute and returns\+: a positive integer in case current is greater than previous a negative integer in case current is less than previous 0 in case current and previous are equal. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structAction}{Action}} $\ast$ \mbox{\hyperlink{action_8h_a28392397839447507b316e027a0750b0}{add\+Action}} (int user\+ID, int action\+Type, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int length)
-\item 
+\begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using current time This function adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using the current time, and returns a pointer to the newly added \mbox{\hyperlink{structAction}{Action}} structure. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{action_8h_ab29c0baf871af9de2792e4debccd4231}{find\+Next}} (int current\+Index, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int length)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the index of the next action from the same user. Returns -\/1 if no such actions exist. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{action_8h_ac8f230b75ef0e2695f4440d4575faad0}{time\+Spent}} (int state, unsigned int user\+ID, int year, int month, int day, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions)
+\begin{DoxyCompactList}\small\item\em Returns the time spent on the specified state on the specified date (0, 0, 0 for today) in seconds. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{action_8h_aac933e8d78c8fdad4d0af46337ded132}{same\+Day}} (struct \mbox{\hyperlink{structAction}{Action}} $\ast$x, struct \mbox{\hyperlink{structAction}{Action}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Returns true if the two given \mbox{\hyperlink{structAction}{Action}} structs are dated to the same day. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{action_8h_a45a1e9c65df672dbf7e6b5f19220f88c}{find\+End\+Point}} (int index, unsigned int user\+ID, int status, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions, int number\+Of\+Actions)
+\begin{DoxyCompactList}\small\item\em Finds the index of the next action from the same user that does NOT have the same status. Returns -\/1 if no such index exists. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for manipulating the \mbox{\hyperlink{structAction}{Action}} struct arrays. 
+
+\begin{DoxyAuthor}{Author}
+Uras Ayanoglu 
+
+Jan-\/\+Krister Helenius 
+
+Sebastian Sopola 
+\end{DoxyAuthor}
 
 
 \doxysubsection{Function Documentation}
@@ -33,29 +55,289 @@ int \mbox{\hyperlink{action_8h_ab29c0baf871af9de2792e4debccd4231}{find\+Next}} (
 \index{action.h@{action.h}!addAction@{addAction}}
 \index{addAction@{addAction}!action.h@{action.h}}
 \doxysubsubsection{\texorpdfstring{addAction()}{addAction()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structAction}{Action}} $\ast$ add\+Action (\begin{DoxyParamCaption}\item[{int}]{user\+ID,  }\item[{int}]{action\+Type,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structAction}{Action}} $\ast$ add\+Action (\begin{DoxyParamCaption}\item[{int}]{user\+ID,  }\item[{int}]{action\+Type,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length\+Of\+Array }\end{DoxyParamCaption})}
 
+
+
+Adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using current time This function adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using the current time, and returns a pointer to the newly added \mbox{\hyperlink{structAction}{Action}} structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & The ID of the user who performed the action \\
+\hline
+{\em action\+Type} & The type of action (0 = Start working, 1 = Stop working) \\
+\hline
+{\em actions} & Pointer to the array of \mbox{\hyperlink{structAction}{Action}} structures \\
+\hline
+{\em length} & The length of the array of \mbox{\hyperlink{structAction}{Action}} structures \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly added \mbox{\hyperlink{structAction}{Action}} structure; NULL for failure
+\end{DoxyReturn}
+Adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using current time This function adds an \mbox{\hyperlink{structAction}{Action}} struct to an array of such structs, using the current time, and returns a pointer to the newly added \mbox{\hyperlink{structAction}{Action}} structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & The ID of the user performing the action. \\
+\hline
+{\em action\+Type} & The type of action being performed. \\
+\hline
+{\em actions} & The existing array of struct \mbox{\hyperlink{structAction}{Action}} to which the new element will be added. \\
+\hline
+{\em length\+Of\+Array} & The number of elements in the existing array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the new array of struct \mbox{\hyperlink{structAction}{Action}}, which contains all the old elements from the input array and the new struct \mbox{\hyperlink{structAction}{Action}} element at the end. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{action_8h_ab1608272dec2ef3331ef6317a1249523}\label{action_8h_ab1608272dec2ef3331ef6317a1249523}} 
 \index{action.h@{action.h}!comparisonFunction@{comparisonFunction}}
 \index{comparisonFunction@{comparisonFunction}!action.h@{action.h}}
 \doxysubsubsection{\texorpdfstring{comparisonFunction()}{comparisonFunction()}}
 {\footnotesize\ttfamily int comparison\+Function (\begin{DoxyParamCaption}\item[{const void $\ast$}]{previous,  }\item[{const void $\ast$}]{current }\end{DoxyParamCaption})}
 
+
+
+Compares current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute This function compares the current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute and returns\+: a positive integer in case current is greater than previous a negative integer in case current is less than previous 0 in case current and previous are equal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous} & Pointer to the previous \mbox{\hyperlink{structAction}{Action}} structure \\
+\hline
+{\em current} & Pointer to the current \mbox{\hyperlink{structAction}{Action}} structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the comparison
+\end{DoxyReturn}
+Compares current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute This function compares the current and previous \mbox{\hyperlink{structAction}{Action}} structs attribute by attribute and returns\+: a positive integer in case current is greater than previous a negative integer in case current is less than previous 0 in case current and previous are equal.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em previous} & pointer to the previous struct \mbox{\hyperlink{structAction}{Action}} \\
+\hline
+\mbox{\texttt{ in}}  & {\em current} & pointer to the current struct \mbox{\hyperlink{structAction}{Action}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if previous is greater than current, 1 if current is greater than previous, 0 if previous and current are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{action_8h_a45a1e9c65df672dbf7e6b5f19220f88c}\label{action_8h_a45a1e9c65df672dbf7e6b5f19220f88c}} 
+\index{action.h@{action.h}!findEndPoint@{findEndPoint}}
+\index{findEndPoint@{findEndPoint}!action.h@{action.h}}
+\doxysubsubsection{\texorpdfstring{findEndPoint()}{findEndPoint()}}
+{\footnotesize\ttfamily int find\+End\+Point (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{unsigned int}]{user\+ID,  }\item[{int}]{status,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{number\+Of\+Actions }\end{DoxyParamCaption})}
+
+
+
+Finds the index of the next action from the same user that does NOT have the same status. Returns -\/1 if no such index exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The starting index. \\
+\hline
+{\em user\+ID} & The ID of the user. \\
+\hline
+{\em status} & The status to compare to. \\
+\hline
+{\em actions} & Pointer to the array of \mbox{\hyperlink{structAction}{Action}} structs. \\
+\hline
+{\em number\+Of\+Actions} & The number of actions in the array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The index of the next action from the same user that does NOT have the same status, or -\/1 if none exist.
+\end{DoxyReturn}
+Finds the index of the next action from the same user that does NOT have the same status. Returns -\/1 if no such index exists.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the first action with the same status and user ID. \\
+\hline
+{\em user\+ID} & The ID of the user. \\
+\hline
+{\em status} & The status of the action. \\
+\hline
+{\em actions} & The array of actions. \\
+\hline
+{\em number\+Of\+Actions} & The number of actions in the array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The index of the last action with the same status and user ID as the input,or -\/1 if such an action is not found. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{action_8h_ab29c0baf871af9de2792e4debccd4231}\label{action_8h_ab29c0baf871af9de2792e4debccd4231}} 
 \index{action.h@{action.h}!findNext@{findNext}}
 \index{findNext@{findNext}!action.h@{action.h}}
 \doxysubsubsection{\texorpdfstring{findNext()}{findNext()}}
 {\footnotesize\ttfamily int find\+Next (\begin{DoxyParamCaption}\item[{int}]{current\+Index,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length }\end{DoxyParamCaption})}
 
+
+
+Returns the index of the next action from the same user. Returns -\/1 if no such actions exist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Index} & The index of the current action. \\
+\hline
+{\em actions} & Pointer to the array of \mbox{\hyperlink{structAction}{Action}} structs. \\
+\hline
+{\em length} & The length of the array of \mbox{\hyperlink{structAction}{Action}} structs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The index of the next action from the same user, or -\/1 if none exist.
+\end{DoxyReturn}
+Returns the index of the next action from the same user. Returns -\/1 if no such actions exist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Index} & The index of the current struct \mbox{\hyperlink{structAction}{Action}} element in the array. \\
+\hline
+{\em actions} & The array of struct \mbox{\hyperlink{structAction}{Action}} elements. \\
+\hline
+{\em length} & The number of elements in the array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the next struct \mbox{\hyperlink{structAction}{Action}} element with a different user ID than the current element, or -\/1 if no such element exists. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{action_8h_aa69b05b7473ca303c514cb73c8ffaa2c}\label{action_8h_aa69b05b7473ca303c514cb73c8ffaa2c}} 
 \index{action.h@{action.h}!isEarlier@{isEarlier}}
 \index{isEarlier@{isEarlier}!action.h@{action.h}}
 \doxysubsubsection{\texorpdfstring{isEarlier()}{isEarlier()}}
 {\footnotesize\ttfamily int is\+Earlier (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{previous\+Struct,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{current\+Struct }\end{DoxyParamCaption})}
 
+
+
+Determines whether the time/date of x is earlier than y. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous\+Struct} & Pointer to the previous \mbox{\hyperlink{structAction}{Action}} structure \\
+\hline
+{\em current\+Struct} & Pointer to the current \mbox{\hyperlink{structAction}{Action}} structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the time/date of x is earlier than y; false otherwise
+\end{DoxyReturn}
+Determines whether the time/date of x is earlier than y.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em previous\+Struct} & pointer to the previous struct \mbox{\hyperlink{structAction}{Action}} \\
+\hline
+\mbox{\texttt{ in}}  & {\em current\+Struct} & pointer to the current struct \mbox{\hyperlink{structAction}{Action}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if previous\+Struct is earlier than current\+Struct, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{action_8h_aac933e8d78c8fdad4d0af46337ded132}\label{action_8h_aac933e8d78c8fdad4d0af46337ded132}} 
+\index{action.h@{action.h}!sameDay@{sameDay}}
+\index{sameDay@{sameDay}!action.h@{action.h}}
+\doxysubsubsection{\texorpdfstring{sameDay()}{sameDay()}}
+{\footnotesize\ttfamily int same\+Day (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{x,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Returns true if the two given \mbox{\hyperlink{structAction}{Action}} structs are dated to the same day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to the first \mbox{\hyperlink{structAction}{Action}} struct. \\
+\hline
+{\em y} & Pointer to the second \mbox{\hyperlink{structAction}{Action}} struct. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns 1 if the two \mbox{\hyperlink{structAction}{Action}} structs are dated to the same day, 0 otherwise.
+\end{DoxyReturn}
+Returns true if the two given \mbox{\hyperlink{structAction}{Action}} structs are dated to the same day.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & A pointer to the first struct \mbox{\hyperlink{structAction}{Action}} element. \\
+\hline
+{\em y} & A pointer to the second struct \mbox{\hyperlink{structAction}{Action}} element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if both elements occurred on the same day, and 0 otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{action_8h_af3e40c6c5ac5bb3604a4b7c439c3c0b8}\label{action_8h_af3e40c6c5ac5bb3604a4b7c439c3c0b8}} 
 \index{action.h@{action.h}!sortActions@{sortActions}}
 \index{sortActions@{sortActions}!action.h@{action.h}}
 \doxysubsubsection{\texorpdfstring{sortActions()}{sortActions()}}
 {\footnotesize\ttfamily void sort\+Actions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions,  }\item[{int}]{length\+Of\+Array }\end{DoxyParamCaption})}
 
+
+
+Sorts \mbox{\hyperlink{structAction}{Action}} structs to order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actions} & Pointer to the array of \mbox{\hyperlink{structAction}{Action}} structures \\
+\hline
+{\em length\+Of\+Array} & The length of the array of \mbox{\hyperlink{structAction}{Action}} structures\\
+\hline
+\end{DoxyParams}
+Sorts \mbox{\hyperlink{structAction}{Action}} structs to order.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em actions} & pointer to the array of struct Actions to be sorted \\
+\hline
+\mbox{\texttt{ in}}  & {\em length\+Of\+Array} & the number of elements in the array \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{action_8h_ac8f230b75ef0e2695f4440d4575faad0}\label{action_8h_ac8f230b75ef0e2695f4440d4575faad0}} 
+\index{action.h@{action.h}!timeSpent@{timeSpent}}
+\index{timeSpent@{timeSpent}!action.h@{action.h}}
+\doxysubsubsection{\texorpdfstring{timeSpent()}{timeSpent()}}
+{\footnotesize\ttfamily int time\+Spent (\begin{DoxyParamCaption}\item[{int}]{state,  }\item[{unsigned int}]{user\+ID,  }\item[{int}]{year,  }\item[{int}]{month,  }\item[{int}]{day,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions }\end{DoxyParamCaption})}
+
+
+
+Returns the time spent on the specified state on the specified date (0, 0, 0 for today) in seconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The state to calculate the time spent on. \\
+\hline
+{\em user\+ID} & The ID of the user. \\
+\hline
+{\em year} & The year to calculate the time spent on. \\
+\hline
+{\em month} & The month to calculate the time spent on. \\
+\hline
+{\em day} & The day to calculate the time spent on. \\
+\hline
+{\em actions} & Pointer to the array of \mbox{\hyperlink{structAction}{Action}} structs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The time spent on the specified state on the specified date in seconds.
+\end{DoxyReturn}
+Returns the time spent on the specified state on the specified date (0, 0, 0 for today) in seconds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & An integer representing the state.\\
+\hline
+{\em user\+ID} & An unsigned integer representing the user ID.\\
+\hline
+{\em year} & An integer representing the year.\\
+\hline
+{\em month} & An integer representing the month.\\
+\hline
+{\em day} & An integer representing the day.\\
+\hline
+{\em actions} & A pointer to an array of struct \mbox{\hyperlink{structAction}{Action}} elements.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer representing the time spent in seconds. 
+\end{DoxyReturn}

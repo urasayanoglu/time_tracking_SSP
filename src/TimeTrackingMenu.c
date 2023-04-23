@@ -59,8 +59,9 @@ void clearMenu()
     refresh();
 }
 
+
 // function to be called when user navigates in menu and program draws menu again with changes user position
-void printMenu()
+void printMenu(struct User *users)
 {
 	// Print the title of the menu: (row,built-int print-function(string),string format, the string)
 	char *title = "Time Tracking Menu";
@@ -68,7 +69,12 @@ void printMenu()
     
     // Print the selection prompt
     mvprintw(2, CTR_POS("Select an option"), "Select an option");
-
+    
+    // This name is indexed with the very first one and 
+	//should be further implemented when we allow multiple users
+	mvprintw(0,3, "Online: %s %s", users[0].firstName,users[0].lastName);
+    
+	
 	// Print the menu items: (row,built-int print-function(string),string format, the string)
     for (int index = 0; index < 6; index++) {
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
@@ -242,7 +248,7 @@ void keyPresses(struct User *users, struct Action *actions)
     navigateMenu(highlightCurrentOption);
 }
 
-// function to run menu 
+// function to run time tracking menu 
 void runProgram (struct User *users, struct Action *actions)
 {
 	// initialize ncurses, initialize terminal environment, initialize menu
@@ -251,15 +257,67 @@ void runProgram (struct User *users, struct Action *actions)
 	// infinite loop to run menu
 	while(1)
 	{
-		// Print the menu initially
-		printMenu();
+		// Print the time tracking menu , with the user info top right corner
+		printMenu(users);
 		
 		// check for user key presses to navigate in the menu
 		keyPresses(users, actions);
 	}
 }
 
-int main() {
+
+void setWindowStyle () 
+{
+	// enable colors
+    start_color();
+
+    // set the background and foreground colors
+    init_pair(1, COLOR_WHITE, COLOR_BLUE);
+    wbkgd(stdscr, COLOR_PAIR(1));
+}
+
+// function to be called when program is first ran
+void printMainMenu()
+{
+		// Print the title of the menu: (row,built-int print-function(string),string format, the string)
+    	char *title = "Main Menu";
+    	attron(A_BOLD | A_UNDERLINE);
+    	mvprintw(2, CTR_POS(title), "%s", title);
+    	attroff(A_BOLD | A_UNDERLINE);
+    	
+    	// print the option to sign in
+    	mvprintw(4, (COLS - strlen("Sign in with your name")) / 2, "Sign in with your name");
+    	
+    	// Refresh the screen to show the menu items
+   		refresh();
+} 
+
+
+// function to prompt user for first and last name and return a User struct
+struct User getUserInfo() {
+    struct User user;
+    memset(user.firstName, 0, NAMELENGTH);  			// Clear first name buffer
+    memset(user.lastName, 0, NAMELENGTH);  				// Clear last name buffer
+    stringInput("Enter First name: ", user.firstName);	// ask first name and assign it
+    mvprintw(8, 32, "First name: %s", user.firstName);  // Display first name below input prompt
+    clear();											// clear screen when user presses enter	
+    printMainMenu();									// make main menu again
+    stringInput("Enter last name: ", user.lastName);	// ask for last name
+    mvprintw(8, 32, "Last name: %s", user.lastName);  	// Display last name below input prompt
+    user.type = 0;										// initialize rest values accordinly
+    user.ID = 0;
+    user.status = 0;
+    return user;										// return user struct which is then passed to continueToNextFunction after names 
+}														// were given
+
+
+
+// function to allow change to next menu
+void continueToNextMenu(struct User user)
+{
+    // function to be called when user want to clear menu 
+    clearMenu();
+    
     // Pointers to arrays
     static struct User *users = NULL;
     static struct Action *actions = NULL;
@@ -268,23 +326,40 @@ int main() {
     users = readUserTable(USERFILENAME);
     actions = readActionTable(ACTIONFILENAME);
 
-
-    if (users == NULL)
-    // Data for our first user
-    {
+    if (users == NULL) {
         users = (struct User *) malloc(sizeof(struct User));
-        users[0].type = 0;
-        users[0].ID = 0;
-        users[0].status = 0;
-        stringInput("Enter First name: ", users[0].firstName);
-        stringInput("Enter last name: ", users[0].lastName);
+        users[0] = user;
     }
 
-	// function to run menu 
-	runProgram(users, actions);
+    // function to run Time Tracking Menu
+    runProgram(users, actions);
+}
+
+
+
+// function to run main menu from where user is directed to TimeTrackingMenu after loggin in 
+void runMainMenu () 
+{
+    // initialize ncurses, initialize terminal environment, initialize menu
+	initialNcurses();
+
+	setWindowStyle ();
+	
+	printMainMenu();
+    
+    struct User user = getUserInfo();
+    continueToNextMenu(user);
+
+    // End ncurses mode, IMPORTANT; WITHOUT THIS WINDOW CRASHES AND/OR WORKS WEIRDLY
+    endwin();
+}
+
+int main()
+{
+
+    runMainMenu();
 
     return 0;
 }
-
 
 
