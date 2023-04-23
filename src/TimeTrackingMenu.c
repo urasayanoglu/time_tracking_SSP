@@ -29,7 +29,9 @@ char *choices[] = {
 
 // Initialize the highlight to the first choice
 int highlightCurrentOption = 0;
-char infotext[120] ="\n";
+char infotext1[60] ="\n";
+char infotext2[60] ="\n";
+char infotext3[60] ="\n";
     
 
 // function to be called when user want to clear menu to original state
@@ -92,7 +94,9 @@ void printMenu()
             attroff(A_REVERSE); 
         }
     }
-    mvprintw(12 , CTR_POS(infotext), "%s", infotext);
+    mvprintw(12 , CTR_POS(infotext1), "%s", infotext1);
+    mvprintw(13 , CTR_POS(infotext2), "%s", infotext2);
+    mvprintw(14 , CTR_POS(infotext3), "%s", infotext3);
 
     // Refresh the screen to show the menu items
     refresh();
@@ -167,35 +171,62 @@ void keyPresses(struct User *users, struct Action *actions)
         if (highlightCurrentOption == 0) {
             // Execute code for "Start day" option
             addAction(users[0].ID, 0, actions, numActions);
-            strcpy(infotext, "Working\n");
+            strcpy(infotext1, "Working\n");
+            strcpy(infotext2, "\n");
+            strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 1) {
             // Execute code for "Break" option
             addAction(users[0].ID, 1, actions, numActions);
-            strcpy(infotext, "On break\n");
+            strcpy(infotext1, "On break\n");
+            strcpy(infotext2, "\n");
+            strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 2) {
             // Execute code for "End break" option
             addAction(users[0].ID, 0, actions, numActions);
-            strcpy(infotext, "Working\n");
+            strcpy(infotext1, "Working\n");
+            strcpy(infotext2, "\n");
+            strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 3) {
             // Execute code for "End day" option
             addAction(users[0].ID, 2, actions, numActions);
-            strcpy(infotext, "Day ended\n");
+            strcpy(infotext1, "Day ended\n");
+            strcpy(infotext2, "\n");
+            strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 4) {
             // Execute code for "Report Day" option
 
-            /* THE LINES BELOW ARE COMMENTED OUT BECAUSE OF A BUG SOMEWHERE IN THE BACKEND
-             * CAUSING A SEGFAULT. AS IT IS 4 AM I HAVE MADE THE DECISION TO POSTPONE
-             * DEBUGGING UNTIL LATER TODAY (EDIT 5AM)
-             * */
 
-            // int hoursWorked = timeSpent(0, 0, 0, 0, 0, actions) / 3600;
-            // int minutesWorked = (timeSpent(0, 0, 0, 0, 0, actions) % 3600) * 60;
-            // int hoursBreak = timeSpent(1, 0, 0, 0, 0, actions) / 3600;
-            // int minutesBreak = (timeSpent(1, 0, 0, 0, 0, actions) % 3600) * 60;
-            sprintf(infotext, "Today ");
-            strcat(infotext, users[0].firstName);
-            strcat(infotext, " ");
-            strcat(infotext, users[0].lastName);
+            int hoursWorked = timeSpent(0, 0, 0, 0, 0, actions) / 3600;
+            int minutesWorked = (timeSpent(0, 0, 0, 0, 0, actions) % 3600) * 60;
+            int hoursBreak = timeSpent(1, 0, 0, 0, 0, actions) / 3600;
+            int minutesBreak = (timeSpent(1, 0, 0, 0, 0, actions) % 3600) * 60;
+
+            // Variable for storing integer as string before concatenation
+            char intConversion[10] = "0";
+
+            // Composes the displayed string, each line in its own variable to avoid formatting snafu
+            sprintf(infotext1, "Today ");
+            strcat(infotext1, users[0].firstName);
+            strcat(infotext1, " ");
+            strcat(infotext1, users[0].lastName);
+            strcat(infotext1, "\n");
+
+            sprintf(infotext2, "has worked ");
+            sprintf(intConversion, "%d", hoursWorked);
+            strcat(infotext2, intConversion);
+            strcat(infotext2, " hours and ");
+            sprintf(intConversion, "%d", minutesWorked);
+            strcat(infotext2, intConversion);
+            strcat(infotext2, " minutes, and\n");
+
+            sprintf(infotext3, "been on break for ");
+            sprintf(intConversion, "%d", hoursBreak);
+            strcat(infotext3, intConversion);
+            strcat(infotext3, " hours and ");
+            sprintf(intConversion, "%d", minutesBreak);
+            strcat(infotext3, intConversion);
+            strcat(infotext3, " minutes\n");
+
 
         } else if (highlightCurrentOption == 5) {
         	// Execute code for "Exit" option
