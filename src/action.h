@@ -57,8 +57,4 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
 // Returns true if the actions are dated to the same day
 int sameDay(struct Action *x, struct Action *y);
 
-// Finds the index of the next action from the same user that does
-// NOT have the same status. Returns -1 if no such index exists
-int findEndPoint(int index, unsigned int userID, int status, struct Action *actions, int numberOfActions);
-
 #endif //TIME_TRACKING_SSP_ACTION_H
