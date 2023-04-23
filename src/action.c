@@ -123,6 +123,12 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
     // We store the time spent doing action 'state' in variable counter
     int counter = 0;
 
+    // Get number of structs in array actions
+    int numberOfActions = (actions != NULL) ? sizeof(*actions) / sizeof(actions[0]) : 0;
+
+    // Make sure the array is sorted
+    sortActions(actions, numberOfActions);
+
     // Get current time
     time_t currentTime = time(NULL);
 
@@ -137,7 +143,62 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
         day = localTime->tm_mday;
     }
 
-    return 0;
+    int index = 0;
+    int searchFlag = 0;
+    if (state == 2)
+    {
+        // We're measuring time spent at mode 2 - off work. Following code iterates over the whole
+        // table and takes action according to searchFlag - 0: Search for initial start work action,
+        // 1: Search for 'end work' type, 2: End work found, searching for endpoint
+        for (int i = 0; i<numberOfActions; i++)
+        {
+            // Only perform operation if we're on the correct day
+            if (actions[i].year == year && actions[i].month == month && actions[i].day == day)
+            {
+                // Start work
+                if (actions[i].actionType == 0 && actions[i].usedID == userID && searchFlag == 0)
+                {
+                    counter += 3600 * actions[i].hour + 60 * actions[i].minute + actions[i].second;
+                    searchFlag = 1;
+                }
+                // Get off work
+                else if (actions[i].actionType == 2 && actions[i].usedID == userID)
+                {
+                    index = i;
+                    searchFlag = 2;
+                }
+                // Seeing if user returns to work afterwards
+                else if (searchFlag == 2 && actions[i].actionType != 2 && actions[i].usedID == userID)
+                {
+                    counter += 3600 * (actions[i].hour - actions[index].hour);
+                    counter += 60 * (actions[i].minute - actions[index].minute);
+                    counter += (actions[i].second - actions[i].second);
+                    searchFlag = 1;
+                }
+            }
+        }
+        // If, after the for loop, search flag is at 2, calculate and add time to now, or end of the day,
+        // whichever comes first
+        if (searchFlag == 2)
+        {
+            if (year == (localTime->tm_year + 1900) && month == (localTime->tm_mon + 1) && day == localTime->tm_mday)
+                // Date is today, measure time to current time
+            {
+                counter += 3600 * (localTime->tm_hour - actions[index].hour);
+                counter += 60 * (localTime->tm_min - actions[index].minute);
+                counter += (localTime->tm_sec - actions[index].second);
+            }
+            else
+            // Count time till the end of the day
+            {
+                counter += 3600 * (23 - actions[index].hour);
+                counter += 60 * (60 - actions[index].minute);
+                counter += (60 - actions[index].second);
+            }
+        }
+    }
+
+    return counter;
 }
 /*
 int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions) {
