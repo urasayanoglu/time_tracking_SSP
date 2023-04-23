@@ -29,13 +29,13 @@ struct Action
     int day;/**< The day of the action */
 
     /// Hours since midnight (0-23)
-    int hour;/**< The hour of the action (0-23) */
+    int hour;
 
     /// Minutes past the hour (0-59)
-    int minute;/**< The minute of the action (0-59) */
+    int minute;
 
     /// Seconds past the minute (0-59)
-    int second;/**< The second of the action (0-59) */
+    int second;
 };
 
 // returns true if the time/date of x is earlier than y
