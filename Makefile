@@ -28,8 +28,5 @@ Fileio.o: src/Fileio.c src/Fileio.h
 	$(CC) $(CFLAGS) -c src/Fileio.c
 
 clean:
-
-	$(RM) Timetrackingnc Testaction TestFileio *.o *~
-
-	$(RM) Timetrackingnc Testaction TestFileio data.txt *.o *~
+	$(RM) TimeTrackingMenu Testaction TestFileio data.txt *.o *~
 
