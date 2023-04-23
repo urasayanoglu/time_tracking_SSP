@@ -172,7 +172,7 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
                 {
                     counter += 3600 * (actions[i].hour - actions[index].hour);
                     counter += 60 * (actions[i].minute - actions[index].minute);
-                    counter += (actions[i].second - actions[i].second);
+                    counter += (actions[i].second - actions[index].second);
                     searchFlag = 1;
                 }
             }
@@ -197,7 +197,102 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
             }
         }
     }
-
+    else if (state == 0)
+    {
+        // state = 0 means time spent working, so we must find starting points with actionType=0 and
+        // connect them to endpoints with actionType=1 or 2 and add up the differences
+        // searchFlag = 0 is interpreted as looking for a starting point in this branch
+        // searchFlag = 1 means we are looking for an endpoint
+        for (int i = 0; i<numberOfActions; i++)
+        {
+            // Only perform operation if we're on the correct day and user
+            if (actions[i].year == year && actions[i].month == month &&
+            actions[i].day == day && actions[i].usedID == userID)
+            {
+                if (searchFlag == 0 && actions[i].actionType == 0)
+                // Startpoint found
+                {
+                    index = i;
+                    searchFlag = 1;
+                }
+                else if (searchFlag == 1 && (actions[i].actionType == 1 || actions[i].actionType == 2))
+                // Endpoint found
+                {
+                    counter += 3600 * (actions[i].hour - actions[index].hour);
+                    counter += 60 * (actions[i].minute - actions[index].minute);
+                    counter += (actions[i].second - actions[index].second);
+                    searchFlag = 0;     // Look for a startpoint again
+                }
+            }
+        }
+        // For loop ends. If we're still looking for an endpoint, Add the difference from end of the
+        // day or current time as in the case of state = 2
+        if (searchFlag == 1)
+        {
+            if (year == (localTime->tm_year + 1900) && month == (localTime->tm_mon + 1) && day == localTime->tm_mday)
+                // Date is today, measure time to current time
+            {
+                counter += 3600 * (localTime->tm_hour - actions[index].hour);
+                counter += 60 * (localTime->tm_min - actions[index].minute);
+                counter += (localTime->tm_sec - actions[index].second);
+            }
+            else
+                // Count time till the end of the day
+            {
+                counter += 3600 * (23 - actions[index].hour);
+                counter += 60 * (60 - actions[index].minute);
+                counter += (60 - actions[index].second);
+            }
+        }
+    }
+    // Last case to be considered is state = 1 - on a break. These periods end when the user
+    // begins working again or ends their workday
+    else if (state == 1)
+    {
+        // searchFlag = 0 is interpreted as looking for a starting point in this branch
+        // searchFlag = 1 means we are looking for an endpoint
+        for (int i = 0; i<numberOfActions; i++)
+        {
+            // Only perform operation if we're on the correct day and user
+            if (actions[i].year == year && actions[i].month == month &&
+                actions[i].day == day && actions[i].usedID == userID)
+            {
+                if (searchFlag == 0 && actions[i].actionType == 1)
+                    // Startpoint found
+                {
+                    index = i;
+                    searchFlag = 1;
+                }
+                else if (searchFlag == 1 && (actions[i].actionType == 0 || actions[i].actionType == 2))
+                    // Endpoint found
+                {
+                    counter += 3600 * (actions[i].hour - actions[index].hour);
+                    counter += 60 * (actions[i].minute - actions[index].minute);
+                    counter += (actions[i].second - actions[index].second);
+                    searchFlag = 0;     // Look for a startpoint again
+                }
+            }
+        }
+        // For loop ends. If we're still looking for an endpoint, Add the difference from end of the
+        // day or current time as in the case of state = 2
+        if (searchFlag == 1)
+        {
+            if (year == (localTime->tm_year + 1900) && month == (localTime->tm_mon + 1) && day == localTime->tm_mday)
+                // Date is today, measure time to current time
+            {
+                counter += 3600 * (localTime->tm_hour - actions[index].hour);
+                counter += 60 * (localTime->tm_min - actions[index].minute);
+                counter += (localTime->tm_sec - actions[index].second);
+            }
+            else
+                // Count time till the end of the day
+            {
+                counter += 3600 * (23 - actions[index].hour);
+                counter += 60 * (60 - actions[index].minute);
+                counter += (60 - actions[index].second);
+            }
+        }
+    }
     return counter;
 }
 /*
