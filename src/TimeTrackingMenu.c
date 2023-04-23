@@ -57,8 +57,9 @@ void clearMenu()
     refresh();
 }
 
+
 // function to be called when user navigates in menu and program draws menu again with changes user position
-void printMenu()
+void printMenu(struct User *users)
 {
 	// Print the title of the menu: (row,built-int print-function(string),string format, the string)
 	char *title = "Time Tracking Menu";
@@ -66,7 +67,12 @@ void printMenu()
     
     // Print the selection prompt
     mvprintw(2, CTR_POS("Select an option"), "Select an option");
-
+    
+    // This name is indexed with the very first one and 
+	//should be further implemented when we allow multiple users
+	mvprintw(0,3, "Online: %s %s", users[0].firstName,users[0].lastName);
+    
+	
 	// Print the menu items: (row,built-int print-function(string),string format, the string)
     for (int index = 0; index < 6; index++) {
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
@@ -220,8 +226,8 @@ void runProgram (struct User *users, struct Action *actions)
 	// infinite loop to run menu
 	while(1)
 	{
-		// Print the menu initially
-		printMenu();
+		// Print the time tracking menu , with the user info top right corner
+		printMenu(users);
 		
 		// check for user key presses to navigate in the menu
 		keyPresses(users, actions);
