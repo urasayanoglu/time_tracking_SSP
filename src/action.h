@@ -1,6 +1,6 @@
 /**
  * @file action.h
- * @author Uras Ayanoglu 
+ * @author Uras Ayanoglu
  * @author Jan-Krister Helenius
  * @author Sebastian Sopola
  * @brief Functions for manipulating the Action struct arrays
@@ -119,19 +119,5 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
 * @return int Returns 1 if the two Action structs are dated to the same day, 0 otherwise.
 */
 int sameDay(struct Action *x, struct Action *y);
-
-// Finds the index of the next action from the same user that does
-// NOT have the same status. Returns -1 if no such index exists
-/**
-* @brief Finds the index of the next action from the same user that does NOT have the same status.
-* Returns -1 if no such index exists.
-* @param index The starting index.
-* @param userID The ID of the user.
-* @param status The status to compare to.
-* @param actions Pointer to the array of Action structs.
-* @param numberOfActions The number of actions in the array.
-* @return int The index of the next action from the same user that does NOT have the same status, or -1 if none exist.
-*/
-int findEndPoint(int index, unsigned int userID, int status, struct Action *actions, int numberOfActions);
 
 #endif //TIME_TRACKING_SSP_ACTION_H
