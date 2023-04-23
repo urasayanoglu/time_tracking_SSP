@@ -158,76 +158,183 @@ int sameDay(struct Action *x, struct Action *y) {
     return (x->day == y->day && x->month == y->month && x->year == y->year);
 }
 
-/**
-
-* @brief Calculates the time spent in a given state by a given user on a given day.
-
-* @param state An integer representing the state.
-
-* @param userID An unsigned integer representing the user ID.
-
-* @param year An integer representing the year.
-
-* @param month An integer representing the month.
-
-* @param day An integer representing the day.
-
-* @param actions A pointer to an array of struct Action elements.
-
-* @return An integer representing the time spent in seconds.
-*/
-int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions) {
+// States: 0 - working, 1 - on break, 2 - off work
+int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions)
+{
+    // We store the time spent doing action 'state' in variable counter
     int counter = 0;
-    int numberOFActions = 0;
-    int actionIndex = 0;
-    int endpoint = 0;
-    int swap = 0;
-    if (actions == NULL) {
-        return 0;
-    } else {
-        numberOFActions = sizeof(*actions) / sizeof(actions[0]);
-    }
 
-    sortActions(actions, numberOFActions);
+    // Get number of structs in array actions
+    int numberOfActions = (actions != NULL) ? sizeof(*actions) / sizeof(actions[0]) : 0;
+
+    // Make sure the array is sorted
+    sortActions(actions, numberOfActions);
+
+    // Get current time
+    time_t currentTime = time(NULL);
+
+    // Convert time to local time
+    struct tm *localTime = localtime(&currentTime);
+
+    // If date = (0, 0, 0), store current date to those variables.
     if (year == 0 && month == 0 && day == 0)
     {
-        // Get current time
-        time_t currentTime = time(NULL);
-
-        // Convert time to local time
-        struct tm *localTime = localtime(&currentTime);
         year = localTime->tm_year + 1900;
         month = localTime->tm_mon + 1;
         day = localTime->tm_mday;
     }
 
-    while (actionIndex < numberOFActions && actions[actionIndex].actionType != state &&
-           actions[actionIndex].usedID != userID) {
-        actionIndex++;
-    }
-
-    endpoint = findEndPoint(actionIndex, userID, state, actions, numberOFActions);
-    while (endpoint != -1) {
-        counter += 3600 * (actions[endpoint].hour - actions[endpoint].hour);
-        counter += 60 * (actions[endpoint].minute - actions[endpoint].minute);
-        counter += (actions[endpoint].second - actions[endpoint].second);
-        swap = findEndPoint(endpoint, userID, state, actions, numberOFActions);
-        if (swap == -1) {
-            endpoint = swap;
-        }
-        else
+    int index = 0;
+    int searchFlag = 0;
+    if (state == 2)
+    {
+        // We're measuring time spent at mode 2 - off work. Following code iterates over the whole
+        // table and takes action according to searchFlag - 0: Search for initial start work action,
+        // 1: Search for 'end work' type, 2: End work found, searching for endpoint
+        for (int i = 0; i<numberOfActions; i++)
         {
-            actionIndex = endpoint;
-            endpoint = swap;
+            // Only perform operation if we're on the correct day
+            if (actions[i].year == year && actions[i].month == month && actions[i].day == day)
+            {
+                // Start work
+                if (actions[i].actionType == 0 && actions[i].usedID == userID && searchFlag == 0)
+                {
+                    counter += 3600 * actions[i].hour + 60 * actions[i].minute + actions[i].second;
+                    searchFlag = 1;
+                }
+                    // Get off work
+                else if (actions[i].actionType == 2 && actions[i].usedID == userID)
+                {
+                    index = i;
+                    searchFlag = 2;
+                }
+                    // Seeing if user returns to work afterwards
+                else if (searchFlag == 2 && actions[i].actionType != 2 && actions[i].usedID == userID)
+                {
+                    counter += 3600 * (actions[i].hour - actions[index].hour);
+                    counter += 60 * (actions[i].minute - actions[index].minute);
+                    counter += (actions[i].second - actions[index].second);
+                    searchFlag = 1;
+                }
+            }
+        }
+        // If, after the for loop, search flag is at 2, calculate and add time to now, or end of the day,
+        // whichever comes first
+        if (searchFlag == 2)
+        {
+            if (year == (localTime->tm_year + 1900) && month == (localTime->tm_mon + 1) && day == localTime->tm_mday)
+                // Date is today, measure time to current time
+            {
+                counter += 3600 * (localTime->tm_hour - actions[index].hour);
+                counter += 60 * (localTime->tm_min - actions[index].minute);
+                counter += (localTime->tm_sec - actions[index].second);
+            }
+            else
+                // Count time till the end of the day
+            {
+                counter += 3600 * (23 - actions[index].hour);
+                counter += 60 * (60 - actions[index].minute);
+                counter += (60 - actions[index].second);
+            }
         }
     }
-
-    time_t currentTime = time(NULL);
-    struct tm *localTime = localtime(&currentTime);
-    counter += 3600 * (localTime->tm_hour - actions[actionIndex].hour) + 60 * (localTime->tm_min -
-            actions[actionIndex].minute) + (localTime->tm_sec - actions[actionIndex].second);
-
-
+    else if (state == 0)
+    {
+        // state = 0 means time spent working, so we must find starting points with actionType=0 and
+        // connect them to endpoints with actionType=1 or 2 and add up the differences
+        // searchFlag = 0 is interpreted as looking for a starting point in this branch
+        // searchFlag = 1 means we are looking for an endpoint
+        for (int i = 0; i<numberOfActions; i++)
+        {
+            // Only perform operation if we're on the correct day and user
+            if (actions[i].year == year && actions[i].month == month &&
+                actions[i].day == day && actions[i].usedID == userID)
+            {
+                if (searchFlag == 0 && actions[i].actionType == 0)
+                    // Startpoint found
+                {
+                    index = i;
+                    searchFlag = 1;
+                }
+                else if (searchFlag == 1 && (actions[i].actionType == 1 || actions[i].actionType == 2))
+                    // Endpoint found
+                {
+                    counter += 3600 * (actions[i].hour - actions[index].hour);
+                    counter += 60 * (actions[i].minute - actions[index].minute);
+                    counter += (actions[i].second - actions[index].second);
+                    searchFlag = 0;     // Look for a startpoint again
+                }
+            }
+        }
+        // For loop ends. If we're still looking for an endpoint, Add the difference from end of the
+        // day or current time as in the case of state = 2
+        if (searchFlag == 1)
+        {
+            if (year == (localTime->tm_year + 1900) && month == (localTime->tm_mon + 1) && day == localTime->tm_mday)
+                // Date is today, measure time to current time
+            {
+                counter += 3600 * (localTime->tm_hour - actions[index].hour);
+                counter += 60 * (localTime->tm_min - actions[index].minute);
+                counter += (localTime->tm_sec - actions[index].second);
+            }
+            else
+                // Count time till the end of the day
+            {
+                counter += 3600 * (23 - actions[index].hour);
+                counter += 60 * (60 - actions[index].minute);
+                counter += (60 - actions[index].second);
+            }
+        }
+    }
+        // Last case to be considered is state = 1 - on a break. These periods end when the user
+        // begins working again or ends their workday
+    else if (state == 1)
+    {
+        // searchFlag = 0 is interpreted as looking for a starting point in this branch
+        // searchFlag = 1 means we are looking for an endpoint
+        for (int i = 0; i<numberOfActions; i++)
+        {
+            // Only perform operation if we're on the correct day and user
+            if (actions[i].year == year && actions[i].month == month &&
+                actions[i].day == day && actions[i].usedID == userID)
+            {
+                if (searchFlag == 0 && actions[i].actionType == 1)
+                    // Startpoint found
+                {
+                    index = i;
+                    searchFlag = 1;
+                }
+                else if (searchFlag == 1 && (actions[i].actionType == 0 || actions[i].actionType == 2))
+                    // Endpoint found
+                {
+                    counter += 3600 * (actions[i].hour - actions[index].hour);
+                    counter += 60 * (actions[i].minute - actions[index].minute);
+                    counter += (actions[i].second - actions[index].second);
+                    searchFlag = 0;     // Look for a startpoint again
+                }
+            }
+        }
+        // For loop ends. If we're still looking for an endpoint, Add the difference from end of the
+        // day or current time as in the case of state = 2
+        if (searchFlag == 1)
+        {
+            if (year == (localTime->tm_year + 1900) && month == (localTime->tm_mon + 1) && day == localTime->tm_mday)
+                // Date is today, measure time to current time
+            {
+                counter += 3600 * (localTime->tm_hour - actions[index].hour);
+                counter += 60 * (localTime->tm_min - actions[index].minute);
+                counter += (localTime->tm_sec - actions[index].second);
+            }
+            else
+                // Count time till the end of the day
+            {
+                counter += 3600 * (23 - actions[index].hour);
+                counter += 60 * (60 - actions[index].minute);
+                counter += (60 - actions[index].second);
+            }
+        }
+    }
     return counter;
 }
+
 
