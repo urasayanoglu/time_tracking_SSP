@@ -72,6 +72,9 @@ $(function() {
   <div class="headertitle"><div class="title">action.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Functions for manipulating the <a class="el" href="structAction.html">Action</a> struct arrays.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -81,7 +84,7 @@ Include dependency graph for action.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="action_8c__incl.png" border="0" usemap="#asrc_2action_8c" alt=""/></div>
 <map name="asrc_2action_8c" id="asrc_2action_8c">
-<area shape="rect" title=" " alt="" coords="129,5,225,32"/>
+<area shape="rect" title="Functions for manipulating the Action struct arrays." alt="" coords="129,5,225,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,76,107"/>
 <area shape="rect" title=" " alt="" coords="101,80,165,107"/>
 <area shape="rect" title=" " alt="" coords="189,80,255,107"/>
@@ -93,27 +96,49 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="action_8c__dep__incl.png" border="0" usemap="#asrc_2action_8cdep" alt=""/></div>
 <map name="asrc_2action_8cdep" id="asrc_2action_8cdep">
-<area shape="rect" title=" " alt="" coords="81,5,177,32"/>
-<area shape="rect" href="Fileio_8c.html" title=" " alt="" coords="19,80,109,107"/>
-<area shape="rect" href="Testaction_8c.html" title=" " alt="" coords="133,80,256,107"/>
+<area shape="rect" title="Functions for manipulating the Action struct arrays." alt="" coords="167,5,263,32"/>
+<area shape="rect" href="Fileio_8c.html" title=" " alt="" coords="104,80,195,107"/>
+<area shape="rect" href="Testaction_8c.html" title="Unit testing for action.c." alt="" coords="219,80,341,107"/>
 <area shape="rect" href="TestFileio_8c.html" title=" " alt="" coords="5,155,123,181"/>
+<area shape="rect" href="TimeTrackingMenu_8c.html" title=" " alt="" coords="147,155,325,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa69b05b7473ca303c514cb73c8ffaa2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#aa69b05b7473ca303c514cb73c8ffaa2c">isEarlier</a> (struct <a class="el" href="structAction.html">Action</a> *previousStruct, struct <a class="el" href="structAction.html">Action</a> *currentStruct)</td></tr>
+<tr class="memdesc:aa69b05b7473ca303c514cb73c8ffaa2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare each attribute of previous and current struct to determine which of the two is greater.  <a href="action_8c.html#aa69b05b7473ca303c514cb73c8ffaa2c">More...</a><br /></td></tr>
 <tr class="separator:aa69b05b7473ca303c514cb73c8ffaa2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3e40c6c5ac5bb3604a4b7c439c3c0b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#af3e40c6c5ac5bb3604a4b7c439c3c0b8">sortActions</a> (struct <a class="el" href="structAction.html">Action</a> *actions, int lengthOfArray)</td></tr>
+<tr class="memdesc:af3e40c6c5ac5bb3604a4b7c439c3c0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort structs with qsort() algorithm from stdlib library.  <a href="action_8c.html#af3e40c6c5ac5bb3604a4b7c439c3c0b8">More...</a><br /></td></tr>
 <tr class="separator:af3e40c6c5ac5bb3604a4b7c439c3c0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1608272dec2ef3331ef6317a1249523"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#ab1608272dec2ef3331ef6317a1249523">comparisonFunction</a> (const void *previous, const void *current)</td></tr>
+<tr class="memdesc:ab1608272dec2ef3331ef6317a1249523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare previous and current struct which result is passed to qsort() function.  <a href="action_8c.html#ab1608272dec2ef3331ef6317a1249523">More...</a><br /></td></tr>
 <tr class="separator:ab1608272dec2ef3331ef6317a1249523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac216a26f14c5aebb10cc9552cb6f5dbe"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structAction.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#ac216a26f14c5aebb10cc9552cb6f5dbe">addAction</a> (int userID, int actionType, struct <a class="el" href="structAction.html">Action</a> *actions, int lengthOfArray)</td></tr>
+<tr class="memdesc:ac216a26f14c5aebb10cc9552cb6f5dbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new struct <a class="el" href="structAction.html">Action</a> element and adds it to the end of an existing array of struct <a class="el" href="structAction.html">Action</a>.  <a href="action_8c.html#ac216a26f14c5aebb10cc9552cb6f5dbe">More...</a><br /></td></tr>
 <tr class="separator:ac216a26f14c5aebb10cc9552cb6f5dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab29c0baf871af9de2792e4debccd4231"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#ab29c0baf871af9de2792e4debccd4231">findNext</a> (int currentIndex, struct <a class="el" href="structAction.html">Action</a> *actions, int length)</td></tr>
+<tr class="memdesc:ab29c0baf871af9de2792e4debccd4231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the index of the next struct <a class="el" href="structAction.html">Action</a> element with a different user ID than the current element.  <a href="action_8c.html#ab29c0baf871af9de2792e4debccd4231">More...</a><br /></td></tr>
 <tr class="separator:ab29c0baf871af9de2792e4debccd4231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac933e8d78c8fdad4d0af46337ded132"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#aac933e8d78c8fdad4d0af46337ded132">sameDay</a> (struct <a class="el" href="structAction.html">Action</a> *x, struct <a class="el" href="structAction.html">Action</a> *y)</td></tr>
+<tr class="memdesc:aac933e8d78c8fdad4d0af46337ded132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether two struct <a class="el" href="structAction.html">Action</a> elements occurred on the same day.  <a href="action_8c.html#aac933e8d78c8fdad4d0af46337ded132">More...</a><br /></td></tr>
+<tr class="separator:aac933e8d78c8fdad4d0af46337ded132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8f230b75ef0e2695f4440d4575faad0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#ac8f230b75ef0e2695f4440d4575faad0">timeSpent</a> (int state, unsigned int userID, int year, int month, int day, struct <a class="el" href="structAction.html">Action</a> *actions)</td></tr>
+<tr class="memdesc:ac8f230b75ef0e2695f4440d4575faad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the time spent in a given state by a given user on a given day.  <a href="action_8c.html#ac8f230b75ef0e2695f4440d4575faad0">More...</a><br /></td></tr>
+<tr class="separator:ac8f230b75ef0e2695f4440d4575faad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45a1e9c65df672dbf7e6b5f19220f88c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="action_8c.html#a45a1e9c65df672dbf7e6b5f19220f88c">findEndPoint</a> (int index, unsigned int userID, int status, struct <a class="el" href="structAction.html">Action</a> *actions, int numberOfActions)</td></tr>
+<tr class="memdesc:a45a1e9c65df672dbf7e6b5f19220f88c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the index of the last action with the same status as the input status and with the same user ID as the input user ID.  <a href="action_8c.html#a45a1e9c65df672dbf7e6b5f19220f88c">More...</a><br /></td></tr>
+<tr class="separator:a45a1e9c65df672dbf7e6b5f19220f88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Functions for manipulating the <a class="el" href="structAction.html">Action</a> struct arrays. </p>
+<dl class="section author"><dt>Author</dt><dd>Uras Ayanoglu </dd>
+<dd>
+Jan-Krister Helenius </dd>
+<dd>
+Sebastian Sopola </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ac216a26f14c5aebb10cc9552cb6f5dbe" name="ac216a26f14c5aebb10cc9552cb6f5dbe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac216a26f14c5aebb10cc9552cb6f5dbe">&#9670;&nbsp;</a></span>addAction()</h2>
 
@@ -152,6 +177,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a new struct <a class="el" href="structAction.html">Action</a> element and adds it to the end of an existing array of struct <a class="el" href="structAction.html">Action</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userID</td><td>The ID of the user performing the action. </td></tr>
+    <tr><td class="paramname">actionType</td><td>The type of action being performed. </td></tr>
+    <tr><td class="paramname">actions</td><td>The existing array of struct <a class="el" href="structAction.html">Action</a> to which the new element will be added. </td></tr>
+    <tr><td class="paramname">lengthOfArray</td><td>The number of elements in the existing array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the new array of struct <a class="el" href="structAction.html">Action</a>, which contains all the old elements from the input array and the new struct <a class="el" href="structAction.html">Action</a> element at the end. </dd></dl>
+
 </div>
 </div>
 <a id="ab1608272dec2ef3331ef6317a1249523" name="ab1608272dec2ef3331ef6317a1249523"></a>
@@ -179,6 +216,75 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Compare previous and current struct which result is passed to qsort() function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">previous</td><td>pointer to the previous struct <a class="el" href="structAction.html">Action</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">current</td><td>pointer to the current struct <a class="el" href="structAction.html">Action</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if previous is greater than current, 1 if current is greater than previous, 0 if previous and current are equal </dd></dl>
+
+</div>
+</div>
+<a id="a45a1e9c65df672dbf7e6b5f19220f88c" name="a45a1e9c65df672dbf7e6b5f19220f88c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45a1e9c65df672dbf7e6b5f19220f88c">&#9670;&nbsp;</a></span>findEndPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int findEndPoint </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>userID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>status</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structAction.html">Action</a> *&#160;</td>
+          <td class="paramname"><em>actions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfActions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the index of the last action with the same status as the input status and with the same user ID as the input user ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the first action with the same status and user ID. </td></tr>
+    <tr><td class="paramname">userID</td><td>The ID of the user. </td></tr>
+    <tr><td class="paramname">status</td><td>The status of the action. </td></tr>
+    <tr><td class="paramname">actions</td><td>The array of actions. </td></tr>
+    <tr><td class="paramname">numberOfActions</td><td>The number of actions in the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int The index of the last action with the same status and user ID as the input,or -1 if such an action is not found. </dd></dl>
 
 </div>
 </div>
@@ -214,6 +320,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Finds the index of the next struct <a class="el" href="structAction.html">Action</a> element with a different user ID than the current element. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">currentIndex</td><td>The index of the current struct <a class="el" href="structAction.html">Action</a> element in the array. </td></tr>
+    <tr><td class="paramname">actions</td><td>The array of struct <a class="el" href="structAction.html">Action</a> elements. </td></tr>
+    <tr><td class="paramname">length</td><td>The number of elements in the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the next struct <a class="el" href="structAction.html">Action</a> element with a different user ID than the current element, or -1 if no such element exists. </dd></dl>
+
 </div>
 </div>
 <a id="aa69b05b7473ca303c514cb73c8ffaa2c" name="aa69b05b7473ca303c514cb73c8ffaa2c"></a>
@@ -242,6 +359,54 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Compare each attribute of previous and current struct to determine which of the two is greater. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">previousStruct</td><td>pointer to the previous struct <a class="el" href="structAction.html">Action</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">currentStruct</td><td>pointer to the current struct <a class="el" href="structAction.html">Action</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if previousStruct is earlier than currentStruct, 0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aac933e8d78c8fdad4d0af46337ded132" name="aac933e8d78c8fdad4d0af46337ded132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac933e8d78c8fdad4d0af46337ded132">&#9670;&nbsp;</a></span>sameDay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sameDay </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structAction.html">Action</a> *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structAction.html">Action</a> *&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether two struct <a class="el" href="structAction.html">Action</a> elements occurred on the same day. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>A pointer to the first struct <a class="el" href="structAction.html">Action</a> element. </td></tr>
+    <tr><td class="paramname">y</td><td>A pointer to the second struct <a class="el" href="structAction.html">Action</a> element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if both elements occurred on the same day, and 0 otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="af3e40c6c5ac5bb3604a4b7c439c3c0b8" name="af3e40c6c5ac5bb3604a4b7c439c3c0b8"></a>
@@ -269,6 +434,81 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sort structs with qsort() algorithm from stdlib library. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">actions</td><td>pointer to the array of struct Actions to be sorted </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lengthOfArray</td><td>the number of elements in the array </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac8f230b75ef0e2695f4440d4575faad0" name="ac8f230b75ef0e2695f4440d4575faad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f230b75ef0e2695f4440d4575faad0">&#9670;&nbsp;</a></span>timeSpent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int timeSpent </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>userID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structAction.html">Action</a> *&#160;</td>
+          <td class="paramname"><em>actions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the time spent in a given state by a given user on a given day. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>An integer representing the state.</td></tr>
+    <tr><td class="paramname">userID</td><td>An unsigned integer representing the user ID.</td></tr>
+    <tr><td class="paramname">year</td><td>An integer representing the year.</td></tr>
+    <tr><td class="paramname">month</td><td>An integer representing the month.</td></tr>
+    <tr><td class="paramname">day</td><td>An integer representing the day.</td></tr>
+    <tr><td class="paramname">actions</td><td>A pointer to an array of struct <a class="el" href="structAction.html">Action</a> elements.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An integer representing the time spent in seconds. </dd></dl>
 
 </div>
 </div>

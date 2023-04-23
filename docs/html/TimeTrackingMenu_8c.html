@@ -77,22 +77,34 @@ $(function() {
 <div class="textblock"><code>#include &lt;ncurses.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;menu.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="action_8h_source.html">action.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Fileio_8h_source.html">Fileio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Fileio_8c.html">Fileio.c</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for TimeTrackingMenu.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="TimeTrackingMenu_8c__incl.png" border="0" usemap="#asrc_2TimeTrackingMenu_8c" alt=""/></div>
 <map name="asrc_2TimeTrackingMenu_8c" id="asrc_2TimeTrackingMenu_8c">
-<area shape="rect" title=" " alt="" coords="106,5,285,32"/>
+<area shape="rect" title=" " alt="" coords="162,5,341,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,89,107"/>
-<area shape="rect" title=" " alt="" coords="113,80,184,107"/>
-<area shape="rect" title=" " alt="" coords="208,80,279,107"/>
-<area shape="rect" title=" " alt="" coords="303,80,373,107"/>
+<area shape="rect" title=" " alt="" coords="144,229,215,256"/>
+<area shape="rect" title=" " alt="" coords="216,155,287,181"/>
+<area shape="rect" title=" " alt="" coords="283,229,350,256"/>
+<area shape="rect" href="action_8h.html" title=" " alt="" coords="489,229,563,256"/>
+<area shape="rect" href="Fileio_8h.html" title=" " alt="" coords="511,155,581,181"/>
+<area shape="rect" href="Fileio_8c.html" title=" " alt="" coords="328,80,396,107"/>
+<area shape="rect" href="action_8c.html" title="Functions for manipulating the Action struct arrays." alt="" coords="363,155,436,181"/>
+<area shape="rect" title=" " alt="" coords="374,229,438,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a2af52b60b041c088eff55aef7fb3262f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a2af52b60b041c088eff55aef7fb3262f">USERFILENAME</a>&#160;&#160;&#160;&quot;userdata.tt&quot;</td></tr>
+<tr class="separator:a2af52b60b041c088eff55aef7fb3262f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f109a7a658420242ff843c27aa5266a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a6f109a7a658420242ff843c27aa5266a">ACTIONFILENAME</a>&#160;&#160;&#160;&quot;actiondata.tt&quot;</td></tr>
+<tr class="separator:a6f109a7a658420242ff843c27aa5266a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ee2b89275ccf24c7410615c666849e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a0ee2b89275ccf24c7410615c666849e8">CTR_POS</a>(x)&#160;&#160;&#160;((COLS - strlen(x)) / 2)</td></tr>
 <tr class="separator:a0ee2b89275ccf24c7410615c666849e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -108,10 +120,10 @@ Functions</h2></td></tr>
 <tr class="separator:a146fb8fa27c17f223c9331edfbd580b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e04049aeb0da8dfc68c3dee2ee24098"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a0e04049aeb0da8dfc68c3dee2ee24098">terminateProgram</a> ()</td></tr>
 <tr class="separator:a0e04049aeb0da8dfc68c3dee2ee24098"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2801c99728363778aef36867654cd29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#ac2801c99728363778aef36867654cd29">keyPresses</a> ()</td></tr>
-<tr class="separator:ac2801c99728363778aef36867654cd29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aace6b288e5cbf8113bb8b224b95fc08f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#aace6b288e5cbf8113bb8b224b95fc08f">runProgram</a> ()</td></tr>
-<tr class="separator:aace6b288e5cbf8113bb8b224b95fc08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30a9e4a9a6748a01059f82e2a17262a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a30a9e4a9a6748a01059f82e2a17262a8">keyPresses</a> (struct <a class="el" href="structUser.html">User</a> *users, struct <a class="el" href="structAction.html">Action</a> *actions)</td></tr>
+<tr class="separator:a30a9e4a9a6748a01059f82e2a17262a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4058239e2263d26b2c1c8dc953596297"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a4058239e2263d26b2c1c8dc953596297">runProgram</a> (struct <a class="el" href="structUser.html">User</a> *users, struct <a class="el" href="structAction.html">Action</a> *actions)</td></tr>
+<tr class="separator:a4058239e2263d26b2c1c8dc953596297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -121,8 +133,24 @@ Variables</h2></td></tr>
 <tr class="separator:a186d0241c62502fb176689d6e6d56a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44e5b6ba224a1d687fef9197d49bc6bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a44e5b6ba224a1d687fef9197d49bc6bc">highlightCurrentOption</a> = 0</td></tr>
 <tr class="separator:a44e5b6ba224a1d687fef9197d49bc6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c1f0876a16a8836d7afb45abcc93ef"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TimeTrackingMenu_8c.html#a65c1f0876a16a8836d7afb45abcc93ef">infotext</a> [120] =&quot;\n&quot;</td></tr>
+<tr class="separator:a65c1f0876a16a8836d7afb45abcc93ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a6f109a7a658420242ff843c27aa5266a" name="a6f109a7a658420242ff843c27aa5266a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f109a7a658420242ff843c27aa5266a">&#9670;&nbsp;</a></span>ACTIONFILENAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ACTIONFILENAME&#160;&#160;&#160;&quot;actiondata.tt&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0ee2b89275ccf24c7410615c666849e8" name="a0ee2b89275ccf24c7410615c666849e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ee2b89275ccf24c7410615c666849e8">&#9670;&nbsp;</a></span>CTR_POS</h2>
 
@@ -135,6 +163,20 @@ Variables</h2></td></tr>
           <td class="paramtype">&#160;</td>
           <td class="paramname">x</td><td>)</td>
           <td>&#160;&#160;&#160;((COLS - strlen(x)) / 2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2af52b60b041c088eff55aef7fb3262f" name="a2af52b60b041c088eff55aef7fb3262f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af52b60b041c088eff55aef7fb3262f">&#9670;&nbsp;</a></span>USERFILENAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define USERFILENAME&#160;&#160;&#160;&quot;userdata.tt&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -176,8 +218,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2801c99728363778aef36867654cd29" name="ac2801c99728363778aef36867654cd29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2801c99728363778aef36867654cd29">&#9670;&nbsp;</a></span>keyPresses()</h2>
+<a id="a30a9e4a9a6748a01059f82e2a17262a8" name="a30a9e4a9a6748a01059f82e2a17262a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a9e4a9a6748a01059f82e2a17262a8">&#9670;&nbsp;</a></span>keyPresses()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,8 +227,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void keyPresses </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">struct <a class="el" href="structUser.html">User</a> *&#160;</td>
+          <td class="paramname"><em>users</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">struct <a class="el" href="structAction.html">Action</a> *&#160;</td>
+          <td class="paramname"><em>actions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -245,8 +298,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aace6b288e5cbf8113bb8b224b95fc08f" name="aace6b288e5cbf8113bb8b224b95fc08f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aace6b288e5cbf8113bb8b224b95fc08f">&#9670;&nbsp;</a></span>runProgram()</h2>
+<a id="a4058239e2263d26b2c1c8dc953596297" name="a4058239e2263d26b2c1c8dc953596297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4058239e2263d26b2c1c8dc953596297">&#9670;&nbsp;</a></span>runProgram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,8 +307,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void runProgram </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">struct <a class="el" href="structUser.html">User</a> *&#160;</td>
+          <td class="paramname"><em>users</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">struct <a class="el" href="structAction.html">Action</a> *&#160;</td>
+          <td class="paramname"><em>actions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -310,6 +374,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">int highlightCurrentOption = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65c1f0876a16a8836d7afb45abcc93ef" name="a65c1f0876a16a8836d7afb45abcc93ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65c1f0876a16a8836d7afb45abcc93ef">&#9670;&nbsp;</a></span>infotext</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char infotext[120] =&quot;\n&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

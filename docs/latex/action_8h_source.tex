@@ -44,16 +44,27 @@
 \DoxyCodeLine{40 \textcolor{comment}{// The intention here is compare current and previous Action structs attribute by attribute}}
 \DoxyCodeLine{41 \textcolor{comment}{// 1. return positive integer in case current is greater than previous }}
 \DoxyCodeLine{42 \textcolor{comment}{// 2. return negative in case current is less than previous}}
-\DoxyCodeLine{43 \textcolor{comment}{// 3. return 0 in case curent and previous are equal}}
+\DoxyCodeLine{43 \textcolor{comment}{// 3. return 0 in case current and previous are equal}}
 \DoxyCodeLine{44 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_ab1608272dec2ef3331ef6317a1249523}{comparisonFunction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void} *previous, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *current);}
 \DoxyCodeLine{45 }
 \DoxyCodeLine{46 \textcolor{comment}{// Adds an Action struct to an array of such structs, using current time}}
 \DoxyCodeLine{47 \textcolor{comment}{// return NULL for failure.}}
 \DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{structAction}{Action}} *\mbox{\hyperlink{action_8h_a28392397839447507b316e027a0750b0}{addAction}}(\textcolor{keywordtype}{int} userID, \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a35a56899108042759421b8ddd02d7e41}{actionType}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions, \textcolor{keywordtype}{int} length);}
 \DoxyCodeLine{49 }
-\DoxyCodeLine{50 \textcolor{comment}{// Returns the index of the next action from the same user}}
+\DoxyCodeLine{50 \textcolor{comment}{// Returns the index of the next action from the same user. Returns -\/1 if no such actions exists}}
 \DoxyCodeLine{51 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_ab29c0baf871af9de2792e4debccd4231}{findNext}}(\textcolor{keywordtype}{int} currentIndex, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions, \textcolor{keywordtype}{int} length);}
 \DoxyCodeLine{52 }
-\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TIME\_TRACKING\_SSP\_ACTION\_H}}
+\DoxyCodeLine{53 \textcolor{comment}{// Returns the time spent on the specified state on the specified date (0, 0, 0 for today)}}
+\DoxyCodeLine{54 \textcolor{comment}{// in seconds}}
+\DoxyCodeLine{55 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_ac8f230b75ef0e2695f4440d4575faad0}{timeSpent}}(\textcolor{keywordtype}{int} state, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} userID, \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a6cdf23a9a2331bd13baeadbcb2194624}{year}}, \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_ac324916c7ec0988b75bb6a9797de4ffe}{month}}, \textcolor{keywordtype}{int} \mbox{\hyperlink{structAction_a94f804f1d3e99f88daa082c81e69a6b3}{day}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{// Returns true if the actions are dated to the same day}}
+\DoxyCodeLine{58 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_aac933e8d78c8fdad4d0af46337ded132}{sameDay}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *x, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *y);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{// Finds the index of the next action from the same user that does}}
+\DoxyCodeLine{61 \textcolor{comment}{// NOT have the same status. Returns -\/1 if no such index exists}}
+\DoxyCodeLine{62 \textcolor{keywordtype}{int} \mbox{\hyperlink{action_8h_a45a1e9c65df672dbf7e6b5f19220f88c}{findEndPoint}}(\textcolor{keywordtype}{int} index, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} userID, \textcolor{keywordtype}{int} status, \textcolor{keyword}{struct} \mbox{\hyperlink{structAction}{Action}} *actions, \textcolor{keywordtype}{int} numberOfActions);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TIME\_TRACKING\_SSP\_ACTION\_H}}
 
 \end{DoxyCode}
