@@ -14,16 +14,15 @@
 #include "action.c"
 
 
-// Save both databases to a file
 /**
 
 * @brief Saves both databases to a file.
-* @param numberOfUsers Number of users to save
-* @param numberOfActions Number of actions to save
-* @param userdataFilename Name of file to save user data to
-* @param actionFilename Name of file to save action data to
-* @param users Pointer to the array of user structs
-* @param actions Pointer to the array of action structs
+* @param[in] numberOfUsers Number of users to save
+* @param[in] numberOfActions Number of actions to save
+* @param[in] userdataFilename Name of file to save user data to
+* @param[in] actionFilename Name of file to save action data to
+* @param[in] users Pointer to the array of user structs
+* @param[in] actions Pointer to the array of action structs
 * @return 1 on success, 0 on failure
 */
 int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users,
@@ -59,7 +58,7 @@ int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char
 /**
 
 * @brief Reads the number of users from the file, reserves enough memory for the user table and reads it.
-* @param filename Name of file to read user table from
+* @param[in] filename Name of file to read user table from
 * @return Pointer to the array of user structs. Returns NULL upon failure.
 */
 struct User *readUserTable(char *filename) {
@@ -91,7 +90,7 @@ struct User *readUserTable(char *filename) {
 /**
 
 * @brief Reads the number of actions from the file, reserves enough memory for the action table and reads it.
-* @param filename Name of file to read action table from
+* @param[in] filename Name of file to read action table from
 * @return Pointer to the array of action structs. Returns NULL upon failure.
 */
 struct Action *readActionTable(char *filename) {
@@ -118,8 +117,9 @@ struct Action *readActionTable(char *filename) {
 /**
 
 * @brief Reads user input from the console with a prompt and stores it in a string
-* @param prompt Pointer to the prompt string to display on the console
-* @param target Pointer to the string where the user input will be stored
+* @param[in] prompt Pointer to the prompt string to display on the console
+* @param[in] target Pointer to the string where the user input will be stored
+* @return void
 */
 void stringInput(char *prompt, char *target)
 {
