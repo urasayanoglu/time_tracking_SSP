@@ -8,7 +8,8 @@ Include dependency graph for Fileio.\+h\+:\nopagebreak
 \includegraphics[width=149pt]{Fileio_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -19,27 +20,27 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structUser}{User}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Struct for storing user information. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{Fileio_8h_a705aaddab1ccc73f063282e9bacd3ff8}{NAMELENGTH}}~50
-\item 
+\begin{DoxyCompactList}\small\item\em Maximum length of user\textquotesingle{}s first and last name. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{Fileio_8h_a083ec68ee7d55f29605714c8cc4b17f3}{MAXLINELENGTH}}~2000
-\item 
+\begin{DoxyCompactList}\small\item\em Maximum length of a line in a file. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{Fileio_8h_a249f6b93bc1c710b12de9d39301e3a71}{INDEXCORRECTOR}}~4
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Correction factor for array indexing (subtracts 1 from user/action ID) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{Fileio_8h_a33b1fa83811c96a24116817018668772}{write\+DB}} (int number\+Of\+Users, int number\+Of\+Actions, char $\ast$userdata\+Filename, char $\ast$action\+Filename, struct \mbox{\hyperlink{structUser}{User}} $\ast$users, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions)
-\item 
+\begin{DoxyCompactList}\small\item\em Writes binary data to \char`\"{}filename\char`\"{}. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structUser}{User}} $\ast$ \mbox{\hyperlink{Fileio_8h_ae52a30bace562693eebbbd6164f68b8e}{read\+User\+Table}} (char $\ast$filename)
-\item 
+\begin{DoxyCompactList}\small\item\em Reads the number of users from the file, then reserves enough memory for the user table and reads it. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structAction}{Action}} $\ast$ \mbox{\hyperlink{Fileio_8h_aeeb17b606d884c21a802c35398b8c4fb}{read\+Action\+Table}} (char $\ast$filename)
-\item 
+\begin{DoxyCompactList}\small\item\em Reads the number of actions from the file, then reserves enough memory for the action array and reads it. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{Fileio_8h_ae3a51c33ba5e66115ad77305beddb5d3}{string\+Input}} (char $\ast$prompt, char $\ast$target)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Prompts user for input and saves input in target. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -49,17 +50,29 @@ void \mbox{\hyperlink{Fileio_8h_ae3a51c33ba5e66115ad77305beddb5d3}{string\+Input
 \doxysubsubsection{\texorpdfstring{INDEXCORRECTOR}{INDEXCORRECTOR}}
 {\footnotesize\ttfamily \#define INDEXCORRECTOR~4}
 
+
+
+Correction factor for array indexing (subtracts 1 from user/action ID) 
+
 \mbox{\Hypertarget{Fileio_8h_a083ec68ee7d55f29605714c8cc4b17f3}\label{Fileio_8h_a083ec68ee7d55f29605714c8cc4b17f3}} 
 \index{Fileio.h@{Fileio.h}!MAXLINELENGTH@{MAXLINELENGTH}}
 \index{MAXLINELENGTH@{MAXLINELENGTH}!Fileio.h@{Fileio.h}}
 \doxysubsubsection{\texorpdfstring{MAXLINELENGTH}{MAXLINELENGTH}}
 {\footnotesize\ttfamily \#define MAXLINELENGTH~2000}
 
+
+
+Maximum length of a line in a file. 
+
 \mbox{\Hypertarget{Fileio_8h_a705aaddab1ccc73f063282e9bacd3ff8}\label{Fileio_8h_a705aaddab1ccc73f063282e9bacd3ff8}} 
 \index{Fileio.h@{Fileio.h}!NAMELENGTH@{NAMELENGTH}}
 \index{NAMELENGTH@{NAMELENGTH}!Fileio.h@{Fileio.h}}
 \doxysubsubsection{\texorpdfstring{NAMELENGTH}{NAMELENGTH}}
 {\footnotesize\ttfamily \#define NAMELENGTH~50}
+
+
+
+Maximum length of user\textquotesingle{}s first and last name. 
 
 
 
@@ -70,21 +83,136 @@ void \mbox{\hyperlink{Fileio_8h_ae3a51c33ba5e66115ad77305beddb5d3}{string\+Input
 \doxysubsubsection{\texorpdfstring{readActionTable()}{readActionTable()}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structAction}{Action}} $\ast$ read\+Action\+Table (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
 
+
+
+Reads the number of actions from the file, then reserves enough memory for the action array and reads it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file from which action data will be read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to an array of \mbox{\hyperlink{structAction}{Action}} structs. Returns NULL upon failure
+\end{DoxyReturn}
+Reads the number of actions from the file, then reserves enough memory for the action array and reads it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & Name of file to read action table from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the array of action structs. Returns NULL upon failure. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{Fileio_8h_ae52a30bace562693eebbbd6164f68b8e}\label{Fileio_8h_ae52a30bace562693eebbbd6164f68b8e}} 
 \index{Fileio.h@{Fileio.h}!readUserTable@{readUserTable}}
 \index{readUserTable@{readUserTable}!Fileio.h@{Fileio.h}}
 \doxysubsubsection{\texorpdfstring{readUserTable()}{readUserTable()}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structUser}{User}} $\ast$ read\+User\+Table (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
 
+
+
+Reads the number of users from the file, then reserves enough memory for the user table and reads it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file from which user data will be read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to an array of \mbox{\hyperlink{structUser}{User}} structs. Returns 0 upon failure
+\end{DoxyReturn}
+Reads the number of users from the file, then reserves enough memory for the user table and reads it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & Name of file to read user table from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the array of user structs. Returns NULL upon failure. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{Fileio_8h_ae3a51c33ba5e66115ad77305beddb5d3}\label{Fileio_8h_ae3a51c33ba5e66115ad77305beddb5d3}} 
 \index{Fileio.h@{Fileio.h}!stringInput@{stringInput}}
 \index{stringInput@{stringInput}!Fileio.h@{Fileio.h}}
 \doxysubsubsection{\texorpdfstring{stringInput()}{stringInput()}}
 {\footnotesize\ttfamily void string\+Input (\begin{DoxyParamCaption}\item[{char $\ast$}]{prompt,  }\item[{char $\ast$}]{target }\end{DoxyParamCaption})}
 
+
+
+Prompts user for input and saves input in target. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em prompt} & Prompt to be displayed to user \\
+\hline
+\mbox{\texttt{ in}}  & {\em target} & Pointer to string where input will be saved\\
+\hline
+\end{DoxyParams}
+Prompts user for input and saves input in target.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em prompt} & Pointer to the prompt string to display on the console \\
+\hline
+\mbox{\texttt{ in}}  & {\em target} & Pointer to the string where the user input will be stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 \mbox{\Hypertarget{Fileio_8h_a33b1fa83811c96a24116817018668772}\label{Fileio_8h_a33b1fa83811c96a24116817018668772}} 
 \index{Fileio.h@{Fileio.h}!writeDB@{writeDB}}
 \index{writeDB@{writeDB}!Fileio.h@{Fileio.h}}
 \doxysubsubsection{\texorpdfstring{writeDB()}{writeDB()}}
 {\footnotesize\ttfamily int write\+DB (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Users,  }\item[{int}]{number\+Of\+Actions,  }\item[{char $\ast$}]{userdata\+Filename,  }\item[{char $\ast$}]{action\+Filename,  }\item[{struct \mbox{\hyperlink{structUser}{User}} $\ast$}]{users,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions }\end{DoxyParamCaption})}
 
+
+
+Writes binary data to \char`\"{}filename\char`\"{}. 
+
+Writes the binary data in the following order\+:
+\begin{DoxyEnumerate}
+\item Number of users (int number\+Of\+Users)
+\item Number of actions in the array (int number\+Of\+Actions)
+\item Array of \mbox{\hyperlink{structUser}{User}} structs found at location pointed to by $\ast$users
+\item Array of \mbox{\hyperlink{structAction}{Action}} structs found at location pointed to by $\ast$actions The intention is to make this a static storage, loaded upon starting the program, and saved to periodically during runtime, as well as at termination 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em number\+Of\+Users} & Number of users to be written to file \\
+\hline
+\mbox{\texttt{ in}}  & {\em number\+Of\+Actions} & Number of actions to be written to file \\
+\hline
+\mbox{\texttt{ in}}  & {\em userdata\+Filename} & Name of the file to which user data will be written \\
+\hline
+\mbox{\texttt{ in}}  & {\em action\+Filename} & Name of the file to which action data will be written \\
+\hline
+\mbox{\texttt{ in}}  & {\em users} & Pointer to an array of \mbox{\hyperlink{structUser}{User}} structs \\
+\hline
+\mbox{\texttt{ in}}  & {\em actions} & Pointer to an array of \mbox{\hyperlink{structAction}{Action}} structs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for failure, 1 for success
+\end{DoxyReturn}
+Writes binary data to \char`\"{}filename\char`\"{}.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em number\+Of\+Users} & Number of users to save \\
+\hline
+\mbox{\texttt{ in}}  & {\em number\+Of\+Actions} & Number of actions to save \\
+\hline
+\mbox{\texttt{ in}}  & {\em userdata\+Filename} & Name of file to save user data to \\
+\hline
+\mbox{\texttt{ in}}  & {\em action\+Filename} & Name of file to save action data to \\
+\hline
+\mbox{\texttt{ in}}  & {\em users} & Pointer to the array of user structs \\
+\hline
+\mbox{\texttt{ in}}  & {\em actions} & Pointer to the array of action structs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on success, 0 on failure 
+\end{DoxyReturn}

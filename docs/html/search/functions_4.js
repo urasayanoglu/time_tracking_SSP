@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keypresses_0',['keyPresses',['../TimeTrackingMenu_8c.html#a30a9e4a9a6748a01059f82e2a17262a8',1,'TimeTrackingMenu.c']]]
+  ['initialncurses_0',['initialNcurses',['../TimeTrackingMenu_8c.html#aa231506a434d6c26dcb3959eb4630652',1,'TimeTrackingMenu.c']]],
+  ['isearlier_1',['isEarlier',['../action_8c.html#aa69b05b7473ca303c514cb73c8ffaa2c',1,'isEarlier(struct Action *previousStruct, struct Action *currentStruct):&#160;action.c'],['../action_8h.html#aa69b05b7473ca303c514cb73c8ffaa2c',1,'isEarlier(struct Action *previousStruct, struct Action *currentStruct):&#160;action.c']]]
 ];

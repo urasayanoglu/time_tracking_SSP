@@ -27,21 +27,31 @@ Include dependency graph for Time\+Tracking\+Menu.\+c\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{TimeTrackingMenu_8c_abf4bec7dec14fa7ff2f80a9f13ac8871}{clear\+Menu}} ()
-\item 
-void \mbox{\hyperlink{TimeTrackingMenu_8c_ab13e858612c64eeef73aff1d8a03945e}{print\+Menu}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Clears the menu screen and prints the menu options. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_a9654b4c4fa8ea66e4ba6b3a96ccf15cb}{print\+Menu}} (struct \mbox{\hyperlink{structUser}{User}} $\ast$users)
+\begin{DoxyCompactList}\small\item\em Prints the menu with highlighted item based on user position in menu. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TimeTrackingMenu_8c_aa231506a434d6c26dcb3959eb4630652}{initial\+Ncurses}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes ncurses and sets it up for use in the program. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TimeTrackingMenu_8c_a146fb8fa27c17f223c9331edfbd580b0}{navigate\+Menu}} (int \mbox{\hyperlink{TimeTrackingMenu_8c_a44e5b6ba224a1d687fef9197d49bc6bc}{highlight\+Current\+Option}})
-\item 
+\begin{DoxyCompactList}\small\item\em Allows user to navigate a menu by moving the cursor to the highlighted option. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TimeTrackingMenu_8c_a0e04049aeb0da8dfc68c3dee2ee24098}{terminate\+Program}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Terminates the program by ending ncurses mode and closing the program. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TimeTrackingMenu_8c_a30a9e4a9a6748a01059f82e2a17262a8}{key\+Presses}} (struct \mbox{\hyperlink{structUser}{User}} $\ast$users, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions)
-\item 
+\begin{DoxyCompactList}\small\item\em Check user key presses and execute corresponding code. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TimeTrackingMenu_8c_a4058239e2263d26b2c1c8dc953596297}{run\+Program}} (struct \mbox{\hyperlink{structUser}{User}} $\ast$users, struct \mbox{\hyperlink{structAction}{Action}} $\ast$actions)
-\item 
+\begin{DoxyCompactList}\small\item\em Runs the time tracking program and enters an infinite loop to display and navigate the menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_a289311b28a4a18adf0ee427c3c6f5701}{set\+Window\+Style}} ()
+\begin{DoxyCompactList}\small\item\em Sets the window style by enabling colors and setting background and foreground colors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_af9dce1973196a5934ee5ec20ea417324}{print\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prints the main menu with options to sign in. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUser}{User}} \mbox{\hyperlink{TimeTrackingMenu_8c_a6926a89fddb99e6b21718c141ac86575}{get\+User\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Function to prompt user for first and last name and return a \mbox{\hyperlink{structUser}{User}} struct. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_a921793a93a4a6f971862126ce35e5c0f}{continue\+To\+Next\+Menu}} (struct \mbox{\hyperlink{structUser}{User}} user)
+\begin{DoxyCompactList}\small\item\em Function to clear current menu and continue to the next one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TimeTrackingMenu_8c_aacadc4c188f75937e3e90ac93c1bcee9}{run\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Function to run the main menu which directs user to Time\+Tracking\+Menu after logging in. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{TimeTrackingMenu_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The main function of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -49,7 +59,11 @@ char $\ast$ \mbox{\hyperlink{TimeTrackingMenu_8c_a186d0241c62502fb176689d6e6d56a
 \item 
 int \mbox{\hyperlink{TimeTrackingMenu_8c_a44e5b6ba224a1d687fef9197d49bc6bc}{highlight\+Current\+Option}} = 0
 \item 
-char \mbox{\hyperlink{TimeTrackingMenu_8c_a65c1f0876a16a8836d7afb45abcc93ef}{infotext}} \mbox{[}120\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}
+char \mbox{\hyperlink{TimeTrackingMenu_8c_ace3c22d7d60e7a07ccad67feb20f9af4}{infotext1}} \mbox{[}60\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}
+\item 
+char \mbox{\hyperlink{TimeTrackingMenu_8c_a6041e59c3881c68d82273df89b972608}{infotext2}} \mbox{[}60\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}
+\item 
+char \mbox{\hyperlink{TimeTrackingMenu_8c_a25c4bcd86b1ae24bf02622a0844336cc}{infotext3}} \mbox{[}60\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}
 \end{DoxyCompactItemize}
 
 
@@ -81,48 +95,207 @@ char \mbox{\hyperlink{TimeTrackingMenu_8c_a65c1f0876a16a8836d7afb45abcc93ef}{inf
 \doxysubsubsection{\texorpdfstring{clearMenu()}{clearMenu()}}
 {\footnotesize\ttfamily void clear\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Clears the menu screen and prints the menu options. 
+
+\begin{DoxyNote}{Note}
+Should be called when the user wants to clear the menu and return to the initial state. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a921793a93a4a6f971862126ce35e5c0f}\label{TimeTrackingMenu_8c_a921793a93a4a6f971862126ce35e5c0f}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!continueToNextMenu@{continueToNextMenu}}
+\index{continueToNextMenu@{continueToNextMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{continueToNextMenu()}{continueToNextMenu()}}
+{\footnotesize\ttfamily void continue\+To\+Next\+Menu (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUser}{User}}}]{user }\end{DoxyParamCaption})}
+
+
+
+Function to clear current menu and continue to the next one. 
+
+This function clears the current menu and initializes two static pointers to arrays\+: users and actions. It reads the tables from files USERFILENAME and ACTIONFILENAME, and if users is null, it allocates memory for a \mbox{\hyperlink{structUser}{User}} struct and assigns the given user to the first element. Finally, it calls the \mbox{\hyperlink{TimeTrackingMenu_8c_a4058239e2263d26b2c1c8dc953596297}{run\+Program()}} function with users and actions as arguments to run the Time Tracking Menu. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em user} & A \mbox{\hyperlink{structUser}{User}} struct containing the user information entered by the user in the previous menu. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a6926a89fddb99e6b21718c141ac86575}\label{TimeTrackingMenu_8c_a6926a89fddb99e6b21718c141ac86575}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!getUserInfo@{getUserInfo}}
+\index{getUserInfo@{getUserInfo}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{getUserInfo()}{getUserInfo()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structUser}{User}} get\+User\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to prompt user for first and last name and return a \mbox{\hyperlink{structUser}{User}} struct. 
+
+\begin{DoxyReturn}{Returns}
+struct \mbox{\hyperlink{structUser}{User}} -\/ \mbox{\hyperlink{structUser}{User}} struct containing user information entered by the user 
+\end{DoxyReturn}
 \mbox{\Hypertarget{TimeTrackingMenu_8c_aa231506a434d6c26dcb3959eb4630652}\label{TimeTrackingMenu_8c_aa231506a434d6c26dcb3959eb4630652}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!initialNcurses@{initialNcurses}}
 \index{initialNcurses@{initialNcurses}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{initialNcurses()}{initialNcurses()}}
 {\footnotesize\ttfamily void initial\+Ncurses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Initializes ncurses and sets it up for use in the program. 
+
+This function initializes the ncurses library by calling the initscr() function. It also enables cbreak mode to make button presses immediately available to the program. Additionally, it disables automatic printing of typed characters using noecho(). Finally, it sets the stdscr screen up to receive special keys by calling the keypad() function with TRUE as the argument. \begin{DoxyNote}{Note}
+This function should be called at the beginning of any program that uses ncurses. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 \mbox{\Hypertarget{TimeTrackingMenu_8c_a30a9e4a9a6748a01059f82e2a17262a8}\label{TimeTrackingMenu_8c_a30a9e4a9a6748a01059f82e2a17262a8}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!keyPresses@{keyPresses}}
 \index{keyPresses@{keyPresses}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{keyPresses()}{keyPresses()}}
 {\footnotesize\ttfamily void key\+Presses (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUser}{User}} $\ast$}]{users,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions }\end{DoxyParamCaption})}
 
+
+
+Check user key presses and execute corresponding code. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em users} & Pointer to an array of \mbox{\hyperlink{structUser}{User}} structures \\
+\hline
+\mbox{\texttt{ in}}  & {\em actions} & Pointer to an array of \mbox{\hyperlink{structAction}{Action}} structures \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 \mbox{\Hypertarget{TimeTrackingMenu_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{TimeTrackingMenu_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!main@{main}}
 \index{main@{main}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+The main function of the program. 
+
+This function starts the program by calling the run\+Main\+Menu function which runs the main menu. \begin{DoxyReturn}{Returns}
+An integer value of 0 for successful execution and any non-\/zero value for unsuccessful execution. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{TimeTrackingMenu_8c_a146fb8fa27c17f223c9331edfbd580b0}\label{TimeTrackingMenu_8c_a146fb8fa27c17f223c9331edfbd580b0}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!navigateMenu@{navigateMenu}}
 \index{navigateMenu@{navigateMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{navigateMenu()}{navigateMenu()}}
 {\footnotesize\ttfamily void navigate\+Menu (\begin{DoxyParamCaption}\item[{int}]{highlight\+Current\+Option }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{TimeTrackingMenu_8c_ab13e858612c64eeef73aff1d8a03945e}\label{TimeTrackingMenu_8c_ab13e858612c64eeef73aff1d8a03945e}} 
+
+
+Allows user to navigate a menu by moving the cursor to the highlighted option. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em highlight\+Current\+Option} & The index of the currently highlighted option in the menu.\\
+\hline
+\end{DoxyParams}
+Function takes in the index of the currently highlighted option in the menu and calculates the corresponding row and column position of the option on the screen. It then moves the cursor to that position and refreshes the screen to show the updated cursor position. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_af9dce1973196a5934ee5ec20ea417324}\label{TimeTrackingMenu_8c_af9dce1973196a5934ee5ec20ea417324}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!printMainMenu@{printMainMenu}}
+\index{printMainMenu@{printMainMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{printMainMenu()}{printMainMenu()}}
+{\footnotesize\ttfamily void print\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints the main menu with options to sign in. 
+
+Function prints the title of the menu and the option to sign in with the user\textquotesingle{}s name. The function refreshes the screen to show the menu items. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a9654b4c4fa8ea66e4ba6b3a96ccf15cb}\label{TimeTrackingMenu_8c_a9654b4c4fa8ea66e4ba6b3a96ccf15cb}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!printMenu@{printMenu}}
 \index{printMenu@{printMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{printMenu()}{printMenu()}}
-{\footnotesize\ttfamily void print\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void print\+Menu (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUser}{User}} $\ast$}]{users }\end{DoxyParamCaption})}
 
+
+
+Prints the menu with highlighted item based on user position in menu. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em users} & Array of \mbox{\hyperlink{structUser}{User}} structs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Should be called when the user navigates in the menu, and the program draws the menu again with the changes to user position. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_aacadc4c188f75937e3e90ac93c1bcee9}\label{TimeTrackingMenu_8c_aacadc4c188f75937e3e90ac93c1bcee9}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!runMainMenu@{runMainMenu}}
+\index{runMainMenu@{runMainMenu}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{runMainMenu()}{runMainMenu()}}
+{\footnotesize\ttfamily void run\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to run the main menu which directs user to Time\+Tracking\+Menu after logging in. 
+
+Initializes ncurses, terminal environment and menu. Sets window style and prints the main menu. Prompts the user to enter their first and last name and returns a \mbox{\hyperlink{structUser}{User}} struct. Then, it continues to the Time\+Tracking\+Menu using the continue\+To\+Next\+Menu function. Ends ncurses mode at the end of the function. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 \mbox{\Hypertarget{TimeTrackingMenu_8c_a4058239e2263d26b2c1c8dc953596297}\label{TimeTrackingMenu_8c_a4058239e2263d26b2c1c8dc953596297}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!runProgram@{runProgram}}
 \index{runProgram@{runProgram}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{runProgram()}{runProgram()}}
 {\footnotesize\ttfamily void run\+Program (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structUser}{User}} $\ast$}]{users,  }\item[{struct \mbox{\hyperlink{structAction}{Action}} $\ast$}]{actions }\end{DoxyParamCaption})}
 
+
+
+Runs the time tracking program and enters an infinite loop to display and navigate the menu. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em users} & Pointer to the array of users \\
+\hline
+\mbox{\texttt{ in}}  & {\em actions} & Pointer to the array of actions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a289311b28a4a18adf0ee427c3c6f5701}\label{TimeTrackingMenu_8c_a289311b28a4a18adf0ee427c3c6f5701}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!setWindowStyle@{setWindowStyle}}
+\index{setWindowStyle@{setWindowStyle}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{setWindowStyle()}{setWindowStyle()}}
+{\footnotesize\ttfamily void set\+Window\+Style (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the window style by enabling colors and setting background and foreground colors. 
+
+Function uses the ncurses library to enable colors and set the background and foreground colors of the standard screen to white on blue. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 \mbox{\Hypertarget{TimeTrackingMenu_8c_a0e04049aeb0da8dfc68c3dee2ee24098}\label{TimeTrackingMenu_8c_a0e04049aeb0da8dfc68c3dee2ee24098}} 
 \index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!terminateProgram@{terminateProgram}}
 \index{terminateProgram@{terminateProgram}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
 \doxysubsubsection{\texorpdfstring{terminateProgram()}{terminateProgram()}}
 {\footnotesize\ttfamily void terminate\+Program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Terminates the program by ending ncurses mode and closing the program. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 
 
 \doxysubsection{Variable Documentation}
@@ -150,9 +323,21 @@ char \mbox{\hyperlink{TimeTrackingMenu_8c_a65c1f0876a16a8836d7afb45abcc93ef}{inf
 \doxysubsubsection{\texorpdfstring{highlightCurrentOption}{highlightCurrentOption}}
 {\footnotesize\ttfamily int highlight\+Current\+Option = 0}
 
-\mbox{\Hypertarget{TimeTrackingMenu_8c_a65c1f0876a16a8836d7afb45abcc93ef}\label{TimeTrackingMenu_8c_a65c1f0876a16a8836d7afb45abcc93ef}} 
-\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!infotext@{infotext}}
-\index{infotext@{infotext}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
-\doxysubsubsection{\texorpdfstring{infotext}{infotext}}
-{\footnotesize\ttfamily char infotext\mbox{[}120\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}}
+\mbox{\Hypertarget{TimeTrackingMenu_8c_ace3c22d7d60e7a07ccad67feb20f9af4}\label{TimeTrackingMenu_8c_ace3c22d7d60e7a07ccad67feb20f9af4}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!infotext1@{infotext1}}
+\index{infotext1@{infotext1}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{infotext1}{infotext1}}
+{\footnotesize\ttfamily char infotext1\mbox{[}60\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a6041e59c3881c68d82273df89b972608}\label{TimeTrackingMenu_8c_a6041e59c3881c68d82273df89b972608}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!infotext2@{infotext2}}
+\index{infotext2@{infotext2}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{infotext2}{infotext2}}
+{\footnotesize\ttfamily char infotext2\mbox{[}60\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}}
+
+\mbox{\Hypertarget{TimeTrackingMenu_8c_a25c4bcd86b1ae24bf02622a0844336cc}\label{TimeTrackingMenu_8c_a25c4bcd86b1ae24bf02622a0844336cc}} 
+\index{TimeTrackingMenu.c@{TimeTrackingMenu.c}!infotext3@{infotext3}}
+\index{infotext3@{infotext3}!TimeTrackingMenu.c@{TimeTrackingMenu.c}}
+\doxysubsubsection{\texorpdfstring{infotext3}{infotext3}}
+{\footnotesize\ttfamily char infotext3\mbox{[}60\mbox{]} =\char`\"{}\textbackslash{}n\char`\"{}}
 

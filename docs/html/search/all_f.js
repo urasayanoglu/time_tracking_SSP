@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['writedb_0',['writeDB',['../Fileio_8c.html#a33b1fa83811c96a24116817018668772',1,'writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users, struct Action *actions):&#160;Fileio.c'],['../Fileio_8h.html#a33b1fa83811c96a24116817018668772',1,'writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users, struct Action *actions):&#160;Fileio.c']]]
+  ['usedid_0',['usedID',['../structAction.html#a576c90d86dd17e93a19552d4de1cf73d',1,'Action']]],
+  ['user_1',['User',['../structUser.html',1,'']]],
+  ['userfilename_2',['USERFILENAME',['../TestFileio_8c.html#a2af52b60b041c088eff55aef7fb3262f',1,'USERFILENAME():&#160;TestFileio.c'],['../TimeTrackingMenu_8c.html#a2af52b60b041c088eff55aef7fb3262f',1,'USERFILENAME():&#160;TimeTrackingMenu.c']]]
 ];

@@ -1,11 +1,17 @@
 \hypertarget{TestFileio_8c}{}\doxysection{src/\+Test\+Fileio.c File Reference}
 \label{TestFileio_8c}\index{src/TestFileio.c@{src/TestFileio.c}}
+
+
+Unit tests for fileio.\+c.  
+
+
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}Fileio.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}action.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Fileio.\+c\char`\"{}}\newline
-Include dependency graph for Test\+Fileio.\+c\+:\nopagebreak
+Include dependency graph for Test\+Fileio.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,8 +29,20 @@ Include dependency graph for Test\+Fileio.\+c\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{TestFileio_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main function for unit testing the fileio.\+c functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Unit tests for fileio.\+c. 
+
+\begin{DoxyAuthor}{Author}
+Uras Ayanoglu 
+
+Jan-\/\+Krister Helenius 
+
+Sebastian Sopola
+\end{DoxyAuthor}
+This file contains unit tests for fileio.\+c functions. The constraints on the name format are\+: the first name and last name must be separated by a space, and the name format must be \textquotesingle{}Car\+Magnus\textquotesingle{} or \textquotesingle{}Carl\textquotesingle{}, which means names like \textquotesingle{}Carl Magnus\textquotesingle{} or \textquotesingle{}Carl-\/\+Magnus\textquotesingle{} are not allowed. 
 
 \doxysubsection{Macro Definition Documentation}
 \mbox{\Hypertarget{TestFileio_8c_a6f109a7a658420242ff843c27aa5266a}\label{TestFileio_8c_a6f109a7a658420242ff843c27aa5266a}} 
@@ -48,3 +66,32 @@ int \mbox{\hyperlink{TestFileio_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Main function for unit testing the fileio.\+c functions. 
+
+\begin{DoxyReturn}{Returns}
+int Return 0 on success
+\end{DoxyReturn}
+This function creates user and action structs, writes them to files using the write\+DB function, then reads the files using the read\+User\+Table and read\+Action\+Table functions to verify the correctness of the reading and writing process. The function returns 0 on success. Create user struct
+
+action struct, copypaste from Testaction
+
+Pointers for loading
+
+save structs
+
+load users in case reading users from database was not succesfull
+
+in case reading users from database was successfull
+
+Verify users\+:
+
+load actions ~\newline
+ in case reading actions from database was not succesfull
+
+in case reading actions from database was successfull
+
+Verify actions
+
+Deallocate memory

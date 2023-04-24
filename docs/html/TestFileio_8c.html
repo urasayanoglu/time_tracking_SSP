@@ -73,6 +73,9 @@ $(function() {
   <div class="headertitle"><div class="title">TestFileio.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Unit tests for fileio.c.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="Fileio_8h_source.html">Fileio.h</a>&quot;</code><br />
@@ -83,7 +86,7 @@ Include dependency graph for TestFileio.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="TestFileio_8c__incl.png" border="0" usemap="#asrc_2TestFileio_8c" alt=""/></div>
 <map name="asrc_2TestFileio_8c" id="asrc_2TestFileio_8c">
-<area shape="rect" title=" " alt="" coords="93,5,210,32"/>
+<area shape="rect" title="Unit tests for fileio.c." alt="" coords="93,5,210,32"/>
 <area shape="rect" title=" " alt="" coords="390,229,457,256"/>
 <area shape="rect" title=" " alt="" coords="21,155,92,181"/>
 <area shape="rect" href="Fileio_8h.html" title=" " alt="" coords="117,155,186,181"/>
@@ -105,9 +108,18 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TestFileio_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for unit testing the fileio.c functions.  <a href="TestFileio_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">More...</a><br /></td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Unit tests for fileio.c. </p>
+<dl class="section author"><dt>Author</dt><dd>Uras Ayanoglu </dd>
+<dd>
+Jan-Krister Helenius </dd>
+<dd>
+Sebastian Sopola</dd></dl>
+<p>This file contains unit tests for fileio.c functions. The constraints on the name format are: the first name and last name must be separated by a space, and the name format must be 'CarMagnus' or 'Carl', which means names like 'Carl Magnus' or 'Carl-Magnus' are not allowed. </p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a6f109a7a658420242ff843c27aa5266a" name="a6f109a7a658420242ff843c27aa5266a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f109a7a658420242ff843c27aa5266a">&#9670;&nbsp;</a></span>ACTIONFILENAME</h2>
 
@@ -151,6 +163,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Main function for unit testing the fileio.c functions. </p>
+<dl class="section return"><dt>Returns</dt><dd>int Return 0 on success</dd></dl>
+<p>This function creates user and action structs, writes them to files using the writeDB function, then reads the files using the readUserTable and readActionTable functions to verify the correctness of the reading and writing process. The function returns 0 on success. </p>
+<p >Create user struct</p>
+<p >action struct, copypaste from Testaction</p>
+<p >Pointers for loading</p>
+<p >save structs</p>
+<p >load users in case reading users from database was not succesfull</p>
+<p >in case reading users from database was successfull</p>
+<p >Verify users:</p>
+<p >load actions <br  />
+ in case reading actions from database was not succesfull</p>
+<p >in case reading actions from database was successfull</p>
+<p >Verify actions</p>
+<p >Deallocate memory</p>
 
 </div>
 </div>

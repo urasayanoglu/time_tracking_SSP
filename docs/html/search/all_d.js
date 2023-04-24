@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['terminateprogram_0',['terminateProgram',['../TimeTrackingMenu_8c.html#a0e04049aeb0da8dfc68c3dee2ee24098',1,'TimeTrackingMenu.c']]],
-  ['testaction_2ec_1',['Testaction.c',['../Testaction_8c.html',1,'']]],
-  ['testfileio_2ec_2',['TestFileio.c',['../TestFileio_8c.html',1,'']]],
-  ['timespent_3',['timeSpent',['../action_8c.html#ac8f230b75ef0e2695f4440d4575faad0',1,'timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions):&#160;action.c'],['../action_8h.html#ac8f230b75ef0e2695f4440d4575faad0',1,'timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions):&#160;action.c']]],
-  ['timetrackingmenu_2ec_4',['TimeTrackingMenu.c',['../TimeTrackingMenu_8c.html',1,'']]],
-  ['type_5',['type',['../structUser.html#a93e36c04026715bd4b824dd4ddc47d78',1,'User']]]
+  ['sameday_0',['sameDay',['../action_8c.html#aac933e8d78c8fdad4d0af46337ded132',1,'sameDay(struct Action *x, struct Action *y):&#160;action.c'],['../action_8h.html#aac933e8d78c8fdad4d0af46337ded132',1,'sameDay(struct Action *x, struct Action *y):&#160;action.c']]],
+  ['second_1',['second',['../structAction.html#a74cce602c3785ccc6d34fa125f13c331',1,'Action']]],
+  ['setwindowstyle_2',['setWindowStyle',['../TimeTrackingMenu_8c.html#a289311b28a4a18adf0ee427c3c6f5701',1,'TimeTrackingMenu.c']]],
+  ['sortactions_3',['sortActions',['../action_8c.html#af3e40c6c5ac5bb3604a4b7c439c3c0b8',1,'sortActions(struct Action *actions, int lengthOfArray):&#160;action.c'],['../action_8h.html#af3e40c6c5ac5bb3604a4b7c439c3c0b8',1,'sortActions(struct Action *actions, int lengthOfArray):&#160;action.c']]],
+  ['status_4',['status',['../structUser.html#a1a3835f1625346b21f33f153edc375ff',1,'User']]],
+  ['stringinput_5',['stringInput',['../Fileio_8c.html#ae3a51c33ba5e66115ad77305beddb5d3',1,'stringInput(char *prompt, char *target):&#160;Fileio.c'],['../Fileio_8h.html#ae3a51c33ba5e66115ad77305beddb5d3',1,'stringInput(char *prompt, char *target):&#160;Fileio.c']]]
 ];

@@ -68,7 +68,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Fileio.c File Reference</div></div>
 </div><!--header-->
@@ -99,42 +98,26 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="Fileio_8c__dep__incl.png" border="0" usemap="#asrc_2Fileio_8cdep" alt=""/></div>
 <map name="asrc_2Fileio_8cdep" id="asrc_2Fileio_8cdep">
 <area shape="rect" title=" " alt="" coords="104,5,195,32"/>
-<area shape="rect" href="TestFileio_8c.html" title=" " alt="" coords="5,80,123,107"/>
+<area shape="rect" href="TestFileio_8c.html" title="Unit tests for fileio.c." alt="" coords="5,80,123,107"/>
 <area shape="rect" href="TimeTrackingMenu_8c.html" title=" " alt="" coords="147,80,325,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:af71324c57f05ff9e24bd384925dd6b17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Fileio_8c.html#af71324c57f05ff9e24bd384925dd6b17">NAME_LENGTH</a>&#160;&#160;&#160;40</td></tr>
-<tr class="separator:af71324c57f05ff9e24bd384925dd6b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a33b1fa83811c96a24116817018668772"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Fileio_8c.html#a33b1fa83811c96a24116817018668772">writeDB</a> (int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct <a class="el" href="structUser.html">User</a> *users, struct <a class="el" href="structAction.html">Action</a> *actions)</td></tr>
+<tr class="memdesc:a33b1fa83811c96a24116817018668772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves both databases to a file.  <a href="Fileio_8c.html#a33b1fa83811c96a24116817018668772">More...</a><br /></td></tr>
 <tr class="separator:a33b1fa83811c96a24116817018668772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae52a30bace562693eebbbd6164f68b8e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structUser.html">User</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Fileio_8c.html#ae52a30bace562693eebbbd6164f68b8e">readUserTable</a> (char *filename)</td></tr>
+<tr class="memdesc:ae52a30bace562693eebbbd6164f68b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the number of users from the file, reserves enough memory for the user table and reads it.  <a href="Fileio_8c.html#ae52a30bace562693eebbbd6164f68b8e">More...</a><br /></td></tr>
 <tr class="separator:ae52a30bace562693eebbbd6164f68b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeb17b606d884c21a802c35398b8c4fb"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structAction.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Fileio_8c.html#aeeb17b606d884c21a802c35398b8c4fb">readActionTable</a> (char *filename)</td></tr>
+<tr class="memdesc:aeeb17b606d884c21a802c35398b8c4fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the number of actions from the file, reserves enough memory for the action table and reads it.  <a href="Fileio_8c.html#aeeb17b606d884c21a802c35398b8c4fb">More...</a><br /></td></tr>
 <tr class="separator:aeeb17b606d884c21a802c35398b8c4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3a51c33ba5e66115ad77305beddb5d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Fileio_8c.html#ae3a51c33ba5e66115ad77305beddb5d3">stringInput</a> (char *prompt, char *target)</td></tr>
+<tr class="memdesc:ae3a51c33ba5e66115ad77305beddb5d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads user input from the console with a prompt and stores it in a string.  <a href="Fileio_8c.html#ae3a51c33ba5e66115ad77305beddb5d3">More...</a><br /></td></tr>
 <tr class="separator:ae3a51c33ba5e66115ad77305beddb5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="af71324c57f05ff9e24bd384925dd6b17" name="af71324c57f05ff9e24bd384925dd6b17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af71324c57f05ff9e24bd384925dd6b17">&#9670;&nbsp;</a></span>NAME_LENGTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NAME_LENGTH&#160;&#160;&#160;40</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aeeb17b606d884c21a802c35398b8c4fb" name="aeeb17b606d884c21a802c35398b8c4fb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeeb17b606d884c21a802c35398b8c4fb">&#9670;&nbsp;</a></span>readActionTable()</h2>
@@ -151,6 +134,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reads the number of actions from the file, reserves enough memory for the action table and reads it. </p>
+<p >Reads the number of actions from the file, then reserves enough memory for the action array and reads it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Name of file to read action table from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the array of action structs. Returns NULL upon failure. </dd></dl>
 
 </div>
 </div>
@@ -169,6 +162,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reads the number of users from the file, reserves enough memory for the user table and reads it. </p>
+<p >Reads the number of users from the file, then reserves enough memory for the user table and reads it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Name of file to read user table from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the array of user structs. Returns NULL upon failure. </dd></dl>
 
 </div>
 </div>
@@ -197,6 +200,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reads user input from the console with a prompt and stores it in a string. </p>
+<p >Prompts user for input and saves input in target.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">prompt</td><td>Pointer to the prompt string to display on the console </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target</td><td>Pointer to the string where the user input will be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -249,6 +263,21 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Saves both databases to a file. </p>
+<p >Writes binary data to "filename".</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">numberOfUsers</td><td>Number of users to save </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numberOfActions</td><td>Number of actions to save </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">userdataFilename</td><td>Name of file to save user data to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">actionFilename</td><td>Name of file to save action data to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">users</td><td>Pointer to the array of user structs </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">actions</td><td>Pointer to the array of action structs </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success, 0 on failure </dd></dl>
 
 </div>
 </div>
