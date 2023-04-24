@@ -1,11 +1,15 @@
-/*
- * File:        Timetrackingnc.c
- * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
- * Description: Time tracking project Ncurses interface
- */
+/**
 
+* @file Timetrackingnc.c
+* @brief Time tracking project Ncurses interface
+* @author Uras Ayanoglu
+* @author Jan-Krister Helenius
+* @author Sebastian Sopola
+*/
 // You may need to install a package like libncurse-dev to use these
 // e.g. sudo apt install libncurses-dev
+
+// required headers
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,10 +18,12 @@
 #include "Fileio.h"
 #include "Fileio.c"
 
+//constsant definitions
 #define USERFILENAME "userdata.tt"
 #define ACTIONFILENAME "actiondata.tt"
 #define CTR_POS(x) ((COLS - strlen(x)) / 2)
 
+// Array containing the menu options
 char *choices[] = {
     "Start day",
     "Break",
@@ -34,7 +40,12 @@ char infotext2[60] ="\n";
 char infotext3[60] ="\n";
     
 
-// function to be called when user want to clear menu to original state
+/**
+
+* @brief Clears the menu screen and prints the menu options.
+* @note Should be called when the user wants to clear the menu and return to the initial state.
+* @return void
+*/
 void clearMenu()
 {
 	// Clear the screen
@@ -60,7 +71,13 @@ void clearMenu()
 }
 
 
-// function to be called when user navigates in menu and program draws menu again with changes user position
+/**
+
+* @brief Prints the menu with highlighted item based on user position in menu.
+* @param[in] users Array of User structs
+* @note Should be called when the user navigates in the menu, and the program draws the menu again with the changes to user position.
+* @return void
+*/
 void printMenu(struct User *users)
 {
 	// Print the title of the menu: (row,built-int print-function(string),string format, the string)
@@ -108,6 +125,16 @@ void printMenu(struct User *users)
     refresh();
 }
 
+/**
+
+* @brief Initializes ncurses and sets it up for use in the program.
+* @details This function initializes the ncurses library by calling the initscr() function.
+* It also enables cbreak mode to make button presses immediately available to the program.
+* Additionally, it disables automatic printing of typed characters using noecho().
+* Finally, it sets the stdscr screen up to receive special keys by calling the keypad() function with TRUE as the argument.
+* @note This function should be called at the beginning of any program that uses ncurses.
+* @return void
+*/
 void initialNcurses() 
 {
 	// Initialize ncurses
@@ -123,7 +150,16 @@ void initialNcurses()
     keypad(stdscr, TRUE);
 }
 
-// function to allow move around menu
+
+/**
+
+* @brief Allows user to navigate a menu by moving the cursor to the highlighted option.
+* @param[in] highlightCurrentOption The index of the currently highlighted option in the menu.
+* @details Function takes in the index of the currently highlighted option in the menu and calculates the corresponding
+* row and column position of the option on the screen. It then moves the cursor to that position and refreshes the screen
+* to show the updated cursor position.
+* @return void
+*/
 void navigateMenu(int highlightCurrentOption)
 {
     // Calculate the row and column of the current highlighted option
@@ -137,7 +173,12 @@ void navigateMenu(int highlightCurrentOption)
     refresh();
 }
 
-// function to close the program
+
+/**
+
+* @brief Terminates the program by ending ncurses mode and closing the program
+* @return void
+*/
 void terminateProgram()
 {
     // End ncurses mode
@@ -147,7 +188,14 @@ void terminateProgram()
     exit(0);
 }
 
-// check user key presses
+
+/**
+
+* @brief Check user key presses and execute corresponding code
+* @param[in] users Pointer to an array of User structures
+* @param[in] actions Pointer to an array of Action structures
+* @return void
+*/
 void keyPresses(struct User *users, struct Action *actions)
 {
     // Get the number of menu items
@@ -248,7 +296,14 @@ void keyPresses(struct User *users, struct Action *actions)
     navigateMenu(highlightCurrentOption);
 }
 
-// function to run time tracking menu 
+
+/**
+
+* @brief Runs the time tracking program and enters an infinite loop to display and navigate the menu
+* @param[in] users Pointer to the array of users
+* @param[in] actions Pointer to the array of actions
+* @return void
+*/
 void runProgram (struct User *users, struct Action *actions)
 {
 	// initialize ncurses, initialize terminal environment, initialize menu
@@ -265,7 +320,13 @@ void runProgram (struct User *users, struct Action *actions)
 	}
 }
 
+/**
 
+* @brief Sets the window style by enabling colors and setting background and foreground colors.
+* @details Function uses the ncurses library to enable colors and set the background and foreground colors
+* of the standard screen to white on blue.
+* @return void
+*/
 void setWindowStyle () 
 {
 	// enable colors
@@ -276,7 +337,13 @@ void setWindowStyle ()
     wbkgd(stdscr, COLOR_PAIR(1));
 }
 
-// function to be called when program is first ran
+
+/**
+
+* @brief Prints the main menu with options to sign in.
+* @details Function prints the title of the menu and the option to sign in with the user's name. The function refreshes the screen to show the menu items.
+* @return void
+*/
 void printMainMenu()
 {
 		// Print the title of the menu: (row,built-int print-function(string),string format, the string)
@@ -293,7 +360,11 @@ void printMainMenu()
 } 
 
 
-// function to prompt user for first and last name and return a User struct
+
+/**
+* @brief Function to prompt user for first and last name and return a User struct
+* @return struct User - User struct containing user information entered by the user
+*/
 struct User getUserInfo() {
     struct User user;
     memset(user.firstName, 0, NAMELENGTH);  			// Clear first name buffer
@@ -311,8 +382,13 @@ struct User getUserInfo() {
 }														// were given
 
 
+/**
 
-// function to allow change to next menu
+* @brief Function to clear current menu and continue to the next one
+* @details This function clears the current menu and initializes two static pointers to arrays: users and actions. It reads the tables from files USERFILENAME and ACTIONFILENAME, and if users is null, it allocates memory for a User struct and assigns the given user to the first element. Finally, it calls the runProgram() function with users and actions as arguments to run the Time Tracking Menu.
+* @param[in] user A User struct containing the user information entered by the user in the previous menu.
+* @return void
+*/
 void continueToNextMenu(struct User user)
 {
     // function to be called when user want to clear menu 
@@ -336,8 +412,14 @@ void continueToNextMenu(struct User user)
 }
 
 
+/**
 
-// function to run main menu from where user is directed to TimeTrackingMenu after loggin in 
+* @brief Function to run the main menu which directs user to TimeTrackingMenu after logging in
+* @details Initializes ncurses, terminal environment and menu. Sets window style and prints the main menu.
+* Prompts the user to enter their first and last name and returns a User struct. Then, it continues to
+* the TimeTrackingMenu using the continueToNextMenu function. Ends ncurses mode at the end of the function.
+* @return void
+*/ 
 void runMainMenu () 
 {
     // initialize ncurses, initialize terminal environment, initialize menu
@@ -354,6 +436,12 @@ void runMainMenu ()
     endwin();
 }
 
+/**
+
+* @brief The main function of the program.
+* @details This function starts the program by calling the runMainMenu function which runs the main menu.
+* @return An integer value of 0 for successful execution and any non-zero value for unsuccessful execution.
+*/
 int main()
 {
 
