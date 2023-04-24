@@ -99,5 +99,8 @@ struct Action *readActionTable(char *filename);
 */
 void stringInput(char *prompt, char *target);
 
+// Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
+struct User addUser(char *firstname, char *lastname, struct User *users, int length);
+
 
 #endif //TIME_TRACKING_SSP_FILEIO_H

@@ -131,6 +131,43 @@ void stringInput(char *prompt, char *target)
     curs_set(0);  			// Hide cursor
 }
 
+// Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
+struct User addUser(char *firstname, char *lastname, struct User *users)
+{
+    int length = 0;
+    if (users != NULL)
+    {
+        int length = sizeof(*users) / sizeof(users[0]);
+    }
+
+    struct User *newArray = NULL;
+
+    // Allocate memory for new array
+    newArray = (struct User *) malloc((length + 1) * sizeof(struct User));
+
+    // If allocation succeeded, copy the contents of old array and deallocate memory
+    if (newArray != NULL)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            strcpy(newArray[i].lastName, users[i].lastName);
+            strcpy(newArray[i].firstName, users[i].firstName);
+            newArray[i].status = users[i].status;
+            newArray[i].ID = users[i].ID;
+            newArray[i].type = users;
+        }
+        free(users);
+
+        // Add struct members for the new user
+        strcpy(newArray[length].lastName, lastname);
+        strcpy(newArray[length].firstName, firstname);
+        newArray[length].status = 2;
+        newArray[length].ID = length;
+        // Set to type 0 (master user) if first user
+        newArray[length].type = (length == 0) ? 0 : 1;
+    }
+    return newArray;
+}
 
 
 
