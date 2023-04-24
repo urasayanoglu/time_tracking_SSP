@@ -4,10 +4,10 @@
 * @author Uras Ayanoglu
 * @author Jan-Krister Helenius
 * @author Sebastian Sopola
+* @details This file contains the ncurses interface for the time tracking project.
+* libncurses-dev is required to compile this file. For installation: sudo apt install libncurses-dev
 * @brief Time tracking project Ncurses interface
 */
-// You may need to install a package like libncurse-dev to use these
-// e.g. sudo apt install libncurses-dev
 
 // required headers
 #include <ncurses.h>
