@@ -53,6 +53,7 @@ int isEarlier(struct Action *previousStruct, struct Action *currentStruct) {
 * @brief Sort structs with qsort() algorithm from stdlib library
 * @param[in,out] actions pointer to the array of struct Actions to be sorted
 * @param[in] lengthOfArray the number of elements in the array
+* @return void
 */
 void sortActions(struct Action *actions, int lengthOfArray) {
     // qsort(pointer, total structs, size of single struct, function to compare all structs)
@@ -91,10 +92,10 @@ int comparisonFunction(const void *previous, const void *current) {
 /**
 
 * @brief Creates a new struct Action element and adds it to the end of an existing array of struct Action.
-* @param userID The ID of the user performing the action.
-* @param actionType The type of action being performed.
-* @param actions The existing array of struct Action to which the new element will be added.
-* @param lengthOfArray The number of elements in the existing array.
+* @param[in] userID The ID of the user performing the action.
+* @param[in] actionType The type of action being performed.
+* @param[in] actions The existing array of struct Action to which the new element will be added.
+* @param[in] lengthOfArray The number of elements in the existing array.
 * @return A pointer to the new array of struct Action, which contains all the old elements from the input array and the new struct Action element at the end.
 */
 struct Action *addAction(int userID, int actionType, struct Action *actions, int lengthOfArray) {
@@ -130,9 +131,9 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
 /**
 
 * @brief Finds the index of the next struct Action element with a different user ID than the current element.
-* @param currentIndex The index of the current struct Action element in the array.
-* @param actions The array of struct Action elements.
-* @param length The number of elements in the array.
+* @param[in] currentIndex The index of the current struct Action element in the array.
+* @param[in] actions The array of struct Action elements.
+* @param[in] length The number of elements in the array.
 * @return The index of the next struct Action element with a different user ID than the current element, or -1 if no such element exists.
 */
 int findNext(int currentIndex, struct Action *actions, int length) {
@@ -150,15 +151,15 @@ int findNext(int currentIndex, struct Action *actions, int length) {
 /**
 
 * @brief Checks whether two struct Action elements occurred on the same day.
-* @param x A pointer to the first struct Action element.
-* @param y A pointer to the second struct Action element.
+* @param[in] x A pointer to the first struct Action element.
+* @param[in] y A pointer to the second struct Action element.
 * @return 1 if both elements occurred on the same day, and 0 otherwise.
 */
 int sameDay(struct Action *x, struct Action *y) {
     return (x->day == y->day && x->month == y->month && x->year == y->year);
 }
 
-// States: 0 - working, 1 - on break, 2 - off work
+
 /**
 
 * @brief calculates the time spent in a certain state.
