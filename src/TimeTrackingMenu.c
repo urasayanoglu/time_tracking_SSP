@@ -18,7 +18,7 @@
 #include "Fileio.h"
 #include "Fileio.c"
 
-//constsant definitions
+//constant definitions
 #define USERFILENAME "userdata.tt"
 #define ACTIONFILENAME "actiondata.tt"
 #define CTR_POS(x) ((COLS - strlen(x)) / 2)
@@ -35,10 +35,38 @@ char *choices[] = {
 
 // Initialize the highlight to the first choice
 int highlightCurrentOption = 0;
+
+// Text blocks to be displayed beneath the menu
 char infotext1[60] ="\n";
 char infotext2[60] ="\n";
 char infotext3[60] ="\n";
-    
+
+void clearMenu();
+void printMenu(struct User *users);
+void initialNcurses();
+void navigateMenu(int highlightCurrentOption);
+void terminateProgram();
+void keyPresses(struct User *users, struct Action *actions);
+void runProgram (struct User *users, struct Action *actions);
+void setWindowStyle();
+void printMainMenu();
+struct User getUserInfo();
+void continueToNextMenu(struct User user);
+void runMainMenu();
+
+/**
+
+* @brief The main function of the program.
+* @details This function starts the program by calling the runMainMenu function which runs the main menu.
+* @return An integer value of 0 for successful execution and any non-zero value for unsuccessful execution.
+*/
+int main()
+{
+
+    runMainMenu();
+
+    return 0;
+}
 
 /**
 
@@ -48,24 +76,24 @@ char infotext3[60] ="\n";
 */
 void clearMenu()
 {
-	// Clear the screen
+    // Clear the screen
     clear();
 
-	// Print the title of the menu: (row,built-int print-function(string),string format, the string)
-	char *title = "Time Tracking Menu";
+    // Print the title of the menu: (row,built-int print-function(string),string format, the string)
+    char *title = "Time Tracking Menu";
     mvprintw(0, CTR_POS(title), "%s", title);
-    
+
     // Print the selection prompt
     mvprintw(2, CTR_POS("Select an option"), "Select an option");
 
-	// Print the menu items: (row,built-int print-function(string),string format, the string)
+    // Print the menu items: (row,built-int print-function(string),string format, the string)
     for (int index = 0; index < 6; index++) {
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
     }
-    
+
     // Reset the highlight to the first option
     highlightCurrentOption = 0;
-    
+
     // Refresh the screen to show the menu items
     refresh();
 }
@@ -80,41 +108,41 @@ void clearMenu()
 */
 void printMenu(struct User *users)
 {
-	// Print the title of the menu: (row,built-int print-function(string),string format, the string)
-	char *title = "Time Tracking Menu";
+    // Print the title of the menu: (row,built-int print-function(string),string format, the string)
+    char *title = "Time Tracking Menu";
     mvprintw(0, CTR_POS(title), "%s", title);
-    
+
     // Print the selection prompt
     mvprintw(2, CTR_POS("Select an option"), "Select an option");
-    
-    // This name is indexed with the very first one and 
-	//should be further implemented when we allow multiple users
-	mvprintw(0,3, "Online: %s %s", users[0].firstName,users[0].lastName);
-    
-	
-	// Print the menu items: (row,built-int print-function(string),string format, the string)
+
+    // This name is indexed with the very first one and
+    //should be further implemented when we allow multiple users
+    mvprintw(0,3, "Online: %s %s", users[0].firstName,users[0].lastName);
+
+
+    // Print the menu items: (row,built-int print-function(string),string format, the string)
     for (int index = 0; index < 6; index++) {
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
     }
-    
+
     // Print the menu with highlighted item based on user position in menu
     for (int index = 0; index < 6; index++) {
         // Check if the current index is the same as the highlightCurrentOption
         if (index == highlightCurrentOption) {
 
-        	// Set the bold and underline attributes for the highlighted item
-    		attrset(A_BOLD | A_UNDERLINE);
- 
-            attron(A_REVERSE); 
-         
+            // Set the bold and underline attributes for the highlighted item
+            attrset(A_BOLD | A_UNDERLINE);
+
+            attron(A_REVERSE);
+
         }
         mvprintw(4 + index, CTR_POS(choices[index]), "%s", choices[index]);
         if (index == highlightCurrentOption) {
 
-        	// Reset the bold and underline attributes for the highlighted item
-    		attrset(A_NORMAL);
- 
-            attroff(A_REVERSE); 
+            // Reset the bold and underline attributes for the highlighted item
+            attrset(A_NORMAL);
+
+            attroff(A_REVERSE);
         }
     }
     mvprintw(12 , CTR_POS(infotext1), "%s", infotext1);
@@ -135,11 +163,11 @@ void printMenu(struct User *users)
 * @note This function should be called at the beginning of any program that uses ncurses.
 * @return void
 */
-void initialNcurses() 
+void initialNcurses()
 {
-	// Initialize ncurses
+    // Initialize ncurses
     initscr();
-    
+
     // Cbreak mode  makes button presses immediately available to the program
     cbreak();
 
@@ -165,10 +193,10 @@ void navigateMenu(int highlightCurrentOption)
     // Calculate the row and column of the current highlighted option
     int row = 4 + highlightCurrentOption;
     int col = CTR_POS(choices[highlightCurrentOption]);
-    
+
     // Move the cursor to the current highlighted option
     move(row, col);
-    
+
     // Refresh the screen to show the updated cursor position
     refresh();
 }
@@ -183,7 +211,7 @@ void terminateProgram()
 {
     // End ncurses mode
     endwin();
-    
+
     // Close program
     exit(0);
 }
@@ -283,12 +311,12 @@ void keyPresses(struct User *users, struct Action *actions)
 
 
         } else if (highlightCurrentOption == 5) {
-        	// Execute code for "Exit" option
+            // Execute code for "Exit" option
             int numUsers = sizeof(*users) / sizeof(users[0]);
             writeDB(numUsers, numActions, USERFILENAME, ACTIONFILENAME, users, actions);
             free(users);
             free(actions);
-        	terminateProgram();
+            terminateProgram();
         }
     }
 
@@ -306,18 +334,18 @@ void keyPresses(struct User *users, struct Action *actions)
 */
 void runProgram (struct User *users, struct Action *actions)
 {
-	// initialize ncurses, initialize terminal environment, initialize menu
-	initialNcurses();	
-	
-	// infinite loop to run menu
-	while(1)
-	{
-		// Print the time tracking menu , with the user info top right corner
-		printMenu(users);
-		
-		// check for user key presses to navigate in the menu
-		keyPresses(users, actions);
-	}
+    // initialize ncurses, initialize terminal environment, initialize menu
+    initialNcurses();
+
+    // infinite loop to run menu
+    while(1)
+    {
+        // Print the time tracking menu , with the user info top right corner
+        printMenu(users);
+
+        // check for user key presses to navigate in the menu
+        keyPresses(users, actions);
+    }
 }
 
 /**
@@ -327,9 +355,9 @@ void runProgram (struct User *users, struct Action *actions)
 * of the standard screen to white on blue.
 * @return void
 */
-void setWindowStyle () 
+void setWindowStyle()
 {
-	// enable colors
+    // enable colors
     start_color();
 
     // set the background and foreground colors
@@ -346,18 +374,18 @@ void setWindowStyle ()
 */
 void printMainMenu()
 {
-		// Print the title of the menu: (row,built-int print-function(string),string format, the string)
-    	char *title = "Main Menu";
-    	attron(A_BOLD | A_UNDERLINE);
-    	mvprintw(2, CTR_POS(title), "%s", title);
-    	attroff(A_BOLD | A_UNDERLINE);
-    	
-    	// print the option to sign in
-    	mvprintw(4, (COLS - strlen("Sign in with your name")) / 2, "Sign in with your name");
-    	
-    	// Refresh the screen to show the menu items
-   		refresh();
-} 
+    // Print the title of the menu: (row,built-int print-function(string),string format, the string)
+    char *title = "Main Menu";
+    attron(A_BOLD | A_UNDERLINE);
+    mvprintw(2, CTR_POS(title), "%s", title);
+    attroff(A_BOLD | A_UNDERLINE);
+
+    // print the option to sign in
+    mvprintw(4, (COLS - strlen("Sign in with your name")) / 2, "Sign in with your name");
+
+    // Refresh the screen to show the menu items
+    refresh();
+}
 
 
 
@@ -371,14 +399,14 @@ struct User getUserInfo() {
     memset(user.lastName, 0, NAMELENGTH);  				// Clear last name buffer
     stringInput("Enter First name: ", user.firstName);	// ask first name and assign it
     mvprintw(8, 32, "First name: %s", user.firstName);  // Display first name below input prompt
-    clear();											// clear screen when user presses enter	
+    clear();											// clear screen when user presses enter
     printMainMenu();									// make main menu again
     stringInput("Enter last name: ", user.lastName);	// ask for last name
     mvprintw(8, 32, "Last name: %s", user.lastName);  	// Display last name below input prompt
     user.type = 0;										// initialize rest values accordinly
     user.ID = 0;
     user.status = 0;
-    return user;										// return user struct which is then passed to continueToNextFunction after names 
+    return user;										// return user struct which is then passed to continueToNextFunction after names
 }														// were given
 
 
@@ -391,9 +419,9 @@ struct User getUserInfo() {
 */
 void continueToNextMenu(struct User user)
 {
-    // function to be called when user want to clear menu 
+    // function to be called when user want to clear menu
     clearMenu();
-    
+
     // Pointers to arrays
     static struct User *users = NULL;
     static struct Action *actions = NULL;
@@ -419,35 +447,21 @@ void continueToNextMenu(struct User user)
 * Prompts the user to enter their first and last name and returns a User struct. Then, it continues to
 * the TimeTrackingMenu using the continueToNextMenu function. Ends ncurses mode at the end of the function.
 * @return void
-*/ 
-void runMainMenu () 
+*/
+void runMainMenu()
 {
     // initialize ncurses, initialize terminal environment, initialize menu
-	initialNcurses();
+    initialNcurses();
 
-	setWindowStyle ();
-	
-	printMainMenu();
-    
+    setWindowStyle ();
+
+    printMainMenu();
+
     struct User user = getUserInfo();
     continueToNextMenu(user);
 
     // End ncurses mode, IMPORTANT; WITHOUT THIS WINDOW CRASHES AND/OR WORKS WEIRDLY
     endwin();
-}
-
-/**
-
-* @brief The main function of the program.
-* @details This function starts the program by calling the runMainMenu function which runs the main menu.
-* @return An integer value of 0 for successful execution and any non-zero value for unsuccessful execution.
-*/
-int main()
-{
-
-    runMainMenu();
-
-    return 0;
 }
 
 
