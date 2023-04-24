@@ -102,5 +102,8 @@ void stringInput(char *prompt, char *target);
 // Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
 struct User addUser(char *firstname, char *lastname, struct User *users, int length);
 
+// Finds the index of user "firstname lastname". Returns -1 if user not found
+int idxUser(char * firstname, char * lastname, struct User *users);
+
 
 #endif //TIME_TRACKING_SSP_FILEIO_H

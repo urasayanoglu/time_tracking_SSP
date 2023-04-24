@@ -131,6 +131,7 @@ void stringInput(char *prompt, char *target)
     curs_set(0);  			// Hide cursor
 }
 
+
 // Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
 struct User addUser(char *firstname, char *lastname, struct User *users)
 {
@@ -170,5 +171,22 @@ struct User addUser(char *firstname, char *lastname, struct User *users)
 }
 
 
+// Finds the index of user "firstname lastname". Returns -1 if user not found
+int idxUser(char * firstname, char * lastname, struct User *users)
+{
+    int length = 0;
+    if (users != NULL)
+    {
+        length = sizeof(*users) / sizeof(users[0]);
+    }
 
-
+    // Iterate through the array. If first names and last names both match, return the index
+    for (int i = 0; i < length; i++)
+    {
+        if (strcmp(users[i].lastName, lastname) == 0 && strcmp(users[i].firstName, firstname) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
