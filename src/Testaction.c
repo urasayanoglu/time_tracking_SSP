@@ -45,7 +45,7 @@ int main()
 
     int lengthOfArray = sizeof(testActions) / sizeof(testActions[0]);
 
-    /// Test 1:
+    /// Test 1: Check if isEarlier works for all the cases
     if (isEarlier(&testActions[1], &testActions[0]) && isEarlier(&testActions[0], &testActions[2]) && isEarlier(&testActions[1], &testActions[2]))
     {
         printf("isEarlier passed all 3 tests\n");
@@ -55,7 +55,7 @@ int main()
         printf("isEarlier failed.\n");
     }
 
-    /// Test 2:
+    /// Test 2: Check if sortActions works for all the cases 
     sortActions(&testActions[0], lengthOfArray);
     if (isEarlier(&testActions[0], &testActions[1]) && isEarlier(&testActions[1], &testActions[2]) && isEarlier(&testActions[0], &testActions[2]))
     {
@@ -66,7 +66,7 @@ int main()
         printf("sortArray failed the test\n");
     }
 
-    /// Test 3:
+    /// Test 3: Check if addAction works for all the cases
     struct Action *newArray = NULL;
     newArray = addAction(0, 2, &testActions[0], lengthOfArray);
     printf("You added an action in year %d, month %d, day %d, hour %d, minute %d\n", newArray[3].year,
