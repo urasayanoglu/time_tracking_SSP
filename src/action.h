@@ -13,7 +13,7 @@
 /**
 * @struct Action
 * @brief Structure representing an action performed by a user
-* This structure represents an action performed by a user, including the user ID, action type, date, and time.
+* @details Structure represents an action performed by a user, including the user ID, action type, date, and time.
 */
 struct Action
 {
@@ -38,11 +38,11 @@ struct Action
     int second;
 };
 
-// returns true if the time/date of x is earlier than y
+
 /**
 * @brief Determines whether the time/date of x is earlier than y
-* @param previousStruct Pointer to the previous Action structure
-* @param currentStruct Pointer to the current Action structure
+* @param[in] previousStruct Pointer to the previous Action structure
+* @param[in] currentStruct Pointer to the current Action structure
 * @return True if the time/date of x is earlier than y; false otherwise
 */
 int isEarlier(struct Action *previousStruct, struct Action *currentStruct);
@@ -52,6 +52,7 @@ int isEarlier(struct Action *previousStruct, struct Action *currentStruct);
 * @brief Sorts Action structs to order
 * @param actions Pointer to the array of Action structures
 * @param lengthOfArray The length of the array of Action structures
+* @return void
 */
 void sortActions(struct Action *actions, int lengthOfArray);
 
@@ -62,13 +63,13 @@ void sortActions(struct Action *actions, int lengthOfArray);
 
 /**
 * @brief Compares current and previous Action structs attribute by attribute
-* This function compares the current and previous Action structs attribute by attribute and returns:
-* a positive integer in case current is greater than previous
-* a negative integer in case current is less than previous
-* 0 in case current and previous are equal
-* @param previous Pointer to the previous Action structure
-* @param current Pointer to the current Action structure
-* @return The result of the comparison
+* @details This function compares the current and previous Action structs attribute by attribute and returns:
+* 1. Return a positive integer in case current is greater than previous
+* 2. Return a negative integer in case current is less than previous
+* 3. Return 0 in case current and previous are equal
+* @param[in] previous Pointer to the previous Action structure
+* @param[in] current Pointer to the current Action structure
+* @return An integer based on the result of the comparison
 */
 int comparisonFunction(const void *previous, const void *current);
 
@@ -77,12 +78,12 @@ int comparisonFunction(const void *previous, const void *current);
 
 /**
 * @brief Adds an Action struct to an array of such structs, using current time
-* This function adds an Action struct to an array of such structs, using the current time, and returns
+* @details This function adds an Action struct to an array of such structs, using the current time, and returns
 * a pointer to the newly added Action structure.
-* @param userID The ID of the user who performed the action
-* @param actionType The type of action (0 = Start working, 1 = Stop working)
-* @param actions Pointer to the array of Action structures
-* @param length The length of the array of Action structures
+* @param[in] userID The ID of the user who performed the action
+* @param[in] actionType The type of action (0 = Start working, 1 = Stop working)
+* @param[in] actions Pointer to the array of Action structures
+* @param[in] length The length of the array of Action structures
 * @return A pointer to the newly added Action structure; NULL for failure
 */
 struct Action *addAction(int userID, int actionType, struct Action *actions, int length);
@@ -90,23 +91,22 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
 // Returns the index of the next action from the same user. Returns -1 if no such actions exists
 /**
 * @brief Returns the index of the next action from the same user. Returns -1 if no such actions exist.
-* @param currentIndex The index of the current action.
-* @param actions Pointer to the array of Action structs.
-* @param length The length of the array of Action structs.
+* @param[in] currentIndex The index of the current action.
+* @param[in] actions Pointer to the array of Action structs.
+* @param[in] length The length of the array of Action structs.
 * @return int The index of the next action from the same user, or -1 if none exist.
 */
 int findNext(int currentIndex, struct Action *actions, int length);
 
-// Returns the time spent on the specified state on the specified date (0, 0, 0 for today)
-// in seconds
+
 /**
 * @brief Returns the time spent on the specified state on the specified date (0, 0, 0 for today) in seconds.
-* @param state The state to calculate the time spent on.
-* @param userID The ID of the user.
-* @param year The year to calculate the time spent on.
-* @param month The month to calculate the time spent on.
-* @param day The day to calculate the time spent on.
-* @param actions Pointer to the array of Action structs.
+* @param[in] state The state to calculate the time spent on.
+* @param[in] userID The ID of the user.
+* @param[in] year The year to calculate the time spent on.
+* @param[in] month The month to calculate the time spent on.
+* @param[in] day The day to calculate the time spent on.
+* @param[in] actions Pointer to the array of Action structs.
 * @return int The time spent on the specified state on the specified date in seconds.
 */
 int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions);
@@ -114,8 +114,8 @@ int timeSpent(int state, unsigned int userID, int year, int month, int day, stru
 // Returns true if the actions are dated to the same day
 /**
 * @brief Returns true if the two given Action structs are dated to the same day.
-* @param x Pointer to the first Action struct.
-* @param y Pointer to the second Action struct.
+* @param[in] x Pointer to the first Action struct.
+* @param[in] y Pointer to the second Action struct.
 * @return int Returns 1 if the two Action structs are dated to the same day, 0 otherwise.
 */
 int sameDay(struct Action *x, struct Action *y);
