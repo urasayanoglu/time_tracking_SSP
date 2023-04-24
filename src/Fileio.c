@@ -1,8 +1,11 @@
-/*
- * File:        fileio.c
- * Authors:     Uras Ayanoglu, Jan-Krister Helenius, Sebastian Sopola
- * Description: Disk operations for Time Tracking project
- */
+/**
+
+* @file fileio.c
+* @brief Disk operations for Time Tracking project
+* @author Uras Ayanoglu
+* @author Jan-Krister Helenius
+* @author Sebastian Sopola
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -12,6 +15,17 @@
 
 
 // Save both databases to a file
+/**
+
+* @brief Saves both databases to a file.
+* @param numberOfUsers Number of users to save
+* @param numberOfActions Number of actions to save
+* @param userdataFilename Name of file to save user data to
+* @param actionFilename Name of file to save action data to
+* @param users Pointer to the array of user structs
+* @param actions Pointer to the array of action structs
+* @return 1 on success, 0 on failure
+*/
 int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char *actionFilename, struct User *users,
         struct Action *actions) {
     FILE *fileptr;
@@ -41,10 +55,13 @@ int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char
     }
 }
 
-// Reads the number of users from the file, then reserves enough memory for
-// the user table and reads it. Finally returns the pointer to the array of
-// user structs
-// Returns NULL upon failure
+
+/**
+
+* @brief Reads the number of users from the file, reserves enough memory for the user table and reads it.
+* @param filename Name of file to read user table from
+* @return Pointer to the array of user structs. Returns NULL upon failure.
+*/
 struct User *readUserTable(char *filename) {
     FILE *fileptr;
     struct User *userArray = NULL;
@@ -71,7 +88,12 @@ struct User *readUserTable(char *filename) {
         }
     return userArray;
 }
+/**
 
+* @brief Reads the number of actions from the file, reserves enough memory for the action table and reads it.
+* @param filename Name of file to read action table from
+* @return Pointer to the array of action structs. Returns NULL upon failure.
+*/
 struct Action *readActionTable(char *filename) {
     FILE *fileptr;
     struct Action *actionArray = NULL;
@@ -93,7 +115,12 @@ struct Action *readActionTable(char *filename) {
     return actionArray;
 }
 
+/**
 
+* @brief Reads user input from the console with a prompt and stores it in a string
+* @param prompt Pointer to the prompt string to display on the console
+* @param target Pointer to the string where the user input will be stored
+*/
 void stringInput(char *prompt, char *target)
 {
     echo();  				// Enable echoing of typed characters
