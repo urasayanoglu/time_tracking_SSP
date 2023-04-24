@@ -159,6 +159,17 @@ int sameDay(struct Action *x, struct Action *y) {
 }
 
 // States: 0 - working, 1 - on break, 2 - off work
+/**
+
+* @brief calculates the time spent in a certain state.
+* @param[in] state The state to calculate time spent for (0 - working, 1 - on break, 2 - off work).
+* @param[in] userID The ID of the user whose time is being calculated.
+* @param[in] year The year to calculate time spent for.
+* @param[in] month The month to calculate time spent for.
+* @param[in] day The day to calculate time spent for.
+* @param[in] actions A pointer to an array of actions.
+* @return The time spent in seconds.
+*/
 int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions)
 {
     // We store the time spent doing action 'state' in variable counter
