@@ -1,10 +1,10 @@
 /**
 
 * @file Timetrackingnc.c
-* @brief Time tracking project Ncurses interface
 * @author Uras Ayanoglu
 * @author Jan-Krister Helenius
 * @author Sebastian Sopola
+* @brief Time tracking project Ncurses interface
 */
 // You may need to install a package like libncurse-dev to use these
 // e.g. sudo apt install libncurses-dev

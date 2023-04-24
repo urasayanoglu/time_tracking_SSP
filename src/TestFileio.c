@@ -1,7 +1,6 @@
 /**
 
 * @file TestFileio.c
-* @brief Unit tests for fileio.c
 * @author Uras Ayanoglu
 * @author Jan-Krister Helenius
 * @author Sebastian Sopola
@@ -9,9 +8,10 @@
 * on the name format are: the first name and last name must be separated by a
 * space, and the name format must be 'CarMagnus' or 'Carl', which means names
 * like 'Carl Magnus' or 'Carl-Magnus' are not allowed.
+* @brief Unit tests for fileio.c
 */
 
-#include <stdio.h>
+#include <stdio.h> 
 #include <string.h>
 #include "Fileio.h"
 #include "Fileio.h"

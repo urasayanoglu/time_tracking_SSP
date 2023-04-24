@@ -1,10 +1,10 @@
 /**
 
 * @file fileio.c
-* @brief Disk operations for Time Tracking project
 * @author Uras Ayanoglu
 * @author Jan-Krister Helenius
 * @author Sebastian Sopola
+* @brief Disk operations for Time Tracking project
 */
 
 #include <stdio.h>

@@ -1,10 +1,10 @@
 /**
 
 * @file fileio.h
-* @brief Header file for file input/output operations
 * @author Uras Ayanoglu
 * @author Jan-Krister Helenius
 * @author Sebastian Sopola
+* @brief Header file for file input/output operations
 */
 
 #ifndef TIME_TRACKING_SSP_FILEIO_H
