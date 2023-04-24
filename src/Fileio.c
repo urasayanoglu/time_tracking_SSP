@@ -151,13 +151,8 @@ struct User *addUser(char *firstname, char *lastname, struct User *users)
     {
         for (int i = 0; i < length; i++)
         {
-            strcpy(newArray[i].lastName, users[i].lastName);
-            strcpy(newArray[i].firstName, users[i].firstName);
-            newArray[i].status = users[i].status;
-            newArray[i].ID = users[i].ID;
-            newArray[i].type = users[i].type;
+            newArray[i] = users[i];
         }
-        free(users);
 
         // Add struct members for the new user
         strcpy(newArray[length].lastName, lastname);
@@ -167,6 +162,7 @@ struct User *addUser(char *firstname, char *lastname, struct User *users)
         // Set to type 0 (master user) if first user
         newArray[length].type = (length == 0) ? 0 : 1;
     }
+    printf("first %s\n", newArray[length].firstName);
     return newArray;
 }
 

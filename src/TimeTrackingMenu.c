@@ -42,6 +42,8 @@ char infotext2[60] ="\n";
 char infotext3[60] ="\n";
 
 int userNumber = 0;
+int debug1 = -5;
+int debug2 = -5;
 
 void clearMenu();
 void printMenu(struct User *users);
@@ -150,6 +152,10 @@ void printMenu(struct User *users)
     mvprintw(12 , CTR_POS(infotext1), "%s", infotext1);
     mvprintw(13 , CTR_POS(infotext2), "%s", infotext2);
     mvprintw(14 , CTR_POS(infotext3), "%s", infotext3);
+
+    //Debug
+    mvprintw(16, CTR_POS(infotext1), "%d", debug1 );
+    mvprintw(17, CTR_POS(infotext1), "%d", debug2 );
 
     // Refresh the screen to show the menu items
     refresh();
@@ -425,19 +431,23 @@ void continueToNextMenu(struct User user)
     clearMenu();
 
     // Pointers to arrays
-    static struct User *users = NULL;
-    static struct Action *actions = NULL;
+    struct User *users = NULL;
+    struct Action *actions = NULL;
+    struct User *newUsers = NULL;
 
     // Read the tables from file
     users = readUserTable(USERFILENAME);
     actions = readActionTable(ACTIONFILENAME);
 
+    debug1 = (sizeof(*users) / sizeof(users[0]));
     if (idxUser(user.firstName, user.lastName, users) == -1)
     {
-        users = addUser(user.firstName, user.lastName, users);
-        if (users != NULL)
+        newUsers = addUser(user.firstName, user.lastName, users);
+        if (newUsers != NULL)
         {
+            users = newUsers;
             userNumber = (sizeof(*users) / sizeof(users[0])) - 1;
+            debug2 = *users->status;
         }
         else
         {
