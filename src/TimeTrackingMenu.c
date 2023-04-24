@@ -41,6 +41,8 @@ char infotext1[60] ="\n";
 char infotext2[60] ="\n";
 char infotext3[60] ="\n";
 
+int userNumber = 0;
+
 void clearMenu();
 void printMenu(struct User *users);
 void initialNcurses();
@@ -117,7 +119,7 @@ void printMenu(struct User *users)
 
     // This name is indexed with the very first one and
     //should be further implemented when we allow multiple users
-    mvprintw(0,3, "Online: %s %s", users[0].firstName,users[0].lastName);
+    mvprintw(0,3, "Online: %s %s", users[userNumber].firstName,users[userNumber].lastName);
 
 
     // Print the menu items: (row,built-int print-function(string),string format, the string)
@@ -252,25 +254,25 @@ void keyPresses(struct User *users, struct Action *actions)
         int numActions = actions != NULL ? sizeof(*actions) / sizeof(actions[0]) : 0;
         if (highlightCurrentOption == 0) {
             // Execute code for "Start day" option
-            addAction(users[0].ID, 0, actions, numActions);
+            addAction(users[userNumber].ID, 0, actions, numActions);
             strcpy(infotext1, "Working\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 1) {
             // Execute code for "Break" option
-            addAction(users[0].ID, 1, actions, numActions);
+            addAction(users[userNumber].ID, 1, actions, numActions);
             strcpy(infotext1, "On break\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 2) {
             // Execute code for "End break" option
-            addAction(users[0].ID, 0, actions, numActions);
+            addAction(users[userNumber].ID, 0, actions, numActions);
             strcpy(infotext1, "Working\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 3) {
             // Execute code for "End day" option
-            addAction(users[0].ID, 2, actions, numActions);
+            addAction(users[userNumber].ID, 2, actions, numActions);
             strcpy(infotext1, "Day ended\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
@@ -278,19 +280,19 @@ void keyPresses(struct User *users, struct Action *actions)
             // Execute code for "Report Day" option
 
 
-            int hoursWorked = timeSpent(0, 0, 0, 0, 0, actions) / 3600;
-            int minutesWorked = (timeSpent(0, 0, 0, 0, 0, actions) % 3600) * 60;
-            int hoursBreak = timeSpent(1, 0, 0, 0, 0, actions) / 3600;
-            int minutesBreak = (timeSpent(1, 0, 0, 0, 0, actions) % 3600) * 60;
+            int hoursWorked = timeSpent(0, users[userNumber].ID, 0, 0, 0, actions) / 3600;
+            int minutesWorked = (timeSpent(0, users[userNumber].ID, 0, 0, 0, actions) % 3600) * 60;
+            int hoursBreak = timeSpent(1, users[userNumber].ID, 0, 0, 0, actions) / 3600;
+            int minutesBreak = (timeSpent(1, users[userNumber].ID, 0, 0, 0, actions) % 3600) * 60;
 
             // Variable for storing integer as string before concatenation
             char intConversion[10] = "0";
 
             // Composes the displayed string, each line in its own variable to avoid formatting snafu
             sprintf(infotext1, "Today ");
-            strcat(infotext1, users[0].firstName);
+            strcat(infotext1, users[userNumber].firstName);
             strcat(infotext1, " ");
-            strcat(infotext1, users[0].lastName);
+            strcat(infotext1, users[userNumber].lastName);
             strcat(infotext1, "\n");
 
             sprintf(infotext2, "has worked ");
@@ -403,7 +405,7 @@ struct User getUserInfo() {
     printMainMenu();									// make main menu again
     stringInput("Enter last name: ", user.lastName);	// ask for last name
     mvprintw(8, 32, "Last name: %s", user.lastName);  	// Display last name below input prompt
-    user.type = 0;										// initialize rest values accordinly
+    user.type = 0;										// initialize rest of the values accordingly
     user.ID = 0;
     user.status = 0;
     return user;										// return user struct which is then passed to continueToNextFunction after names
@@ -430,9 +432,21 @@ void continueToNextMenu(struct User user)
     users = readUserTable(USERFILENAME);
     actions = readActionTable(ACTIONFILENAME);
 
-    if (users == NULL) {
-        users = (struct User *) malloc(sizeof(struct User));
-        users[0] = user;
+    if (idxUser(user.firstName, user.lastName, users) == -1)
+    {
+        users = addUser(user.firstName, user.lastName, users);
+        if (users != NULL)
+        {
+            userNumber = (sizeof(*users) / sizeof(users[0])) - 1;
+        }
+        else
+        {
+            exit(1);
+        }
+    }
+    else
+    {
+        userNumber = idxUser(user.firstName, user.lastName, users);
     }
 
     // function to run Time Tracking Menu

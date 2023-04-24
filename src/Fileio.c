@@ -133,12 +133,12 @@ void stringInput(char *prompt, char *target)
 
 
 // Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
-struct User addUser(char *firstname, char *lastname, struct User *users)
+struct User *addUser(char *firstname, char *lastname, struct User *users)
 {
     int length = 0;
     if (users != NULL)
     {
-        int length = sizeof(*users) / sizeof(users[0]);
+        length = sizeof(*users) / sizeof(users[0]);
     }
 
     struct User *newArray = NULL;
@@ -155,7 +155,7 @@ struct User addUser(char *firstname, char *lastname, struct User *users)
             strcpy(newArray[i].firstName, users[i].firstName);
             newArray[i].status = users[i].status;
             newArray[i].ID = users[i].ID;
-            newArray[i].type = users;
+            newArray[i].type = users[i].type;
         }
         free(users);
 

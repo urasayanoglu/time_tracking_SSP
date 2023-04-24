@@ -100,7 +100,7 @@ struct Action *readActionTable(char *filename);
 void stringInput(char *prompt, char *target);
 
 // Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
-struct User addUser(char *firstname, char *lastname, struct User *users, int length);
+struct User *addUser(char *firstname, char *lastname, struct User *users);
 
 // Finds the index of user "firstname lastname". Returns -1 if user not found
 int idxUser(char * firstname, char * lastname, struct User *users);
