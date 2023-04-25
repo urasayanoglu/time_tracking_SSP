@@ -98,7 +98,7 @@ int comparisonFunction(const void *previous, const void *current) {
 * @param[in] lengthOfArray The number of elements in the existing array.
 * @return A pointer to the new array of struct Action, which contains all the old elements from the input array and the new struct Action element at the end.
 */
-struct Action *addAction(int userID, int actionType, struct Action *actions, int lengthOfArray) {
+struct Action *addAction(int userID, int actionType, struct Action *actions, int *numberOfActions) {
     // Get current time
     time_t currentTime = time(NULL);
 
@@ -107,25 +107,26 @@ struct Action *addAction(int userID, int actionType, struct Action *actions, int
 
     // allocate memory for struct
     struct Action *newActions = NULL;
-    newActions = (struct Action *) malloc((lengthOfArray + 1) * sizeof(struct Action));
+    newActions = (struct Action *) malloc((*(numberOfActions) + 1) * sizeof(struct Action));
 
     // loop is copying the elements from the input array actions to the newly created array newActions
-    for (int index = 0; index < lengthOfArray; index++) {
+    for (int index = 0; index < *(numberOfActions); index++) {
         newActions[index] = actions[index];
     }
 
     // sets the values of the new struct Action element at the end of the new array newActions
-    newActions[lengthOfArray].usedID = userID;
-    newActions[lengthOfArray].actionType = actionType;
-    newActions[lengthOfArray].year = localTime->tm_year + 1900;
-    newActions[lengthOfArray].month = localTime->tm_mon + 1;
-    newActions[lengthOfArray].day = localTime->tm_mday;
-    newActions[lengthOfArray].hour = localTime->tm_hour;
-    newActions[lengthOfArray].minute = localTime->tm_min;
-    newActions[lengthOfArray].second = localTime->tm_sec;
+    newActions[*numberOfActions].usedID = userID;
+    newActions[*numberOfActions].actionType = actionType;
+    newActions[*numberOfActions].year = localTime->tm_year + 1900;
+    newActions[*numberOfActions].month = localTime->tm_mon + 1;
+    newActions[*numberOfActions].day = localTime->tm_mday;
+    newActions[*numberOfActions].hour = localTime->tm_hour;
+    newActions[*numberOfActions].minute = localTime->tm_min;
+    newActions[*numberOfActions].second = localTime->tm_sec;
 
     // Finally, returns the pointer to the new array newActions which contains all the old elements from the input array actions 
     // and the new struct Action element at the end.
+    *numberOfActions = *numberOfActions + 1;
     return newActions;
 }
 /**
@@ -171,13 +172,10 @@ int sameDay(struct Action *x, struct Action *y) {
 * @param[in] actions A pointer to an array of actions.
 * @return The time spent in seconds.
 */
-int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions)
+int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions, int numberOfActions)
 {
     // We store the time spent doing action 'state' in variable counter
     int counter = 0;
-
-    // Get number of structs in array actions
-    int numberOfActions = (actions != NULL) ? sizeof(*actions) / sizeof(actions[0]) : 0;
 
     // Make sure the array is sorted
     sortActions(actions, numberOfActions);

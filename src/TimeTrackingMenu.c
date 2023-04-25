@@ -44,8 +44,7 @@ char infotext3[60] ="\n";
 int userNumber = 0;
 int numUsers = 0;
 int numActions = 0;
-int debug1 = -5;
-int debug2 = -5;
+
 
 void clearMenu();
 void printMenu(struct User *users);
@@ -155,10 +154,6 @@ void printMenu(struct User *users)
     mvprintw(13 , CTR_POS(infotext2), "%s", infotext2);
     mvprintw(14 , CTR_POS(infotext3), "%s", infotext3);
 
-    //Debug
-    mvprintw(16, CTR_POS(infotext1), "%d", debug1 );
-    mvprintw(17, CTR_POS(infotext1), "%d", debug2 );
-
     // Refresh the screen to show the menu items
     refresh();
 }
@@ -259,28 +254,27 @@ void keyPresses(struct User *users, struct Action *actions)
         }
     } else if (keyPressed == '\n' && highlightCurrentOption >= 0 && highlightCurrentOption < numChoices) {
         // Execute code when user presses enter on the currently highlighted item
-        int numActions = actions != NULL ? sizeof(*actions) / sizeof(actions[0]) : 0;
         if (highlightCurrentOption == 0) {
             // Execute code for "Start day" option
-            addAction(users[userNumber].ID, 0, actions, numActions);
+            addAction(users[userNumber].ID, 0, actions, &numActions);
             strcpy(infotext1, "Working\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 1) {
             // Execute code for "Break" option
-            addAction(users[userNumber].ID, 1, actions, numActions);
+            addAction(users[userNumber].ID, 1, actions, &numActions);
             strcpy(infotext1, "On break\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 2) {
             // Execute code for "End break" option
-            addAction(users[userNumber].ID, 0, actions, numActions);
+            addAction(users[userNumber].ID, 0, actions, &numActions);
             strcpy(infotext1, "Working\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
         } else if (highlightCurrentOption == 3) {
             // Execute code for "End day" option
-            addAction(users[userNumber].ID, 2, actions, numActions);
+            addAction(users[userNumber].ID, 2, actions, &numActions);
             strcpy(infotext1, "Day ended\n");
             strcpy(infotext2, "\n");
             strcpy(infotext3, "\n");
@@ -288,19 +282,19 @@ void keyPresses(struct User *users, struct Action *actions)
             // Execute code for "Report Day" option
 
 
-            int hoursWorked = timeSpent(0, users[userNumber].ID, 0, 0, 0, actions) / 3600;
-            int minutesWorked = (timeSpent(0, users[userNumber].ID, 0, 0, 0, actions) % 3600) * 60;
-            int hoursBreak = timeSpent(1, users[userNumber].ID, 0, 0, 0, actions) / 3600;
-            int minutesBreak = (timeSpent(1, users[userNumber].ID, 0, 0, 0, actions) % 3600) * 60;
+            int hoursWorked = timeSpent(0, (users+userNumber)->ID, 0, 0, 0, actions, numActions) / 3600;
+            int minutesWorked = (timeSpent(0, (users+userNumber)->ID, 0, 0, 0, actions, numActions) % 3600) / 60;
+            int hoursBreak = timeSpent(1, (users+userNumber)->ID, 0, 0, 0, actions, numActions) / 3600;
+            int minutesBreak = (timeSpent(1, (users+userNumber)->ID, 0, 0, 0, actions, numActions) % 3600) / 60;
 
             // Variable for storing integer as string before concatenation
             char intConversion[10] = "0";
 
             // Composes the displayed string, each line in its own variable to avoid formatting snafu
             sprintf(infotext1, "Today ");
-            strcat(infotext1, users[userNumber].firstName);
+            strcat(infotext1, (users+userNumber)->firstName);
             strcat(infotext1, " ");
-            strcat(infotext1, users[userNumber].lastName);
+            strcat(infotext1, (users+userNumber)->lastName);
             strcat(infotext1, "\n");
 
             sprintf(infotext2, "has worked ");
@@ -440,15 +434,13 @@ void continueToNextMenu(struct User user)
     users = readUserTable(USERFILENAME, &numUsers);
     actions = readActionTable(ACTIONFILENAME, &numActions);
 
-    debug1 = numUsers;
     if (idxUser(user.firstName, user.lastName, users, numUsers) == -1)
     {
         newUsers = addUser(user.firstName, user.lastName, users, &numUsers);
         if (newUsers != NULL)
         {
             users = newUsers;
-            userNumber = numUsers - 1;
-            debug2 = numUsers;
+            userNumber = numUsers;
         }
         else
         {
