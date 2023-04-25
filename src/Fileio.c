@@ -61,10 +61,10 @@ int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char
 * @param[in] filename Name of file to read user table from
 * @return Pointer to the array of user structs. Returns NULL upon failure.
 */
-struct User *readUserTable(char *filename) {
+struct User *readUserTable(char *filename, int *numberOfUsers) {
     FILE *fileptr;
     struct User *userArray = NULL;
-    int numberOfUsers = 0;
+    int num = 0;
     fileptr = fopen(filename, "r");     // Open in read mode
     if (fileptr == NULL)
     {
@@ -73,15 +73,16 @@ struct User *readUserTable(char *filename) {
     else
     {
         fseek(fileptr, 0, SEEK_SET);
-        fread(&numberOfUsers, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
-        userArray = (struct User *) malloc(numberOfUsers * sizeof(struct User));
+        fread(&num, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
+        *numberOfUsers = num;
+        userArray = (struct User *) malloc(*(numberOfUsers) * sizeof(struct User));
         if (userArray == NULL)
         {
             return NULL;
         }
         else
         {
-            fread(userArray, sizeof(struct User), numberOfUsers, fileptr);     // Read the struct array
+            fread(userArray, sizeof(struct User), *(numberOfUsers), fileptr);     // Read the struct array
         }
         fclose(fileptr);
         }
@@ -93,21 +94,22 @@ struct User *readUserTable(char *filename) {
 * @param[in] filename Name of file to read action table from
 * @return Pointer to the array of action structs. Returns NULL upon failure.
 */
-struct Action *readActionTable(char *filename) {
+struct Action *readActionTable(char *filename, int *numberOfActions) {
     FILE *fileptr;
     struct Action *actionArray = NULL;
-    int numberOfActions = 0;
+    int num = 0;
     fileptr = fopen(filename, "r");     // Open in read mode
     if (fileptr == NULL) {
         return NULL;
     } else {
         fseek(fileptr, 0, SEEK_SET);
-        fread(&numberOfActions, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
-        actionArray = (struct Action *) malloc(numberOfActions * sizeof(struct Action));
+        fread(&num, sizeof(int), 1, fileptr);      // Read the integer that tells the length of the array
+        *numberOfActions = num;
+        actionArray = (struct Action *) malloc(*(numberOfActions) * sizeof(struct Action));
         if (actionArray == NULL) {
             return NULL;
         } else {
-            fread(actionArray, sizeof(struct Action), numberOfActions, fileptr);     // Read the struct array
+            fread(actionArray, sizeof(struct Action), *(numberOfActions), fileptr);     // Read the struct array
         }
         fclose(fileptr);
     }
@@ -132,6 +134,51 @@ void stringInput(char *prompt, char *target)
 }
 
 
+// Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
+struct User *addUser(char *firstname, char *lastname, struct User *users, int *numberOfUsers)
+{
+    int length = 0;
+    if (users != NULL)
+    {
+        length = sizeof(*users) / sizeof(users[0]);
+    }
+
+    struct User *newArray = NULL;
+
+    // Allocate memory for new array
+    newArray = (struct User *) malloc((length + 1) * sizeof(struct User));
+
+    // If allocation succeeded, copy the contents of old array and deallocate memory
+    if (newArray != NULL)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            newArray[i] = users[i];
+        }
+
+        // Add struct members for the new user
+        strcpy(newArray[length].lastName, lastname);
+        strcpy(newArray[length].firstName, firstname);
+        newArray[length].status = 2;
+        newArray[length].ID = length;
+        // Set to type 0 (master user) if first user
+        newArray[length].type = (length == 0) ? 0 : 1;
+        *numberOfUsers = *numberOfUsers + 1;
+    }
+    return newArray;
+}
 
 
-
+// Finds the index of user "firstname lastname". Returns -1 if user not found
+int idxUser(char * firstname, char * lastname, struct User *users, int length)
+{
+    // Iterate through the array. If first names and last names both match, return the index
+    for (int i = 0; i < length; i++)
+    {
+        if (strcmp(users[i].lastName, lastname) == 0 && strcmp(users[i].firstName, firstname) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}

@@ -86,7 +86,7 @@ int comparisonFunction(const void *previous, const void *current);
 * @param[in] length The length of the array of Action structures
 * @return A pointer to the newly added Action structure; NULL for failure
 */
-struct Action *addAction(int userID, int actionType, struct Action *actions, int length);
+struct Action *addAction(int userID, int actionType, struct Action *actions, int *numberOfActions);
 
 // Returns the index of the next action from the same user. Returns -1 if no such actions exists
 /**
@@ -109,7 +109,7 @@ int findNext(int currentIndex, struct Action *actions, int length);
 * @param[in] actions Pointer to the array of Action structs.
 * @return int The time spent on the specified state on the specified date in seconds.
 */
-int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions);
+int timeSpent(int state, unsigned int userID, int year, int month, int day, struct Action *actions, int numberOfActions);
 
 // Returns true if the actions are dated to the same day
 /**
