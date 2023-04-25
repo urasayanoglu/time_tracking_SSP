@@ -42,6 +42,8 @@ char infotext2[60] ="\n";
 char infotext3[60] ="\n";
 
 int userNumber = 0;
+int numUsers = 0;
+int numActions = 0;
 int debug1 = -5;
 int debug2 = -5;
 
@@ -121,7 +123,7 @@ void printMenu(struct User *users)
 
     // This name is indexed with the very first one and
     //should be further implemented when we allow multiple users
-    mvprintw(0,3, "Online: %s %s", users[userNumber].firstName,users[userNumber].lastName);
+    mvprintw(0,3, "Online: %s %s", (users+userNumber)->firstName, (users+userNumber)->lastName);
 
 
     // Print the menu items: (row,built-int print-function(string),string format, the string)
@@ -320,7 +322,6 @@ void keyPresses(struct User *users, struct Action *actions)
 
         } else if (highlightCurrentOption == 5) {
             // Execute code for "Exit" option
-            int numUsers = sizeof(*users) / sizeof(users[0]);
             writeDB(numUsers, numActions, USERFILENAME, ACTIONFILENAME, users, actions);
             free(users);
             free(actions);
@@ -436,18 +437,18 @@ void continueToNextMenu(struct User user)
     struct User *newUsers = NULL;
 
     // Read the tables from file
-    users = readUserTable(USERFILENAME);
-    actions = readActionTable(ACTIONFILENAME);
+    users = readUserTable(USERFILENAME, &numUsers);
+    actions = readActionTable(ACTIONFILENAME, &numActions);
 
-    debug1 = (sizeof(*users) / sizeof(users[0]));
-    if (idxUser(user.firstName, user.lastName, users) == -1)
+    debug1 = numUsers;
+    if (idxUser(user.firstName, user.lastName, users, numUsers) == -1)
     {
-        newUsers = addUser(user.firstName, user.lastName, users);
+        newUsers = addUser(user.firstName, user.lastName, users, &numUsers);
         if (newUsers != NULL)
         {
             users = newUsers;
-            userNumber = (sizeof(*users) / sizeof(users[0])) - 1;
-            debug2 = *users->status;
+            userNumber = numUsers - 1;
+            debug2 = numUsers;
         }
         else
         {
@@ -456,7 +457,7 @@ void continueToNextMenu(struct User user)
     }
     else
     {
-        userNumber = idxUser(user.firstName, user.lastName, users);
+        userNumber = idxUser(user.firstName, user.lastName, users, numUsers);
     }
 
     // function to run Time Tracking Menu

@@ -80,7 +80,7 @@ int writeDB(int numberOfUsers, int numberOfActions, char *userdataFilename, char
 * @param filename Name of the file from which user data will be read
 * @return Pointer to an array of User structs. Returns 0 upon failure
 */
-struct User *readUserTable(char *filename);
+struct User *readUserTable(char *filename, int *numberOfUsers);
 
 
 /**
@@ -89,7 +89,7 @@ struct User *readUserTable(char *filename);
 * @param filename Name of the file from which action data will be read
 * @return Pointer to an array of Action structs. Returns NULL upon failure
 */
-struct Action *readActionTable(char *filename);
+struct Action *readActionTable(char *filename, int *numberOfActions);
 
 /**
 
@@ -100,10 +100,10 @@ struct Action *readActionTable(char *filename);
 void stringInput(char *prompt, char *target);
 
 // Reserves memory and adds an user to the array 'users', then returns a pointer to the new array
-struct User *addUser(char *firstname, char *lastname, struct User *users);
+struct User *addUser(char *firstname, char *lastname, struct User *users, int *numberOfUsers);
 
 // Finds the index of user "firstname lastname". Returns -1 if user not found
-int idxUser(char * firstname, char * lastname, struct User *users);
+int idxUser(char * firstname, char * lastname, struct User *users, int length);
 
 
 #endif //TIME_TRACKING_SSP_FILEIO_H
